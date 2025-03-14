@@ -42,4 +42,13 @@
     transform: translateX(-50%);
 
   }
+
+  .growing_bottom_line {
+    position: absolute;
+    top: calc(50% + 170px);
+    left: 50%;
+    width: 1px;
+    background-color: $color-blue;
+    transform: translateX(-50%);
+  }
 }

@@ -21,13 +21,33 @@ function Hero() {
       opacity: [0, 1, 0.8, 1],
       height: "200px",
       transition: {
-        height: { duration: 1.8, ease: [0.19, 1, 0.22, 1] },
+        height: { duration: 2, ease: [0.19, 1, 0.22, 1] },
         opacity: { duration: 2.2, ease: [0, 0.4, 0.7, 1] },
       },
     },
   };
-
-
+  const bottomLineVariants = {
+    initial: {
+      height: 0,
+      opacity: 0,
+    },
+    animate: {
+      opacity: [0, 1, 0.8, 1],
+      height: "215px",
+      transition: {
+        height: {
+          duration: 2,
+          ease: [0.19, 1, 0.22, 1],
+          delay: 1.5,
+        },
+        opacity: {
+          duration: 1.8,
+          ease: [0, 0.4, 0.7, 1],
+          delay: 1.4,
+        },
+      },
+    },
+  };
   const containerVariants = {
     animate: {
       transition: {
@@ -76,6 +96,13 @@ function Hero() {
           vers l’innovation et l’industrie.
         </motion.p>
       </motion.div>
+
+      <motion.div
+        initial="initial"
+        animate={isVisible ? "animate" : "initial"}
+        variants={bottomLineVariants}
+        className={styles.growing_bottom_line}
+      ></motion.div>
     </main>
   );
 }
