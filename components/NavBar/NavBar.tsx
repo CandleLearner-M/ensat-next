@@ -1,7 +1,8 @@
-import { BiSearch } from "react-icons/bi";
 import Link from "next/link";
-import styles from "./NavBar.module.scss";
+import { FiSearch } from "react-icons/fi";
 import Logo from "../Logo/Logo";
+import styles from "./NavBar.module.scss";
+import { TbMenu3 } from "react-icons/tb";
 
 function NavBar() {
   return (
@@ -13,14 +14,15 @@ function NavBar() {
           </Link>
         </li>
         <li className={styles.right_part}>
-          <div className={styles.right_part_left}>
-            <span>
-              <BiSearch />
-              Search
-            </span>
-          </div>
+          <Link href="/" className={styles.right_part_left}>
+            <FiSearch size={30} />
+            <span>Search</span>
+          </Link>
 
-          <div className={styles.right_part_right}></div>
+          <Link href="/" className={styles.right_part_right}>
+            <TbMenu3 size={31} />
+            <span>Menu</span>
+          </Link>
         </li>
       </ul>
     </nav>

@@ -9,11 +9,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70px;
+  height: 90px;
+  transition: all 0.5s ease;
   ul {
     display: flex;
+    height: 100%;
+
     width: 100%;
-    padding: 0 2rem;  
+    padding: 0;
     justify-content: space-between;
     align-items: center;
     li {
@@ -21,18 +24,42 @@
       a {
         text-decoration: none;
         color: $color-navy;
-        font-size: $font-size-lg;
+        font-size: $font-size-2xl;
         font-weight: 500;
-        &:hover {
-          color: $color-amber;
-        }
       }
+    }
 
-      .right_part_left {
-        background-color: $color-navy;
+    .right_part {
+      display: flex;
+      height: 100%;
+    }
+    .right_part_left {
+      background-color: black;
+      color: $color-white;
+      display: flex;
+      align-items: center;
+      padding: 0 1.4rem;
+      height: 100%;
+      gap: 1.5rem;
 
-        color: white;
-        height: 100%;
+      font-size: 1.3rem;
+
+      &:hover {
+        background-color: lighten(black, 10%);
+      }
+    }
+    .right_part_right {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: $color-white;
+      display: flex;
+      align-items: center;
+      padding: 0 1.4rem;
+      height: 100%;
+      gap: 1.5rem;
+
+      font-size: 1.3rem;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
       }
     }
   }
