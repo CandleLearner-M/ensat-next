@@ -2,6 +2,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -28,4 +29,9 @@ body {
 main {
   width: 100%;
   position: relative;
+}
+
+
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-canela-deck);
 }

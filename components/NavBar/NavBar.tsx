@@ -8,8 +8,8 @@ function NavBar() {
   return (
     <nav className={styles.navbar}>
       <ul>
-        <li>
-          <Link href="/">
+        <li >
+          <Link href="/" className={styles.logo}>
             <Logo />
           </Link>
         </li>
@@ -20,7 +20,7 @@ function NavBar() {
           </Link>
 
           <Link href="/" className={styles.right_part_right}>
-            <TbMenu3 size={31} />
+            <TbMenu3 size={33} />
             <span>Menu</span>
           </Link>
         </li>

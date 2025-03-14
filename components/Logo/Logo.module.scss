@@ -1,0 +1,21 @@
+.logo {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-align: center;
+  gap: .5rem;
+  div {
+    position: relative;
+    top: -5px
+  }
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  h2 {
+    font-size: 0.55rem;
+    font-weight: 400;
+    
+  }
+}
+

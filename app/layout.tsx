@@ -1,5 +1,6 @@
 import NavBar from "@/components/NavBar/NavBar";
 import "./globals.scss";
+import { canelaDeck } from "@/lib/fonts";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -13,7 +14,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={canelaDeck.variable}>
       <body>
         <NavBar />
         <main>{children}</main>

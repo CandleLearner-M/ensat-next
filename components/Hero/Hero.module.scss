@@ -1,4 +1,18 @@
+@import "../../styles/variables.scss";
+
 .hero {
   position: relative;
   height: 100vh;
+  display: grid;
+  place-items: center;
+  h1 {
+    font-size: 3.5rem;
+    width: 20ch;
+    color: white !important;
+    font-weight: 700;
+    color: var(--clr-primary-1);
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
 }
