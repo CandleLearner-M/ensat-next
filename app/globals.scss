@@ -30,18 +30,3 @@ main {
   height: 100vh;
   position: relative;
 }
-
-.page-transition {
-  position: relative;
-  min-height: 100vh;
-}
-
-.loader-wrapper {
-  position: fixed;
-  inset: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: black;
-}
