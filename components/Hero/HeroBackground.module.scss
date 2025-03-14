@@ -15,20 +15,21 @@
   width: 100%;
   height: 100%;
   background: linear-gradient(
-    180deg,
-    rgba(2, 0, 50, 0) 0%,
-    rgba(0, 0, 80, 0.2) 25%,
-    rgba(0, 0, 50, 0.1) 30%,
-    rgba(0, 0, 30, 0.2) 35%,
-    rgba(9, 9, 121, 0.3) 60%,
-    rgba(0, 0, 10, 0.8) 82%,
-    rgba(0, 0, 0) 100%
-  );
+      180deg,
+      rgba(2, 0, 50, 0) 0%,
+      rgba(0, 0, 80, 0.2) 25%,
+      rgba(0, 0, 50, 0.1) 30%,
+      rgba(0, 0, 30, 0.2) 35%,
+      rgba(9, 9, 121, 0.2) 70%,
+      rgba(0, 0, 10, 0.8) 85%,
+      rgba(0, 0, 0) 100%
+    ),
+    rgba(0, 0, 0, 0.15);
 }
 
 .hero__background__image {
   -webkit-animation: kenburns-top 5s ease-out both;
-	        animation: kenburns-top 5s ease-out both;
+  animation: kenburns-top 5s ease-out both;
 }
 
 @-webkit-keyframes kenburns-top {
@@ -39,8 +40,8 @@
     transform-origin: 50% 16%;
   }
   100% {
-    -webkit-transform: scale(1.25) translateY(-15px);
-    transform: scale(1.25) translateY(-15px);
+    -webkit-transform: scale(1.12) translateY(-15px);
+    transform: scale(1.12) translateY(-15px);
     -webkit-transform-origin: top;
     transform-origin: top;
   }
@@ -53,8 +54,8 @@
     transform-origin: 50% 16%;
   }
   100% {
-    -webkit-transform: scale(1.2) translateY(-15px);
-    transform: scale(1.25) translateY(-15px);
+    -webkit-transform: scale(1.12) translateY(-15px);
+    transform: scale(1.12) translateY(-15px);
     -webkit-transform-origin: top;
     transform-origin: top;
   }

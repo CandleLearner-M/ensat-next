@@ -3,10 +3,18 @@
 .hero {
   position: relative;
   height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .hero_text_content {
+    display: grid;
+    place-items: center;
+  }
+
   h1 {
-    font-size: 3.5rem;
+    font-size: 3.7rem;
     width: 20ch;
     color: white !important;
     font-weight: 700;
@@ -14,5 +22,24 @@
     text-transform: capitalize;
     text-align: center;
     margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+    width: 35ch;
+    color: white !important;
+    color: var(--clr-primary-1);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .growing_line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    height: 200px;
+    width: 1px;
+    background-color: $color-blue;
+    transform: translateX(-50%);
+
   }
 }
