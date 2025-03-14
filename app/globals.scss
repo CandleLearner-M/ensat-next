@@ -1,5 +1,4 @@
 @import '../styles/variables.scss';
-// Reset & Base styles
 * {
   box-sizing: border-box;
   padding: 0;
@@ -19,14 +18,11 @@ body {
   background-color: $color-white;
 }
 
-// Remove this style when using Next.js App Router
 #__next {
   height: 100%;
 }
 
-// For Next.js App Router
 main {
   width: 100%;
-  height: 100vh;
   position: relative;
 }

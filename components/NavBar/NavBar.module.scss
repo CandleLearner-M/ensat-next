@@ -1,0 +1,39 @@
+@import "../../styles/variables.scss";
+
+.navbar {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  ul {
+    display: flex;
+    width: 100%;
+    padding: 0 2rem;  
+    justify-content: space-between;
+    align-items: center;
+    li {
+      list-style: none;
+      a {
+        text-decoration: none;
+        color: $color-navy;
+        font-size: $font-size-lg;
+        font-weight: 500;
+        &:hover {
+          color: $color-amber;
+        }
+      }
+
+      .right_part_left {
+        background-color: $color-navy;
+
+        color: white;
+        height: 100%;
+      }
+    }
+  }
+}
