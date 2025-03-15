@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
-import Logo from "../Logo/Logo";
+import Logo from "../../Logo/Logo";
 import styles from "./NavBar.module.scss";
 import { TbMenu3 } from "react-icons/tb";
 
@@ -8,7 +8,7 @@ function NavBar() {
   return (
     <nav className={styles.navbar}>
       <ul>
-        <li >
+        <li>
           <Link href="/" className={styles.logo}>
             <Logo />
           </Link>

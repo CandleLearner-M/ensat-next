@@ -1,20 +1,54 @@
+@import "../../styles/variables.scss";
 
+.hero_animation {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
 
-.upper_line {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 200px;
-  width: 1px;
-  background-color: $color-blue;
-  transform: translateX(-50%);
-}
+  .hero_text {
+    display: grid;
+    place-items: center;
+  }
 
-.bottom_line {
-  position: absolute;
-  top: calc(50% + 170px);
-  left: 50%;
-  width: 1px;
-  background-color: $color-blue;
-  transform: translateX(-50%);
+  h1 {
+    font-size: 3.7rem;
+    width: 20ch;
+    color: white !important;
+    font-weight: 700;
+    color: var(--clr-primary-1);
+    text-transform: capitalize;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  p {
+    font-size: 1.2rem;
+    width: 35ch;
+    color: white !important;
+    color: var(--clr-primary-1);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  .upper_line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    background-color: $color-blue;
+    transform: translateX(-50%);
+  }
+
+  .bottom_line {
+    position: absolute;
+    top: calc(50% + 170px);
+    left: 50%;
+    width: 1px;
+    background-color: $color-blue;
+    transform: translateX(-50%);
+  }
 }

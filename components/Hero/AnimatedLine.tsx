@@ -19,7 +19,7 @@ function AnimatedLine({className, isVisible, height, delay = 0 }: { className: s
         opacity: {
           duration: 1.8,
           ease: [0, 0.4, 0.7, 1],
-          delay: 1.4,
+          delay: delay,
         },
       },
     },

@@ -1,4 +1,4 @@
-import NavBar from "@/components/NavBar/NavBar";
+import NavBar from "@/components/Navigation/NavBar/NavBar";
 import "./globals.scss";
 import { canelaDeck } from "@/lib/fonts";
 import type { Metadata } from "next";
