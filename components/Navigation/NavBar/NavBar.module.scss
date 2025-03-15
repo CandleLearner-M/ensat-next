@@ -4,7 +4,7 @@
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   background-color: transparent;
   display: flex;
   justify-content: center;
@@ -29,10 +29,12 @@
     }
 
     .right_part {
+      position: relative;
       display: flex;
       height: 100%;
     }
     .right_part_left {
+      position: relative;
       background-color: black;
       color: $color-white;
       display: flex;
@@ -52,9 +54,14 @@
       color: $color-white;
       display: flex;
       align-items: center;
-      padding: 0 1.4rem;
+      padding: 0 1.7rem;
       height: 100%;
       gap: 1.5rem;
+      
+      span {
+        position: relative;
+        left: -4px;
+      };
 
       font-size: 1.3rem;
       &:hover {
