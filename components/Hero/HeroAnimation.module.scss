@@ -1,0 +1,20 @@
+
+
+.upper_line {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 200px;
+  width: 1px;
+  background-color: $color-blue;
+  transform: translateX(-50%);
+}
+
+.bottom_line {
+  position: absolute;
+  top: calc(50% + 170px);
+  left: 50%;
+  width: 1px;
+  background-color: $color-blue;
+  transform: translateX(-50%);
+}

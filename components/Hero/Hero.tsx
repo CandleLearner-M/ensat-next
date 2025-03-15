@@ -1,32 +1,8 @@
-"use client";
-
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import styles from "./Hero.module.scss";
 import HeroBackground from "./HeroBackground";
 
 function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const lineVariants = {
-    initial: {
-      height: 0,
-      opacity: 0,
-    },
-    animate: {
-      opacity: [0, 1, 0.8, 1],
-      height: "28vh",
-      transition: {
-        height: { duration: 2, ease: [0.19, 1, 0.22, 1] },
-        opacity: { duration: 2.2, ease: [0, 0.4, 0.7, 1] },
-      },
-    },
-  };
- 
   const containerVariants = {
     animate: {
       transition: {
@@ -54,7 +30,6 @@ function Hero() {
   return (
     <main className={styles.hero}>
       <HeroBackground />
-     
 
       <motion.div
         className={styles.hero_text_content}
