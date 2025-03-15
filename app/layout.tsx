@@ -1,12 +1,11 @@
-import NavBar from "@/components/Navigation/NavBar/NavBar";
-import "./globals.scss";
+import Navigation from "@/components/Navigation/Navigation";
 import { canelaDeck } from "@/lib/fonts";
 import type { Metadata } from "next";
-import MenuOverlay from "@/components/Navigation/MenuOverlay/MenuOverlay";
+import "./globals.scss";
 
 export const metadata: Metadata = {
   title: "ENSAT - École Nationale des Sciences Appliquées de Tanger",
-  description: "Your app description",
+  description: "",
 };
 
 export default function RootLayout({
@@ -17,10 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={canelaDeck.variable}>
       <body>
-        <MenuOverlay />
-        <NavBar />
+        <Navigation />
         <main>{children}</main>
       </body>
     </html>
-  );
-}
+    );
+  }

@@ -9,13 +9,13 @@
   z-index: 1001;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: 0.7fr 0.9fr 1.4fr;
+  grid-template-rows: 0.3fr 1fr 0.3fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 
   .sliding_menu_nav {
-    grid-area: 1 / 1 / 2 / 5;
+    grid-area: 1 / 1 / 2 / 4;
     padding: 1rem 2rem;
 
     ul {
@@ -38,13 +38,17 @@
       }
     }
   }
+
   .div2 {
-    grid-area: 2 / 1 / 5 / 2;
+    grid-area: 2 / 1 / 3 / 2;
   }
   .div3 {
-    grid-area: 2 / 2 / 5 / 5;
+    grid-area: 2 / 2 / 3 / 3;
   }
   .div4 {
-    grid-area: 5 / 1 / 6 / 5;
+    grid-area: 2 / 3 / 3 / 4;
+  }
+  .div5 {
+    grid-area: 3 / 1 / 4 / 4;
   }
 }
