@@ -19,35 +19,14 @@ function Hero() {
     },
     animate: {
       opacity: [0, 1, 0.8, 1],
-      height: "200px",
+      height: "28vh",
       transition: {
         height: { duration: 2, ease: [0.19, 1, 0.22, 1] },
         opacity: { duration: 2.2, ease: [0, 0.4, 0.7, 1] },
       },
     },
   };
-  const bottomLineVariants = {
-    initial: {
-      height: 0,
-      opacity: 0,
-    },
-    animate: {
-      opacity: [0, 1, 0.8, 1],
-      height: "215px",
-      transition: {
-        height: {
-          duration: 2,
-          ease: [0.19, 1, 0.22, 1],
-          delay: 1.5,
-        },
-        opacity: {
-          duration: 1.8,
-          ease: [0, 0.4, 0.7, 1],
-          delay: 1.4,
-        },
-      },
-    },
-  };
+ 
   const containerVariants = {
     animate: {
       transition: {
@@ -60,7 +39,7 @@ function Hero() {
   const textVariants = {
     initial: {
       opacity: 0,
-      y: 100,
+      y: 80,
     },
     animate: {
       opacity: 1,
@@ -75,12 +54,7 @@ function Hero() {
   return (
     <main className={styles.hero}>
       <HeroBackground />
-      <motion.div
-        initial="initial"
-        animate={isVisible ? "animate" : "initial"}
-        variants={lineVariants}
-        className={styles.growing_line}
-      ></motion.div>
+     
 
       <motion.div
         className={styles.hero_text_content}
