@@ -1,41 +1,81 @@
 import { useNavigation } from "../../state/context";
 import navigationData from "../../state/ENSATNavDS";
 import styles from "./SideBar.module.scss";
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 function SideBar() {
   const {
     state: { selectedMenuItem },
     dispatch,
   } = useNavigation();
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Set menu to open after component mounts to trigger animation
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  // Container animation (parent)
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const menuItemVariants = {
+    hidden: { opacity: 0, y: -20, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
 
   return (
     <div className={styles.sidebar}>
-      <ul>
+      <motion.ul
+        variants={containerVariants}
+        initial="hidden"
+        animate={isOpen ? "visible" : "hidden"}
+      >
         {navigationData.map((item) => {
           const isSelected = selectedMenuItem === item.id;
 
           return (
-            <li
+            <motion.li
               key={item.id}
               className={
                 selectedMenuItem && !isSelected ? styles.sidebar__grayedout : ""
               }
+              variants={menuItemVariants}
             >
               <h3
                 onClick={() =>
                   dispatch({
                     type: "SELECT_MENU_ITEM",
-                    payload: !isSelected ? item.id : null,
+                    payload: !isSelected
+                      ? { id: item.id, image: item.image || "" }
+                      : { id: null, image: null },
                   })
                 }
                 className={isSelected ? styles.sidebar__selected : ""}
               >
                 {item.label}
               </h3>
-            </li>
+            </motion.li>
           );
         })}
-      </ul>
+      </motion.ul>
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigation } from "../state/context";
 import SideBar from "./SideBar/SideBar";
 import { GrFormNext } from "react-icons/gr";
+import ContentArea from "./ContentArea/ContentArea";
+import { useEffect, useState } from "react";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -16,33 +18,77 @@ type MenuOverlayProps = {
 };
 
 function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
+  const {
+    state: { selectedMenuItem },
+  } = useNavigation();
+
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
       <SideBar />
+      {selectedMenuItem && <ContentArea />}
 
-      <footer className={styles.menu__footer}>
-        <ul>
-          <li>
-            <span>Liens Rapides</span>
-            <GrFormNext className={styles.menu__footer__symbol} />
-          </li>
-          <li>
-            <Link href="/news">Actualités</Link>
-          </li>
-
-          <li>
-            <Link href="/defenses">Soutenances</Link>
-          </li>
-          <li>
-            <Link href="/contact">Contact</Link>
-          </li>
-        </ul>
-      </footer>
+      <MenuFooter />
     </motion.div>
   );
 }
 export default MenuOverlay;
+
+function MenuFooter() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const footerItemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 0.4,
+        ease: [0.25, 0.1, 0.25, 1],
+      },
+    },
+  };
+
+  return (
+    <footer className={styles.menu__footer}>
+      <motion.ul
+        variants={containerVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        <motion.li variants={footerItemVariants}>
+          <span>Liens Rapides</span>
+          <GrFormNext className={styles.menu__footer__symbol} />
+        </motion.li>
+        <motion.li variants={footerItemVariants}>
+          <Link href="/news">Actualités</Link>
+        </motion.li>
+
+        <motion.li variants={footerItemVariants}>
+          <Link href="/defenses">Soutenances</Link>
+        </motion.li>
+        <motion.li variants={footerItemVariants}>
+          <Link href="/contact">Contact</Link>
+        </motion.li>
+      </motion.ul>
+    </footer>
+  );
+}
 
 function MenuNavBar() {
   const { dispatch } = useNavigation();

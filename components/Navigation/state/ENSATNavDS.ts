@@ -3,6 +3,7 @@ interface NavigationItem {
   id: string;
   label: string;
   path: string;
+  image?: string; // Property for background images
   hasSubmenu?: boolean;
   submenu?: NavigationItem[];
 }
@@ -13,6 +14,8 @@ const navigationData: NavigationItem[] = [
     id: "ensat",
     label: "ENSAT",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Modern campus building
     hasSubmenu: true,
     submenu: [
       {
@@ -58,6 +61,8 @@ const navigationData: NavigationItem[] = [
     id: "formations",
     label: "Formations",
     path: "/formations",
+    image:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=75", // Students in lecture hall
     hasSubmenu: true,
     submenu: [
       {
@@ -150,6 +155,8 @@ const navigationData: NavigationItem[] = [
     id: "departements",
     label: "Départements",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Library or faculty corridor
     hasSubmenu: true,
     submenu: [
       { id: "sic", label: "SIC", path: "/departements/sic" },
@@ -162,6 +169,8 @@ const navigationData: NavigationItem[] = [
     id: "recherche",
     label: "Recherche",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Scientific research lab
     hasSubmenu: true,
     submenu: [
       {
@@ -210,6 +219,8 @@ const navigationData: NavigationItem[] = [
     id: "partenariats",
     label: "Partenariats",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1541872703-74c5e44368f9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Handshake or business meeting
     hasSubmenu: true,
     submenu: [
       {
@@ -228,6 +239,8 @@ const navigationData: NavigationItem[] = [
     id: "etudiants",
     label: "Étudiants",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Students working together
     hasSubmenu: true,
     submenu: [
       { id: "emploi", label: "Emploi du Temps", path: "/etudiants/emploi" },
@@ -246,6 +259,8 @@ const navigationData: NavigationItem[] = [
     id: "appels",
     label: "Appels d'Offre",
     path: "",
+    image:
+      "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Business documents or contract signing
     hasSubmenu: true,
     submenu: [
       { id: "marches", label: "Marchés Publics", path: "/appels/marches" },

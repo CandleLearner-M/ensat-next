@@ -4,6 +4,7 @@ import { createContext } from "react";
 type State = {
   isMenuOpen: boolean;
   selectedMenuItem: string | null;
+  backgroundImage: string | null;
 };
 
 type Action =
@@ -12,7 +13,10 @@ type Action =
     }
   | {
       type: "SELECT_MENU_ITEM";
-      payload: string | null;
+      payload: {
+        id: string | null;
+        image: string | null;
+      };
     };
 
 type NavigationContextType = {
@@ -27,6 +31,7 @@ const NavigationContext = createContext<NavigationContextType | undefined>(
 const initialState: State = {
   isMenuOpen: false,
   selectedMenuItem: null,
+  backgroundImage: null,
 };
 
 function navigationReducer(state: State, action: Action) {
@@ -36,7 +41,11 @@ function navigationReducer(state: State, action: Action) {
     case "CLOSE_MENU":
       return { ...state, isMenuOpen: false };
     case "SELECT_MENU_ITEM":
-      return { ...state, selectedMenuItem:  action.payload };
+      return {
+        ...state,
+        selectedMenuItem: action.payload.id,
+        backgroundImage: action.payload.image,
+      };
     default:
       return state;
   }
