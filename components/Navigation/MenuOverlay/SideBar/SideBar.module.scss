@@ -1,0 +1,42 @@
+.sidebar {
+  height: 100%;
+  width: 100%;
+  padding: 1rem 2rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3); 
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.sidebar ul {
+  margin: 1.3rem 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar li {
+  margin: 1.5rem 0;
+  cursor: pointer;
+}
+
+.sidebar h3 {
+  font-weight: 400;
+  font-size: 43px;
+  letter-spacing: 0.03em;
+}

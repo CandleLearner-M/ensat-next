@@ -4,6 +4,7 @@ import Logo from "@/components/Logo/Logo";
 import { motion } from "framer-motion";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigation } from "../state/context";
+import SideBar from "./SideBar/SideBar";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -17,6 +18,7 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
+      <SideBar />
     </motion.div>
   );
 }

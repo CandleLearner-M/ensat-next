@@ -7,7 +7,9 @@ function SideBar() {
     <div className={styles.sidebar}>
       <ul>
         {navigationData.map((title) => (
-          <li key={title.id}>{title.label}</li>
+          <li key={title.id}>
+            <h3>{title.label}</h3>
+          </li>
         ))}
       </ul>
     </div>

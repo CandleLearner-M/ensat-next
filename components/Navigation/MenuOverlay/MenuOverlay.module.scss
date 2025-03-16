@@ -4,20 +4,22 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: black;
+  background-color: #0e0e0e;
   color: white;
-  z-index: 1001;
+  z-index: 10;
 
   display: grid;
   grid-template-columns: 0.7fr 0.9fr 1.4fr;
-  grid-template-rows: 0.3fr 1fr 0.3fr;
+  grid-template-rows: 0.2fr 1.5fr 0.2fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
 
   .sliding_menu_nav {
     grid-area: 1 / 1 / 2 / 4;
     padding: 1rem 2rem;
+    height: 100%;
 
+    z-index: 1002;
     ul {
       display: flex;
       justify-content: space-between;
