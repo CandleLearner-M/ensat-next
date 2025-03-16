@@ -4,39 +4,72 @@
   padding: 1rem 2rem;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative; // Add position context
+  z-index: 1; // Lower z-index than shadow overlay
+
+  // Nested scrollbar styles
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    z-index: 1;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+
+  // Nested element styles
+  ul {
+    margin: 1.3rem 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  li {
+    margin: 1.5rem 0;
+    cursor: pointer;
+  }
+
+  h3 {
+    font-weight: 400;
+    font-size: 43px;
+    letter-spacing: 0.03em;
+    display: inline;
+    position: relative;
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      background-color: #fff;
+      transition: width 0.3s ease;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
 }
 
-.sidebar::-webkit-scrollbar {
-  width: 5px;
-}
-
-.sidebar::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3); 
-  border-radius: 5px;
-  z-index: 1;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.sidebar ul {
-  margin: 1.3rem 0;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-.sidebar li {
-  margin: 1.5rem 0;
-  cursor: pointer;
-}
-
-.sidebar h3 {
-  font-weight: 400;
-  font-size: 43px;
-  letter-spacing: 0.03em;
+// Shadow overlay solution
+.nav-shadow {
+  position: absolute;
+  bottom: -15px; // Position just below the nav
+  left: 0;
+  right: 0;
+  height: 20px; // Height of shadow effect
+  pointer-events: none; // Let clicks pass through
+  z-index: 100; // Ensure it's above the scrollbar
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); // Customize shadow as needed
 }
