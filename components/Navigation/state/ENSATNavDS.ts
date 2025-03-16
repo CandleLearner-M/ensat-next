@@ -1,5 +1,5 @@
 // Define the navigation item type
-interface NavigationItem {
+export interface NavigationItem {
   id: string;
   label: string;
   path: string;
@@ -170,7 +170,7 @@ const navigationData: NavigationItem[] = [
     label: "Recherche",
     path: "",
     image:
-      "https://images.unsplash.com/photo-1507668077129-56e32842fceb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80", // Scientific research lab
+      "https://ensat.ac.ma/Portail/wp-content/uploads/2021/07/YSR_3570-1024x683.jpg", // Scientific research lab
     hasSubmenu: true,
     submenu: [
       {

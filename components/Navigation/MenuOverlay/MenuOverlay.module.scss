@@ -17,9 +17,9 @@ $standard-font-size: 1.2rem;
 
 @mixin shadow($direction: down) {
   $y-offset: if($direction == down, 27px, -27px);
-  box-shadow: -2px $y-offset 29px 0px $shadow-color;
-  -webkit-box-shadow: -2px $y-offset 29px 0px $shadow-color;
-  -moz-box-shadow: -2px $y-offset 29px 0px $shadow-color;
+  box-shadow: -2px $y-offset 50px 0px $shadow-color;
+  -webkit-box-shadow: -2px $y-offset 50px 0px $shadow-color;
+  -moz-box-shadow: -2px $y-offset 50px 0px $shadow-color;
 }
 
 @mixin menu-section {
@@ -53,8 +53,23 @@ $standard-font-size: 1.2rem;
   &__nav {
     grid-area: 1 / 1 / 2 / 4;
 
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(
+        rgba(14, 14, 14, 0.95),
+        rgba(14, 14, 14, 0.85),
+        rgba(14, 14, 14, 0.3),
+        transparent
+      );
+      z-index: -1;
+    }
+
     @include menu-section;
-    @include shadow(down);
 
     ul {
       @include flex(space-between);
@@ -76,19 +91,11 @@ $standard-font-size: 1.2rem;
     }
   }
 
- 
-
-  &__middle-section {
-    grid-area: 2 / 2 / 3 / 3;
-  }
-
-  &__right-section {
-    grid-area: 2 / 3 / 3 / 4;
-  }
-
   //  Footer
   &__footer {
     grid-area: 3 / 1 / 4 / 4;
+
+    background-color: $menu-bg-color;
     @include menu-section;
     @include shadow(up);
     @include flex(center, center);
@@ -118,7 +125,6 @@ $standard-font-size: 1.2rem;
           color: $muted-text-color;
           cursor: default;
         }
-
       }
     }
     &__symbol {

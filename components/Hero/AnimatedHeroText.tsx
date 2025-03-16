@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import {  motion } from "framer-motion";
 
 function AnimatedHeroText({
   isVisible,
@@ -25,7 +25,8 @@ function AnimatedHeroText({
       opacity: 1,
       y: 0,
       transition: {
-        duration: 1,
+        delay: 0.3,
+        duration: 0.7,
         ease: "easeOut",
       },
     },

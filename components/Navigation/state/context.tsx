@@ -5,6 +5,7 @@ type State = {
   isMenuOpen: boolean;
   selectedMenuItem: string | null;
   backgroundImage: string | null;
+  selectedSubmenuItem: string | null;
 };
 
 type Action =
@@ -17,6 +18,10 @@ type Action =
         id: string | null;
         image: string | null;
       };
+    }
+  | {
+      type: "SELECT_SUBMENU_ITEM";
+      payload: string | null;
     };
 
 type NavigationContextType = {
@@ -32,6 +37,7 @@ const initialState: State = {
   isMenuOpen: false,
   selectedMenuItem: null,
   backgroundImage: null,
+  selectedSubmenuItem: null,
 };
 
 function navigationReducer(state: State, action: Action) {
@@ -39,13 +45,15 @@ function navigationReducer(state: State, action: Action) {
     case "OPEN_MENU":
       return { ...state, isMenuOpen: true };
     case "CLOSE_MENU":
-      return { ...state, isMenuOpen: false };
+      return initialState;
     case "SELECT_MENU_ITEM":
       return {
         ...state,
         selectedMenuItem: action.payload.id,
         backgroundImage: action.payload.image,
       };
+    case "SELECT_SUBMENU_ITEM":
+      return { ...state, selectedSubmenuItem: action.payload };
     default:
       return state;
   }

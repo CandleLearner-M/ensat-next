@@ -8,6 +8,7 @@ import SideBar from "./SideBar/SideBar";
 import { GrFormNext } from "react-icons/gr";
 import ContentArea from "./ContentArea/ContentArea";
 import { useEffect, useState } from "react";
+import Background from "./Background/Background";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -19,12 +20,13 @@ type MenuOverlayProps = {
 
 function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
   const {
-    state: { selectedMenuItem },
+    state: { selectedMenuItem, backgroundImage },
   } = useNavigation();
 
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
+      {backgroundImage && <Background src={backgroundImage} />}
       <SideBar />
       {selectedMenuItem && <ContentArea />}
 
