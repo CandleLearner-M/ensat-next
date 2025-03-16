@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigation } from "../state/context";
 import SideBar from "./SideBar/SideBar";
+import { GrFormNext } from "react-icons/gr";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -15,11 +16,29 @@ type MenuOverlayProps = {
 };
 
 function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
-  
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
       <SideBar />
+
+      <footer className={styles.menu__footer}>
+        <ul>
+          <li>
+            <span>Liens Rapides</span>
+            <GrFormNext className={styles.menu__footer__symbol} />
+          </li>
+          <li>
+            <Link href="/news">Actualités</Link>
+          </li>
+
+          <li>
+            <Link href="/defenses">Soutenances</Link>
+          </li>
+          <li>
+            <Link href="/contact">Contact</Link>
+          </li>
+        </ul>
+      </footer>
     </motion.div>
   );
 }
@@ -29,10 +48,10 @@ function MenuNavBar() {
   const { dispatch } = useNavigation();
 
   return (
-    <nav className={styles.sliding_menu_nav}>
+    <nav className={styles.menu__nav}>
       <ul>
         <li>
-          <Link href="/">
+          <Link href="/" onClick={() => dispatch({ type: "CLOSE_MENU" })}>
             <Logo />
           </Link>
         </li>

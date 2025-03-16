@@ -1,36 +1,39 @@
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
-import Logo from "../../Logo/Logo";
-import styles from "./NavBar.module.scss";
 import { TbMenu3 } from "react-icons/tb";
+import Logo from "../../Logo/Logo";
 import { useNavigation } from "../state/context";
+import styles from "./NavBar.module.scss";
 
 function NavBar() {
   const { dispatch } = useNavigation();
+  
 
   return (
     <nav className={styles.navbar}>
-      <ul>
-        <li>
-          <a href="/" className={styles.logo}>
+      <div className={styles.navbar__container}>
+        <div className={styles.navbar__brand}>
+          {/* Use Link normally without onClick handler */}
+          <Link href="/" className={styles.navbar__logo}>
             <Logo />
-          </a>
-        </li>
-        <li className={styles.right_part}>
-          <div className={styles.right_part_left}>
+          </Link>
+        </div>
+        <div className={styles.navbar__actions}>
+          <button className={styles.navbar__action} aria-label="Search">
             <FiSearch size={30} />
             <span>Search</span>
-          </div>
+          </button>
 
-          <div
-            className={styles.right_part_right}
+          <button
+            className={styles.navbar__action}
             onClick={() => dispatch({ type: "OPEN_MENU" })}
+            aria-label="Menu"
           >
             <TbMenu3 size={33} />
-            <span>Menu</span>
-          </div>
-        </li>
-      </ul>
+            <span className={styles.navbar__actionText}>Menu</span>
+          </button>
+        </div>
+      </div>
     </nav>
   );
 }

@@ -1,57 +1,73 @@
+$padding-horizontal: 2rem;
+$padding-vertical: 1rem;
+$track-color: #282a2d;
+$thumb-color: #464a4f;
+$scrollbar-width: 10px;
+$border-radius: 4px;
+$border-width: 2.5px;
+
 .sidebar {
+  // Layout
   height: 100%;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: $padding-vertical $padding-horizontal $padding-vertical $padding-horizontal;
   padding-top: 1.5rem;
-  overflow-y: auto;
-  overflow-x: hidden;
   position: relative;
-  z-index: 1; 
-
+  z-index: 1;
+  
+  // Overflow 
+  overflow: {
+    y: auto;
+    x: hidden;
+  }
+  
+  // Scrollbar 
   &::-webkit-scrollbar {
-    width: 10px;
-    border-radius: 4px;
+    width: $scrollbar-width;
+    border-radius: $border-radius;
+    
+    &-track {
+      background: $track-color;
+      border-radius: $border-radius;
+    }
+    
+    &-thumb {
+      background: $thumb-color;
+      border-radius: $border-radius;
+      border: $border-width solid $track-color;
+      background-clip: padding-box;
+      z-index: 1;
+      
+      &:hover {
+        background: lighten($thumb-color, 10%);
+        border: $border-width solid $track-color;
+        background-clip: padding-box;
+      }
+    }
   }
-
-  &::-webkit-scrollbar-track {
-    background: #282a2d;
-    border-radius: 4px;
-
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #464a4f;
-    border-radius: 4px;
-    border: 2.5px solid #282a2d;
-    background-clip: padding-box;
-
-    z-index: 1;
-  }
-
-  &::-webkit-scrollbar-thumb:hover {
-    background: lighten(#464a4f, 10%);
-    border: 2.5px solid #282a2d; ;
-    background-clip: padding-box;
-  }
-
+  
+  // Content styling
   ul {
     margin: 1.3rem 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: {
+      y: auto;
+      x: hidden;
+    }
   }
-
+  
   li {
     margin: 1.5rem 0;
     cursor: pointer;
   }
-
+  
   h3 {
     font-weight: 400;
     font-size: 43px;
     letter-spacing: 0.03em;
     display: inline;
     position: relative;
-
+    
+    // Underline animation
     &::after {
       content: "";
       position: absolute;
@@ -62,7 +78,7 @@
       background-color: #fff;
       transition: width 0.3s ease;
     }
-
+    
     &:hover::after {
       width: 100%;
     }

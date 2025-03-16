@@ -1,61 +1,132 @@
+$menu-bg-color: #0e0e0e;
+$text-color: white;
+$muted-text-color: #8996a0;
+$border-color: rgba(137, 150, 160, 0.3);
+$shadow-color: rgba(14, 14, 14, 0.94);
+$standard-padding: 2rem;
+$standard-font-size: 1.2rem;
+
+@mixin flex($justify: center, $align: center, $gap: 0) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  @if $gap > 0 {
+    gap: $gap;
+  }
+}
+
+@mixin shadow($direction: down) {
+  $y-offset: if($direction == down, 27px, -27px);
+  box-shadow: -2px $y-offset 29px 0px $shadow-color;
+  -webkit-box-shadow: -2px $y-offset 29px 0px $shadow-color;
+  -moz-box-shadow: -2px $y-offset 29px 0px $shadow-color;
+}
+
+@mixin menu-section {
+  padding: 1rem $standard-padding;
+  position: relative;
+  z-index: 1002;
+}
+
+@mixin clickable {
+  cursor: pointer;
+  &:hover {
+    color: darken($text-color, 15%);
+  }
+}
+
 .menu {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgb(14, 14, 14);
-  color: white;
+  background-color: $menu-bg-color;
+  color: $text-color;
   z-index: 10;
 
   display: grid;
   grid-template-columns: 0.7fr 0.9fr 1.4fr;
   grid-template-rows: 0.2fr 1.5fr 0.2fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
 
-  .sliding_menu_nav {
+  // Navigation
+  &__nav {
     grid-area: 1 / 1 / 2 / 4;
-    padding: 1rem 2rem;
-    height: 100%;
-    position: relative;
 
-    z-index: 1002;
+    @include menu-section;
+    @include shadow(down);
 
-    box-shadow: -2px 27px 29px 0px rgba(14, 14, 14, 0.94);
-    -webkit-box-shadow: -2px 27px 29px 0px rgba(14, 14, 14, 0.94);
-    -moz-box-shadow: -2px 27px 29px 0px rgba(14, 14, 14, 0.94);
     ul {
-      display: flex;
-      justify-content: space-between;
+      @include flex(space-between);
       padding: 0;
       margin: 0;
       list-style: none;
+
       li {
-        cursor: pointer;
-        display: flex;
-        gap: 0.5rem;
-        align-items: center;
-        font-size: 1.2rem;
+        @include clickable;
+        @include flex(center, center, 0.5rem);
+        font-size: $standard-font-size;
+
         a {
           text-decoration: none;
           font-weight: 500;
-          color: white;
+          color: $text-color;
         }
       }
     }
   }
 
-  .div2 {
+  // Content Sections
+  &__left-section {
     grid-area: 2 / 1 / 3 / 2;
   }
-  .div3 {
+
+  &__middle-section {
     grid-area: 2 / 2 / 3 / 3;
   }
-  .div4 {
+
+  &__right-section {
     grid-area: 2 / 3 / 3 / 4;
   }
-  .div5 {
+
+  //  Footer
+  &__footer {
     grid-area: 3 / 1 / 4 / 4;
+    @include menu-section;
+    @include shadow(up);
+    @include flex(center, center);
+    border-top: solid 0.1px rgb(137, 150, 160, 0.3);
+    // z-index: 1002;
+
+    ul {
+      @include flex(flex-start, center);
+      width: 100%;
+      gap: 5%;
+
+      li {
+        @include flex(center, center, 0.7rem);
+        font-size: 1.2rem;
+        transition: color 0.15 ease;
+
+        a {
+          text-decoration: none;
+          font-weight: 500;
+          color: $text-color;
+          &:hover {
+            color: darken($text-color, 15%);
+          }
+        }
+
+        &:first-child {
+          color: $muted-text-color;
+          cursor: default;
+        }
+
+      }
+    }
+    &__symbol {
+      position: relative;
+      top: 2px;
+    }
   }
 }

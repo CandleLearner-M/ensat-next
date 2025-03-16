@@ -26,7 +26,8 @@ function HeroAnimation() {
         className={styles.bottom_line}
         height="28vh"
         isVisible={isVisible}
-        delay={1.4}
+        delay={1}
+        
       />
     </div>
   );
