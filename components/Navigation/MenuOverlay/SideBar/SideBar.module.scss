@@ -2,31 +2,38 @@
   height: 100%;
   width: 100%;
   padding: 1rem 2rem;
+  padding-top: 1.5rem;
   overflow-y: auto;
   overflow-x: hidden;
-  position: relative; // Add position context
-  z-index: 1; // Lower z-index than shadow overlay
+  position: relative;
+  z-index: 1; 
 
-  // Nested scrollbar styles
   &::-webkit-scrollbar {
-    width: 5px;
+    width: 10px;
+    border-radius: 4px;
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: #282a2d;
+    border-radius: 4px;
+
   }
 
   &::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
+    background: #464a4f;
+    border-radius: 4px;
+    border: 2.5px solid #282a2d;
+    background-clip: padding-box;
+
     z-index: 1;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    background: lighten(#464a4f, 10%);
+    border: 2.5px solid #282a2d; ;
+    background-clip: padding-box;
   }
 
-  // Nested element styles
   ul {
     margin: 1.3rem 0;
     overflow-y: auto;
@@ -60,16 +67,4 @@
       width: 100%;
     }
   }
-}
-
-// Shadow overlay solution
-.nav-shadow {
-  position: absolute;
-  bottom: -15px; // Position just below the nav
-  left: 0;
-  right: 0;
-  height: 20px; // Height of shadow effect
-  pointer-events: none; // Let clicks pass through
-  z-index: 100; // Ensure it's above the scrollbar
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); // Customize shadow as needed
 }

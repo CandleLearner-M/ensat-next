@@ -5,6 +5,7 @@ import NavBar from "./NavBar/NavBar";
 
 import { AnimatePresence } from "framer-motion";
 import { NavigationProvider, useNavigation } from "./state/context";
+import { useEffect } from "react";
 
 function Navigation() {
   return (
@@ -18,6 +19,13 @@ function NavigationContent() {
   const {
     state: { isMenuOpen },
   } = useNavigation();
+
+  useEffect(() => {
+    if (isMenuOpen) document.body.style.overflowY = "hidden";
+    return () => {
+      document.body.style.overflowY = "auto";
+    };
+  }, [isMenuOpen]);
 
   return (
     <>

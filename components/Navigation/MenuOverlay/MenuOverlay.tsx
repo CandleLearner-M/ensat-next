@@ -15,6 +15,7 @@ type MenuOverlayProps = {
 };
 
 function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
+  
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
