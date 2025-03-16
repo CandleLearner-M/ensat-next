@@ -2,16 +2,22 @@
 
 $text-width-heading: 20ch;
 $text-width-paragraph: 35ch;
-$line-thickness: .1px;
+$line-thickness: 0.1px;
 $text-offset: 170px;
 
-.hero {
-  position: relative;
-  height: 100vh;
+@mixin flex-center-column {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.hero,
+.mask {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  @include flex-center-column;
   text-align: center;
   overflow: hidden;
 
@@ -28,7 +34,7 @@ $text-offset: 170px;
       text-align: center;
       margin-bottom: 1rem;
     }
-    
+
     p {
       font-size: 1.2rem;
       width: $text-width-paragraph;
@@ -45,13 +51,41 @@ $text-offset: 170px;
     width: $line-thickness;
     background-color: $color-blue;
     transform: translateX(-50%);
-    
+
     &_top {
       top: 0;
     }
-    
+
     &_bottom {
       top: calc(50% + 14rem);
     }
+  }
+}
+
+.mask {
+  position: absolute;
+  mask-image: url("../../public/mask.svg");
+  background-color: rgba(0, 46, 254, 0.7);
+  z-index: 1;
+  mask-repeat: no-repeat;
+  mask-size: 40px;
+  pointer-events: none;
+  
+  &__text {
+    pointer-events: auto;
+  }
+
+  &__line {
+    background-color: black !important;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+  
+
+  .mask {
+    display: none;
   }
 }

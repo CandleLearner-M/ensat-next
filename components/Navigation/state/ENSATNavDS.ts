@@ -12,7 +12,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "ensat",
     label: "ENSAT",
-    path: "/ensat",
+    path: "",
     hasSubmenu: true,
     submenu: [
       {
@@ -149,7 +149,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "departements",
     label: "Départements",
-    path: "/departements",
+    path: "",
     hasSubmenu: true,
     submenu: [
       { id: "sic", label: "SIC", path: "/departements/sic" },
@@ -161,7 +161,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "recherche",
     label: "Recherche",
-    path: "/recherche",
+    path: "",
     hasSubmenu: true,
     submenu: [
       {
@@ -209,7 +209,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "partenariats",
     label: "Partenariats",
-    path: "/partenariats",
+    path: "",
     hasSubmenu: true,
     submenu: [
       {
@@ -227,7 +227,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "etudiants",
     label: "Étudiants",
-    path: "/etudiants",
+    path: "",
     hasSubmenu: true,
     submenu: [
       { id: "emploi", label: "Emploi du Temps", path: "/etudiants/emploi" },
@@ -245,7 +245,7 @@ const navigationData: NavigationItem[] = [
   {
     id: "appels",
     label: "Appels d'Offre",
-    path: "/appels",
+    path: "",
     hasSubmenu: true,
     submenu: [
       { id: "marches", label: "Marchés Publics", path: "/appels/marches" },

@@ -48,12 +48,12 @@ function AnimatedLine({
       height: lineHeight,
       transition: {
         height: {
-          duration: 2,
+          duration: 3,
           ease: [0.19, 1, 0.22, 1],
           delay: delay,
         },
         opacity: {
-          duration: 1.8,
+          duration: 3,
           ease: [0, 0.4, 0.7, 1],
           delay: delay,
         },
