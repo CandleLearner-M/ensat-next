@@ -1,11 +1,9 @@
 @import "../../../styles/variables.scss";
 
-// Local variables
 $navbar-height: 90px;
 $panel-gap: 1.5rem;
 $text-size: 1.3rem;
 
-// Mixins
 @mixin flex-center {
   display: flex;
   align-items: center;
@@ -60,7 +58,7 @@ $text-size: 1.3rem;
     border: none;
     background: none;
 
-    // First action (Search)
+    // Search
     &:first-child {
       background-color: #0e0e0e;
 
@@ -69,7 +67,7 @@ $text-size: 1.3rem;
       }
     }
 
-    // Second action (Menu)
+    // Menu
     &:last-child {
       background-color: rgba(14, 14, 14, 0.8);
       padding: 0 1.7rem;

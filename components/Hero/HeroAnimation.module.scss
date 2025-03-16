@@ -1,6 +1,11 @@
 @import "../../styles/variables.scss";
 
-.hero_animation {
+$text-width-heading: 20ch;
+$text-width-paragraph: 35ch;
+$line-thickness: .1px;
+$text-offset: 170px;
+
+.hero {
   position: relative;
   height: 100vh;
   display: flex;
@@ -10,45 +15,43 @@
   text-align: center;
   overflow: hidden;
 
-  .hero_text {
+  &__text {
     display: grid;
     place-items: center;
+
+    h1 {
+      font-size: 3.7rem;
+      width: $text-width-heading;
+      color: white;
+      font-weight: 700;
+      text-transform: capitalize;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      width: $text-width-paragraph;
+      color: white;
+      text-align: center;
+      margin-bottom: 1rem;
+    }
   }
 
-  h1 {
-    font-size: 3.7rem;
-    width: 20ch;
-    color: white !important;
-    font-weight: 700;
-    color: var(--clr-primary-1);
-    text-transform: capitalize;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  p {
-    font-size: 1.2rem;
-    width: 35ch;
-    color: white !important;
-    color: var(--clr-primary-1);
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-
-  .upper_line {
+  // Line element styling
+  &__line {
     position: absolute;
-    top: 0;
     left: 50%;
-    width: 1px;
+    width: $line-thickness;
     background-color: $color-blue;
     transform: translateX(-50%);
-  }
-
-  .bottom_line {
-    position: absolute;
-    top: calc(50% + 170px);
-    left: 50%;
-    width: 1px;
-    background-color: $color-blue;
-    transform: translateX(-50%);
+    
+    &_top {
+      top: 0;
+    }
+    
+    &_bottom {
+      top: calc(50% + 14rem);
+    }
   }
 }

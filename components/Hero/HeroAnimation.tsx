@@ -14,20 +14,19 @@ function HeroAnimation() {
   }, []);
 
   return (
-    <div className={styles.hero_animation}>
+    <div className={styles.hero}>
       <AnimatedLine
-        className={styles.upper_line}
-        height="25vh"
+        className={`${styles.hero__line} ${styles.hero__line_top}`}
+        height="20vh"
         isVisible={isVisible}
       />
 
-      <AnimatedHeroText className={styles.hero_text} isVisible={isVisible} />
+      <AnimatedHeroText className={styles.hero__text} isVisible={isVisible} />
       <AnimatedLine
-        className={styles.bottom_line}
-        height="28vh"
+        className={`${styles.hero__line} ${styles.hero__line_bottom}`}
+        height="toBottom"
         isVisible={isVisible}
         delay={1}
-        
       />
     </div>
   );
