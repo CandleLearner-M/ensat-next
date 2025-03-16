@@ -7,37 +7,39 @@ $border-radius: 4px;
 $border-width: 2.5px;
 
 .sidebar {
-  // Layout
+  grid-area: 2 / 1 / 3 / 2;
   height: 100%;
   width: 100%;
-  padding: $padding-vertical $padding-horizontal $padding-vertical $padding-horizontal;
+  padding: $padding-vertical $padding-horizontal $padding-vertical
+    $padding-horizontal;
   padding-top: 1.5rem;
   position: relative;
   z-index: 1;
-  
-  // Overflow 
+  transition: all 0.3s ease;
+
+  // Overflow
   overflow: {
     y: auto;
     x: hidden;
   }
-  
-  // Scrollbar 
+
+  // Scrollbar
   &::-webkit-scrollbar {
     width: $scrollbar-width;
     border-radius: $border-radius;
-    
+
     &-track {
       background: $track-color;
       border-radius: $border-radius;
     }
-    
+
     &-thumb {
       background: $thumb-color;
       border-radius: $border-radius;
       border: $border-width solid $track-color;
       background-clip: padding-box;
       z-index: 1;
-      
+
       &:hover {
         background: lighten($thumb-color, 10%);
         border: $border-width solid $track-color;
@@ -45,7 +47,7 @@ $border-width: 2.5px;
       }
     }
   }
-  
+
   // Content styling
   ul {
     margin: 1.3rem 0;
@@ -54,33 +56,49 @@ $border-width: 2.5px;
       x: hidden;
     }
   }
-  
+
   li {
     margin: 1.5rem 0;
     cursor: pointer;
   }
-  
+
   h3 {
     font-weight: 400;
     font-size: 43px;
     letter-spacing: 0.03em;
     display: inline;
     position: relative;
-    
-    // Underline animation
-    &::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      left: 0;
-      bottom: 0;
-      width: 0%;
-      background-color: #fff;
-      transition: width 0.3s ease;
+
+    background-image: linear-gradient(#fff, #fff);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 0.3s ease;
+
+    &:hover {
+      background-size: 100% 1px;
     }
-    
-    &:hover::after {
-      width: 100%;
+
+    &.sidebar__selected {
+      color: #fff;
+      background-size: 100% 1px;
     }
+  }
+
+  &__grayedout {
+    color: #8996a0;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  li.sidebar__grayedout h3 {
+    background-size: 0% 1px;
+  }
+
+  li.sidebar__grayedout h3:hover {
+    background-size: 0% 1px;
   }
 }
