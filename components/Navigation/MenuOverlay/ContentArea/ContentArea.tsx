@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
@@ -48,15 +49,19 @@ function ContentArea() {
 
   return (
     <div className={styles.contentarea}>
-      <FirstLevelMenu
-        menuItem={menuItem}
-        selectedMenuItem={selectedMenuItem}
-        selectedSubmenuItem={selectedSubmenuItem}
-        onSubMenuSelect={handlerSubMenuSelect}
-      />
+      {menuItem && (
+        <FirstLevelMenu
+          menuItem={menuItem}
+          key={menuItem.id}
+          selectedMenuItem={selectedMenuItem}
+          selectedSubmenuItem={selectedSubmenuItem}
+          onSubMenuSelect={handlerSubMenuSelect}
+        />
+      )}
 
-      {hasSubmenu && (
+      {hasSubmenu && subMenuItem && (
         <SecondLevelMenu
+          key={subMenuItem.id}
           subMenuItem={subMenuItem}
           selectedLevelThreeItem={selectedLevelThreeItem}
           menuLevelThreeItem={menuLevelThreeItem}
@@ -80,20 +85,49 @@ function FirstLevelMenu({
   selectedSubmenuItem,
   onSubMenuSelect,
 }: FirstLevelMenuProps) {
-  if (!menuItem) return null;
+  const containerVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        staggerChildren: 0.07,
+      },
+    },
+  };
+
+  const menuItemVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+      },
+    },
+  };
 
   return (
-    <ul
+    <motion.ul
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
       className={`${styles.contentarea__firstsubmenu} ${
         selectedMenuItem === "ensat" ? styles.ensat : ""
       }`}
     >
       {menuItem?.path && (
-        <li>
+        <motion.li
+          variants={menuItemVariants}
+          whileHover={{ x: 3 }}
+          whileTap={{ scale: 0.98 }}
+        >
           <MenuItemLink item={menuItem} />
-        </li>
+        </motion.li>
       )}
-      {menuItem.submenu?.map((item) => {
+      {menuItem?.submenu?.map((item) => {
         return (
           <SubmenuItem
             item={item}
@@ -107,7 +141,7 @@ function FirstLevelMenu({
           />
         );
       })}
-    </ul>
+    </motion.ul>
   );
 }
 
@@ -124,11 +158,25 @@ function SecondLevelMenu({
   menuLevelThreeItem,
   onLevelThreeSelect,
 }: SecondLevelMenuProps) {
-  if (!subMenuItem) return null;
+  const containerVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        staggerChildren: 0.07,
+      },
+    },
+  };
 
   return (
-    <ul className={styles.contentarea__secondsubmenu}>
-      {subMenuItem.submenu?.map((item) => {
+    <motion.ul
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className={styles.contentarea__secondsubmenu}
+    >
+      {subMenuItem?.submenu?.map((item) => {
         const isSelected = item.id === selectedLevelThreeItem;
         return (
           <SubmenuItem
@@ -142,12 +190,12 @@ function SecondLevelMenu({
           >
             {isSelected &&
               menuLevelThreeItem?.submenu?.map((item) => {
-                return <SubmenuItem item={item} key={item.id} />;
+                return <SubmenuItem item={item} key={item.id} level={3} />;
               })}
           </SubmenuItem>
         );
       })}
-    </ul>
+    </motion.ul>
   );
 }
 
@@ -167,12 +215,49 @@ function SubmenuItem({
   isSelected,
   level = 1,
 }: SubmenuItemProps) {
+  const menuItemVariants = {
+    hidden: { opacity: 0, x: -10 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        type: "spring",
+        stiffness: 200,
+        damping: 20,
+      },
+    },
+  };
+
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      height: 0,
+      overflow: "hidden",
+    },
+
+    visible: {
+      opacity: 1,
+      height: "auto",
+      overflow: "visible",
+      transition: {
+        type: "spring",
+        stiffness: 150,
+        damping: 20,
+        opacity: { duration: 0.2 },
+        staggerChildren: 0.07,
+        delayChildren: 0.1,
+      },
+    },
+    };
   return (
     <>
-      <li
+      <motion.li
+        variants={menuItemVariants}
         key={item.id}
         onClick={onClick}
         className={isSelected ? styles.selected : ""}
+        whileHover={{ x: 3 }}
+        whileTap={{ scale: 0.98 }}
       >
         {item.hasSubmenu ? (
           <p className={styles.contentarea__firstsubmenu__item}>
@@ -190,8 +275,17 @@ function SubmenuItem({
         ) : (
           <MenuItemLink item={item} />
         )}
-      </li>
-      {!!children && <div>{children}</div>}
+      </motion.li>
+      {!!children && (
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={dropdownVariants}
+          className={styles.dropdown}
+        >
+          {children}
+        </motion.div>
+      )}
     </>
   );
 }

@@ -54,12 +54,17 @@ function navigationReducer(state: State, action: Action) {
       return initialState;
     case "SELECT_MENU_ITEM":
       return {
-        ...state,
+        ...initialState,
+        isMenuOpen: true,
         selectedMenuItem: action.payload.id,
         backgroundImage: action.payload.image,
       };
     case "SELECT_SUBMENU_ITEM":
-      return { ...state, selectedSubmenuItem: action.payload };
+      return {
+        ...state,
+        selectedSubmenuItem: action.payload,
+        selectedLevelThreeItem: null,
+      };
     case "SELECT_LEVEL_THREE_ITEM":
       return { ...state, selectedLevelThreeItem: action.payload };
     default:
