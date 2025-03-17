@@ -12,6 +12,8 @@ $border-width: 2.5px;
   width: 100%;
   overflow: hidden;
 
+  transition: all 0.3s ease;
+
   &__firstsubmenu,
   &__secondsubmenu {
     height: 100%;
@@ -26,7 +28,7 @@ $border-width: 2.5px;
     display: flex;
     flex-direction: column;
 
-    justify-content: center; 
+    justify-content: center;
     align-items: flex-start;
 
     &::-webkit-scrollbar {
@@ -65,7 +67,7 @@ $border-width: 2.5px;
 
       a,
       p {
-        color: #a0a0a0; 
+        color: #a0a0a0;
         text-decoration: none;
         transition: color 0.2s ease;
 
@@ -79,16 +81,32 @@ $border-width: 2.5px;
       position: relative;
       top: 2px;
       color: #464a4f;
+      transition: transform .3s ease-in-out;
+    }
+
+    li.selected {
+      a,
+      p {
+        color: white;
+      }
+
+      .icon {
+        color: white;
+      }
+
+      .rotate {
+        transform: rotate(90deg);
+      }
     }
 
     &__item {
       display: flex;
       align-items: center;
-      justify-content: space-between; 
+      justify-content: space-between;
       font-size: 1.3rem;
-      width: 100%; 
-      cursor: pointer; 
-      transition: color 0.2s ease; 
+      width: 100%;
+      cursor: pointer;
+      transition: color 0.2s ease;
 
       &:hover {
         color: white;
