@@ -1,14 +1,15 @@
-import Link from "next/link";
-import styles from "./MenuOverlay.module.scss";
 import Logo from "@/components/Logo/Logo";
+import { useScreenSize } from "@/utils/useScreenSize";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { GrFormNext } from "react-icons/gr";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigation } from "../state/context";
-import SideBar from "./SideBar/SideBar";
-import { GrFormNext } from "react-icons/gr";
-import ContentArea from "./ContentArea/ContentArea";
-import { useEffect, useState } from "react";
 import Background from "./Background/Background";
+import ContentArea from "./ContentArea/ContentArea";
+import styles from "./MenuOverlay.module.scss";
+import SideBar from "./SideBar/SideBar";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -23,10 +24,12 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
     state: { selectedMenuItem, backgroundImage },
   } = useNavigation();
 
+  const { isDesktop } = useScreenSize();
+
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
-      {backgroundImage && <Background src={backgroundImage} />}
+      {isDesktop && backgroundImage && <Background src={backgroundImage} />}
       <SideBar />
       {selectedMenuItem && <ContentArea />}
 

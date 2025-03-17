@@ -7,7 +7,6 @@ import styles from "./NavBar.module.scss";
 
 function NavBar() {
   const { dispatch } = useNavigation();
-  
 
   return (
     <nav className={styles.navbar}>
@@ -20,8 +19,8 @@ function NavBar() {
         </div>
         <div className={styles.navbar__actions}>
           <button className={styles.navbar__action} aria-label="Search">
-            <FiSearch size={30} />
-            <span>Search</span>
+            <FiSearch size={30} className={styles.navbar__icon} />
+            <span className={styles.navbar__actionText}>Search</span>
           </button>
 
           <button
@@ -29,7 +28,7 @@ function NavBar() {
             onClick={() => dispatch({ type: "OPEN_MENU" })}
             aria-label="Menu"
           >
-            <TbMenu3 size={33} />
+            <TbMenu3 size={33} className={styles.navbar__icon} />
             <span className={styles.navbar__actionText}>Menu</span>
           </button>
         </div>

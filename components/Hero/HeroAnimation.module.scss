@@ -44,7 +44,6 @@ $text-offset: 170px;
     }
   }
 
-  // Line element styling
   &__line {
     position: absolute;
     left: 50%;
@@ -60,6 +59,74 @@ $text-offset: 170px;
       top: calc(50% + 14rem);
     }
   }
+
+  @include tablet {
+    &__text {
+      h1 {
+        font-size: 3rem;
+        width: 18ch;
+        margin-bottom: 0.8rem;
+      }
+
+      p {
+        font-size: 1rem;
+        width: 30ch;
+      }
+    }
+
+    &__line {
+      &_bottom {
+        top: calc(50% + 13rem);
+      }
+    }
+  }
+
+  @include mobile {
+    &__text {
+      h1 {
+        font-size: 2rem;
+        width: 15ch;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+        width: 25ch;
+      }
+    }
+
+    &__line {
+      &_bottom {
+        top: calc(50% + 12rem);
+      }
+    }
+  }
+
+  @include mobile-landscape {
+    height: auto;
+    min-height: 100%;
+    padding: 1rem 0;
+
+    &__text {
+      h1 {
+        font-size: 1.8rem;
+        width: 20ch;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        font-size: 0.7rem;
+        width: 35ch;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    &__line {
+      &_bottom {
+        top: calc(50% + 8rem);
+      }
+    }
+  }
 }
 
 .mask {
@@ -70,22 +137,15 @@ $text-offset: 170px;
   mask-repeat: no-repeat;
   mask-size: 40px;
   pointer-events: none;
-  
+
+  @include tablet {
+    display: none;
+  }
   &__text {
     pointer-events: auto;
   }
 
   &__line {
     background-color: black !important;
-  }
-
-}
-
-
-@media (max-width: 768px) {
-  
-
-  .mask {
-    display: none;
   }
 }

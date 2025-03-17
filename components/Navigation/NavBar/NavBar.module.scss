@@ -41,7 +41,7 @@ $text-size: 1.3rem;
 
   &__logo {
     @include action-button;
-    background-color: rgba(14, 14, 14, 0.6);
+    background-color: rgba(14, 14, 14, 0);
     padding: 1rem 3rem;
     text-decoration: none;
     font-size: $font-size-2xl;
@@ -81,5 +81,88 @@ $text-size: 1.3rem;
   &__actionText {
     position: relative;
     left: -4px;
+    font-family: "Outfit" !important;
+  }
+
+  @include tablet {
+    height: 70px;
+
+    &__logo {
+      font-size: 1.7rem;
+      padding: 0.8rem 2rem;
+      background-color: transparent;
+    }
+
+    &__action {
+      font-size: 1.1rem;
+      padding: 0 1.2rem;
+      gap: 1rem;
+
+      &:first-child {
+        padding: 0 1.4rem;
+        background-color: transparent;
+      }
+
+      // Menu
+      &:last-child {
+        padding: 0 1.4rem;
+        background-color: transparent;
+      }
+    }
+  }
+
+  @include mobile {
+    height: 60px;
+
+    &__logo {
+      font-size: 1.4rem;
+      padding: 0.6rem 1.5rem;
+    }
+
+    &__action {
+      font-size: 1rem;
+      padding: 0 0.8rem !important;
+      gap: 0.8rem;
+
+      // Menu
+      &:last-child {
+        margin-right: .7rem;
+      }
+    }
+
+    &__actionText {
+      display: none;
+    }
+  }
+
+  @include mobile-landscape {
+    height: 50px;
+
+    &__logo {
+      padding: 0.4rem 1.2rem;
+      font-size: 1rem;
+    }
+
+    &__actions {
+      padding-right: 0.5rem;
+    }
+
+    &__action {
+      padding: 0 0.8rem;
+      gap: 0.8rem;
+
+      // Menu
+      &:last-child {
+        padding: 0 1rem;
+      }
+    }
+    &__actionText {
+      font-size: 0.9rem;
+      top: -1px;
+    }
+
+    &__icon {
+      width: 25px;
+    }
   }
 }

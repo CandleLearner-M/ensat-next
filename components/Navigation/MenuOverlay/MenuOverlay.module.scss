@@ -100,6 +100,8 @@ $standard-font-size: 1.2rem;
     @include shadow(up);
     @include flex(center, center);
     border-top: solid 0.1px rgb(137, 150, 160, 0.3);
+
+    overflow-x: auto;
     // z-index: 1002;
 
     ul {
@@ -125,6 +127,10 @@ $standard-font-size: 1.2rem;
           color: $muted-text-color;
           cursor: default;
         }
+      }
+
+      @media (max-width: 768px) {
+        gap: 1rem;
       }
     }
     &__symbol {

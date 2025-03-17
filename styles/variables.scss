@@ -14,3 +14,20 @@ $font-size-3xl: 3rem;
 
 // Spacing
 $spacing-base: 1rem;
+
+// Breakpoints
+$tablet: 1024px;
+$mobile: 768px;
+$mobile-height: 480px; // Common max-height for mobile landscape
+
+@mixin tablet {
+  @media (max-width: $tablet) { @content; }
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) { @content; }
+}
+
+@mixin mobile-landscape {
+  @media (max-width: $tablet) and (max-height: $mobile-height) and (orientation: landscape) { @content; }
+}
