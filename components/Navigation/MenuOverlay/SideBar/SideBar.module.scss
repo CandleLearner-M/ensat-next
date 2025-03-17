@@ -27,26 +27,31 @@ $border-width: 2.5px;
   &::-webkit-scrollbar {
     width: $scrollbar-width;
     border-radius: $border-radius;
+    -webkit-appearance: none;
+    appearance: none;
+  }
 
-    &-track {
-      background: $track-color;
-      border-radius: $border-radius;
-    }
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: $border-radius;
+  }
 
-    &-thumb {
-      background: $thumb-color;
-      border-radius: $border-radius;
+  &::-webkit-scrollbar-thumb {
+    background: $thumb-color;
+    border-radius: $border-radius;
+    border: $border-width solid $track-color;
+    background-clip: padding-box;
+    min-height: 40px;
+
+    &:hover {
+      background: lighten($thumb-color, 10%);
       border: $border-width solid $track-color;
       background-clip: padding-box;
-      z-index: 1;
-
-      &:hover {
-        background: lighten($thumb-color, 10%);
-        border: $border-width solid $track-color;
-        background-clip: padding-box;
-      }
     }
   }
+
+  scrollbar-width: thin;
+  scrollbar-color: $thumb-color $track-color;
 
   // Content styling
   ul {

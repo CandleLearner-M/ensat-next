@@ -17,23 +17,18 @@ $border-width: 2.5px;
     height: 100%;
     width: 100%;
 
-    // Fix 1: Applied proper padding and ensured it works
     padding: 2rem 3rem;
-    box-sizing: border-box; // Important to respect padding
+    box-sizing: border-box;
 
-    // Fix 2: Better overflow handling
     overflow-y: auto;
     overflow-x: hidden;
 
-    // Fix 3: Changed layout to ensure content is visible
     display: flex;
     flex-direction: column;
 
-    // Fix 4: Changed justify-content to improve spacing
-    justify-content: flex-start; // Changed from center to always show items at top
+    justify-content: center;
     align-items: flex-start;
 
-    // Scrollbar styling - improved for better visibility
     &::-webkit-scrollbar {
       width: $scrollbar-width;
       border-radius: $border-radius;
@@ -51,7 +46,7 @@ $border-width: 2.5px;
       border-radius: $border-radius;
       border: $border-width solid $track-color;
       background-clip: padding-box;
-      min-height: 40px; // Ensures visible thumb even with little content
+      min-height: 40px;
 
       &:hover {
         background: lighten($thumb-color, 10%);
@@ -60,21 +55,19 @@ $border-width: 2.5px;
       }
     }
 
-    // Firefox scrollbar support
     scrollbar-width: thin;
     scrollbar-color: $thumb-color $track-color;
 
-    // Fix 5: Increased margin for better spacing
     li {
       margin: 1.5rem 0;
-      width: 100%; // Ensures full width for hover effects
+      width: 100%;
       list-style: none;
 
       a,
       p {
-        color: #a0a0a0; // Default color before hover
+        color: #a0a0a0;
         text-decoration: none;
-        transition: color 0.2s ease; // Smooth transition for hover
+        transition: color 0.2s ease;
 
         &:hover {
           color: white;
@@ -91,20 +84,22 @@ $border-width: 2.5px;
     &__item {
       display: flex;
       align-items: center;
-      justify-content: space-between; // Changed to push content to edges
+      justify-content: space-between;
       font-size: 1.3rem;
-      width: 100%; // Use full width
-      cursor: pointer; // Show pointer on hover
-      transition: color 0.2s ease; // Smooth transition
-
+      width: 100%;
+      cursor: pointer;
+      transition: color 0.2s ease;
       &:hover {
         color: white;
 
-        // Fix 6: Make icons also change color on hover
         .icon {
           color: white;
         }
       }
     }
+  }
+
+  .ensat {
+    justify-content: flex-start;
   }
 }

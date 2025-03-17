@@ -6,6 +6,7 @@ type State = {
   selectedMenuItem: string | null;
   backgroundImage: string | null;
   selectedSubmenuItem: string | null;
+  selectedLevelThreeItem: string | null;
 };
 
 type Action =
@@ -21,6 +22,10 @@ type Action =
     }
   | {
       type: "SELECT_SUBMENU_ITEM";
+      payload: string | null;
+    }
+  | {
+      type: "SELECT_LEVEL_THREE_ITEM";
       payload: string | null;
     };
 
@@ -38,6 +43,7 @@ const initialState: State = {
   selectedMenuItem: null,
   backgroundImage: null,
   selectedSubmenuItem: null,
+  selectedLevelThreeItem: null,
 };
 
 function navigationReducer(state: State, action: Action) {
@@ -54,6 +60,8 @@ function navigationReducer(state: State, action: Action) {
       };
     case "SELECT_SUBMENU_ITEM":
       return { ...state, selectedSubmenuItem: action.payload };
+    case "SELECT_LEVEL_THREE_ITEM":
+      return { ...state, selectedLevelThreeItem: action.payload };
     default:
       return state;
   }
