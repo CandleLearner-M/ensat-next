@@ -11,15 +11,15 @@ function ContentArea() {
     dispatch,
   } = useNavigation();
 
-  const menuItems = navigationData.find((item) => item.id === selectedMenuItem);
+  const menuItem = navigationData.find((item) => item.id === selectedMenuItem);
 
-  const hasSubmenu = menuItems?.submenu?.some((item) => item.hasSubmenu);
+  const hasSubmenu = menuItem?.submenu?.some((item) => item.hasSubmenu);
 
-  const submenuItems = menuItems?.submenu?.find(
+  const submenuItem = menuItem?.submenu?.find(
     (item) => item.label === selectedSubmenuItem
   );
 
-  console.log(submenuItems);
+  console.log(menuItem);
 
   return (
     <div className={styles.contentarea}>
@@ -28,7 +28,12 @@ function ContentArea() {
           selectedMenuItem === "ensat" ? styles.ensat : ""
         }`}
       >
-        {menuItems?.submenu?.map((item) => {
+        {menuItem?.path && (
+          <li>
+            <MenuItemLink item={menuItem} />
+          </li>
+        )}
+        {menuItem?.submenu?.map((item) => {
           const currentItemSelected = item.label === selectedSubmenuItem;
 
           return (
@@ -50,7 +55,7 @@ function ContentArea() {
 
       {hasSubmenu && (
         <ul className={styles.contentarea__secondsubmenu}>
-          {submenuItems?.submenu?.map((item) => {
+          {submenuItem?.submenu?.map((item) => {
             return <SubmenuItem item={item} key={item.id} />;
           })}
         </ul>
@@ -79,19 +84,27 @@ function SubmenuItem({
             </span>
           </p>
         ) : (
-          <Link
-            href={item.path}
-            className={styles.contentarea__firstsubmenu__item}
-          >
-            <span>{item.label}</span>
-            <span className={styles.icon}>
-              <FaArrowRightLong size={15} />
-            </span>
-          </Link>
+          <MenuItemLink item={item} />
         )}
       </li>
       {!!children && <div>{children}</div>}
     </>
+  );
+}
+
+function MenuItemLink({
+  item,
+}: {
+  item: NavigationItem;
+  children?: React.ReactNode;
+}) {
+  return (
+    <Link href={item.path} className={styles.contentarea__firstsubmenu__item}>
+      <span>{item.label}</span>
+      <span className={styles.icon}>
+        <FaArrowRightLong size={15} />
+      </span>
+    </Link>
   );
 }
 
