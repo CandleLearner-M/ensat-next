@@ -10,6 +10,7 @@ import Background from "./Background/Background";
 import ContentArea from "./ContentArea/ContentArea";
 import styles from "./MenuOverlay.module.scss";
 import SideBar from "./SideBar/SideBar";
+import MobileSideBar from "./SideBar/MobileSideBar";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -24,13 +25,14 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
     state: { selectedMenuItem, backgroundImage },
   } = useNavigation();
 
-  const { isDesktop } = useScreenSize();
+  const { isDesktop, isMobile } = useScreenSize();
 
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
       {isDesktop && backgroundImage && <Background src={backgroundImage} />}
-      <SideBar />
+
+      {isMobile ? <MobileSideBar /> : <SideBar />}
       {selectedMenuItem && isDesktop && <ContentArea />}
 
       <MenuFooter />

@@ -3,35 +3,31 @@ import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigation } from "../../state/context";
-import navigationData, { NavigationItem } from "../../state/ENSATNavDS";
+import { NavigationItem } from "../../state/ENSATNavDS";
 import styles from "./ContentArea.module.scss";
+import { useSelectedMenuItem } from "@/utils/useSelectedItems";
 
 function ContentArea() {
-  const { state, dispatch } = useNavigation();
-  const { selectedMenuItem, selectedSubmenuItem, selectedLevelThreeItem } =
-    state;
+  const { hasSubmenu, subMenuItem, menuItem } = useSelectedMenuItem();
 
-  const findSelectedElements = () => {
-    const menuItem = navigationData.find(
-      (item) => item.id === selectedMenuItem
-    );
-    const hasSubmenu = menuItem?.submenu?.some((item) => item.hasSubmenu);
+  return (
+    <div className={styles.contentarea}>
+      {menuItem && <FirstLevelMenu />}
 
-    const subMenuItem = menuItem?.submenu?.find(
-      (item) => item.id === selectedSubmenuItem
-    );
+      {hasSubmenu && subMenuItem && <SecondLevelMenu key={subMenuItem.id} />}
+    </div>
+  );
+}
 
-    const menuLevelThreeItem = subMenuItem?.submenu?.find(
-      (item) => item.id === selectedLevelThreeItem
-    );
+export function FirstLevelMenu() {
+  const {
+    state: { selectedMenuItem, selectedSubmenuItem },
+    dispatch,
+  } = useNavigation();
 
-    return { menuItem, subMenuItem, menuLevelThreeItem, hasSubmenu };
-  };
+  const { menuItem } = useSelectedMenuItem();
 
-  const { menuItem, subMenuItem, menuLevelThreeItem, hasSubmenu } =
-    findSelectedElements();
-
-  const handlerSubMenuSelect = (item: NavigationItem) => {
+  const onSubMenuSelect = (item: NavigationItem) => {
     const isCurrentlySelected = item.id === selectedSubmenuItem;
     dispatch({
       type: "SELECT_SUBMENU_ITEM",
@@ -39,52 +35,6 @@ function ContentArea() {
     });
   };
 
-  const handlerLevelThreeSelect = (item: NavigationItem) => {
-    const isCurrentlySelected = item.id === selectedLevelThreeItem;
-    dispatch({
-      type: "SELECT_LEVEL_THREE_ITEM",
-      payload: isCurrentlySelected ? null : item.id,
-    });
-  };
-
-  return (
-    <div className={styles.contentarea}>
-      {menuItem && (
-        <FirstLevelMenu
-          menuItem={menuItem}
-          key={menuItem.id}
-          selectedMenuItem={selectedMenuItem}
-          selectedSubmenuItem={selectedSubmenuItem}
-          onSubMenuSelect={handlerSubMenuSelect}
-        />
-      )}
-
-      {hasSubmenu && subMenuItem && (
-        <SecondLevelMenu
-          key={subMenuItem.id}
-          subMenuItem={subMenuItem}
-          selectedLevelThreeItem={selectedLevelThreeItem}
-          menuLevelThreeItem={menuLevelThreeItem}
-          onLevelThreeSelect={handlerLevelThreeSelect}
-        />
-      )}
-    </div>
-  );
-}
-
-interface FirstLevelMenuProps {
-  menuItem: NavigationItem | undefined;
-  selectedMenuItem: string | null;
-  selectedSubmenuItem: string | null;
-  onSubMenuSelect: (item: NavigationItem) => void;
-}
-
-export function FirstLevelMenu({
-  menuItem,
-  selectedMenuItem,
-  selectedSubmenuItem,
-  onSubMenuSelect,
-}: FirstLevelMenuProps) {
   const containerVariants = {
     hidden: { opacity: 0, x: -10 },
     visible: {
@@ -145,19 +95,22 @@ export function FirstLevelMenu({
   );
 }
 
-interface SecondLevelMenuProps {
-  subMenuItem: NavigationItem | undefined;
-  selectedLevelThreeItem: string | null;
-  menuLevelThreeItem: NavigationItem | undefined;
-  onLevelThreeSelect: (item: NavigationItem) => void;
-}
+export function SecondLevelMenu() {
+  const {
+    state: { selectedLevelThreeItem },
+    dispatch,
+  } = useNavigation();
 
-export function SecondLevelMenu({
-  subMenuItem,
-  selectedLevelThreeItem,
-  menuLevelThreeItem,
-  onLevelThreeSelect,
-}: SecondLevelMenuProps) {
+  const { subMenuItem, menuLevelThreeItem } = useSelectedMenuItem();
+
+  const onLevelThreeSelect = (item: NavigationItem) => {
+    const isCurrentlySelected = item.id === selectedLevelThreeItem;
+    dispatch({
+      type: "SELECT_LEVEL_THREE_ITEM",
+      payload: isCurrentlySelected ? null : item.id,
+    });
+  };
+
   const containerVariants = {
     hidden: { opacity: 0, x: -10 },
     visible: {

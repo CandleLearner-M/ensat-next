@@ -1,14 +1,14 @@
 import { useScreenSize } from "@/utils/useScreenSize";
-import { useNavigation } from "../../state/context";
-import navigationData from "../../state/ENSATNavDS";
-import styles from "./SideBar.module.scss";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { FirstLevelMenu, SecondLevelMenu } from "../ContentArea/ContentArea";
+import { useNavigation } from "../../state/context";
+import navigationData from "../../state/ENSATNavDS";
+import { FirstLevelMenu } from "../ContentArea/ContentArea";
+import styles from "./SideBar.module.scss";
 
 function SideBar() {
   const {
-    state: { selectedMenuItem, selectedSubmenuItem },
+    state: { selectedMenuItem },
     dispatch,
   } = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
@@ -78,23 +78,7 @@ function SideBar() {
               >
                 {item.label}
               </h3>
-              {isMobile &&
-                isSelected &&
-                (!selectedSubmenuItem ? (
-                  <FirstLevelMenu
-                    menuItem={item}
-                    onSubMenuSelect={() =>
-                      dispatch({
-                        type: "SELECT_SUBMENU_ITEM",
-                        payload:   item.id,
-                      })
-                    }
-                  />
-                ) : (
-                  item?.submenu?.map((subitem) => {
-                    return <SecondLevelMenu subMenuItem={subitem} />;
-                  })
-                ))}
+              {isMobile && isSelected && <FirstLevelMenu />}
             </motion.li>
           );
         })}
