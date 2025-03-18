@@ -7,6 +7,10 @@ function MobileSideBar() {
     state: { selectedSubmenuItem },
   } = useNavigation();
 
-  return <>{selectedSubmenuItem ? <SecondLevelMenu /> : <SideBar />}</>;
+  return (
+    <>
+      {selectedSubmenuItem ? <SecondLevelMenu returnBtn={true} /> : <SideBar />}
+    </>
+  );
 }
 export default MobileSideBar;

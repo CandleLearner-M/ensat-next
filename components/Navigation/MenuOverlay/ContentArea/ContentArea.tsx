@@ -1,11 +1,12 @@
+import { useSelectedMenuItem } from "@/utils/useSelectedItems";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { IoIosArrowDropleft } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigation } from "../../state/context";
 import { NavigationItem } from "../../state/ENSATNavDS";
 import styles from "./ContentArea.module.scss";
-import { useSelectedMenuItem } from "@/utils/useSelectedItems";
 
 function ContentArea() {
   const { hasSubmenu, subMenuItem, menuItem } = useSelectedMenuItem();
@@ -95,7 +96,11 @@ export function FirstLevelMenu() {
   );
 }
 
-export function SecondLevelMenu() {
+export function SecondLevelMenu({
+  returnBtn = false,
+}: {
+  returnBtn?: boolean;
+}) {
   const {
     state: { selectedLevelThreeItem },
     dispatch,
@@ -129,6 +134,19 @@ export function SecondLevelMenu() {
       variants={containerVariants}
       className={styles.contentarea__secondsubmenu}
     >
+      {returnBtn && (
+        <>
+          <motion.div
+            className={styles.backbtn}
+            onClick={() =>
+              dispatch({ type: "SELECT_SUBMENU_ITEM", payload: null })
+            }
+          >
+            <IoIosArrowDropleft size={20} />
+            <span> {subMenuItem?.label}</span>
+          </motion.div>
+        </>
+      )}
       {subMenuItem?.submenu?.map((item) => {
         const isSelected = item.id === selectedLevelThreeItem;
         return (

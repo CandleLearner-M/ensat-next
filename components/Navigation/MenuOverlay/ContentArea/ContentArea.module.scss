@@ -19,6 +19,8 @@ $border-width: 2.5px;
     height: 100%;
     width: 100%;
 
+    position: relative;
+
     padding: 2rem 3rem;
     box-sizing: border-box;
 
@@ -81,7 +83,7 @@ $border-width: 2.5px;
       position: relative;
       top: 2px;
       color: #464a4f;
-      transition: transform .2s ;
+      transition: transform 0.2s;
     }
 
     li.selected {
@@ -141,4 +143,19 @@ $border-width: 2.5px;
       gap: 1rem;
     }
   }
+}
+.backbtn {
+  position: absolute;
+  top: 7vh;
+  left: 1rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  -webkit-box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
+  -moz-box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
+  box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
+  span {
+    position: relative;
+  top: -1px  }
 }
