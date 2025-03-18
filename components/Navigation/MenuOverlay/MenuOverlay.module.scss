@@ -1,3 +1,5 @@
+@import "../../../styles/variables.scss";
+
 $menu-bg-color: #0e0e0e;
 $text-color: white;
 $muted-text-color: #8996a0;
@@ -30,8 +32,16 @@ $standard-font-size: 1.2rem;
 
 @mixin clickable {
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+
   &:hover {
     color: darken($text-color, 15%);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 }
 
@@ -44,6 +54,7 @@ $standard-font-size: 1.2rem;
   background-color: $menu-bg-color;
   color: $text-color;
   z-index: 10;
+  -webkit-tap-highlight-color: transparent;
 
   display: grid;
   grid-template-columns: 0.7fr 0.9fr 1.4fr;
@@ -86,6 +97,7 @@ $standard-font-size: 1.2rem;
           text-decoration: none;
           font-weight: 500;
           color: $text-color;
+          -webkit-tap-highlight-color: transparent;
         }
       }
     }
@@ -112,12 +124,15 @@ $standard-font-size: 1.2rem;
       li {
         @include flex(center, center, 0.7rem);
         font-size: 1.2rem;
-        transition: color 0.15 ease;
+        transition: color 0.15s ease;
+        -webkit-tap-highlight-color: transparent;
 
         a {
           text-decoration: none;
           font-weight: 500;
           color: $text-color;
+          -webkit-tap-highlight-color: transparent;
+
           &:hover {
             color: darken($text-color, 15%);
           }
@@ -138,4 +153,152 @@ $standard-font-size: 1.2rem;
       top: 2px;
     }
   }
+
+  @include tablet {
+    grid-template-columns: 0.8fr 1fr 1.2fr;
+
+    &__nav {
+      @include menu-section;
+      padding: 0.8rem 1.5rem;
+
+      ul {
+        li {
+          font-size: 1.1rem;
+          gap: 0.4rem;
+        }
+      }
+    }
+
+    &__footer {
+      padding: 0.8rem 1.5rem;
+
+      ul {
+        gap: 3%;
+
+        li {
+          font-size: 1rem;
+          gap: 0.5rem;
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation; /* Improve touch response */
+    }
+
+    .buttonRole {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    &__nav {
+      grid-area: 1 / 1 / 2 / 2;
+      padding: 0.7rem 1rem;
+
+      ul {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1rem;
+
+        li {
+          font-size: 0.9rem;
+          gap: 0.3rem;
+        }
+      }
+
+      &__close {
+        display: none;
+      }
+
+      &::before {
+        height: 110px;
+      }
+    }
+
+    &__footer {
+      grid-area: 3 / 1 / 4 / 2;
+      padding: 1rem;
+      overflow-y: hidden;
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch;
+
+      ul {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 2rem;
+        padding-right: 1rem;
+
+        li {
+          font-size: 1.2rem;
+          gap: 0.4rem;
+          white-space: nowrap;
+          -webkit-tap-highlight-color: transparent;
+
+          &:last-child {
+            padding-right: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  @include mobile-landscape {
+    grid-template-rows: auto 1fr auto;
+
+    &__nav {
+      padding: 0.5rem;
+
+      ul {
+        li {
+          font-size: 0.85rem;
+          gap: 0.2rem;
+        }
+      }
+
+      &::before {
+        height: 80px;
+      }
+    }
+
+    &__footer {
+      padding: 1.5rem;
+      box-sizing: border-box;
+      overflow: hidden;
+      overflow-x: auto !important;
+      @include shadow(up);
+
+      ul {
+        gap: 2rem;
+
+        li {
+          font-size: 1rem;
+          gap: 1rem;
+          &:last-child {
+            padding-right: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.menu button,
+.menu a {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.menu__footer {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
 }

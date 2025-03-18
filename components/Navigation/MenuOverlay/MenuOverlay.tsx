@@ -31,7 +31,7 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
       <MenuNavBar />
       {isDesktop && backgroundImage && <Background src={backgroundImage} />}
       <SideBar />
-      {selectedMenuItem && <ContentArea />}
+      {selectedMenuItem && isDesktop && <ContentArea />}
 
       <MenuFooter />
     </motion.div>
@@ -107,7 +107,7 @@ function MenuNavBar() {
           </Link>
         </li>
         <li onClick={() => dispatch({ type: "CLOSE_MENU" })}>
-          <span>Close</span>
+          <span className={styles.menu__nav__close}>Close</span>
           <IoIosCloseCircleOutline size={38} />
         </li>
       </ul>

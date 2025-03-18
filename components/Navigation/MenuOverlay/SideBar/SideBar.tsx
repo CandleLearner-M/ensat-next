@@ -1,15 +1,19 @@
+import { useScreenSize } from "@/utils/useScreenSize";
 import { useNavigation } from "../../state/context";
 import navigationData from "../../state/ENSATNavDS";
 import styles from "./SideBar.module.scss";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { FirstLevelMenu, SecondLevelMenu } from "../ContentArea/ContentArea";
 
 function SideBar() {
   const {
-    state: { selectedMenuItem },
+    state: { selectedMenuItem, selectedSubmenuItem },
     dispatch,
   } = useNavigation();
   const [isOpen, setIsOpen] = useState(false);
+
+  const { isMobile } = useScreenSize();
 
   // Set menu to open after component mounts to trigger animation
   useEffect(() => {
@@ -51,6 +55,8 @@ function SideBar() {
         {navigationData.map((item) => {
           const isSelected = selectedMenuItem === item.id;
 
+          console.log(item);
+
           return (
             <motion.li
               key={item.id}
@@ -72,6 +78,23 @@ function SideBar() {
               >
                 {item.label}
               </h3>
+              {isMobile &&
+                isSelected &&
+                (!selectedSubmenuItem ? (
+                  <FirstLevelMenu
+                    menuItem={item}
+                    onSubMenuSelect={() =>
+                      dispatch({
+                        type: "SELECT_SUBMENU_ITEM",
+                        payload:   item.id,
+                      })
+                    }
+                  />
+                ) : (
+                  item?.submenu?.map((subitem) => {
+                    return <SecondLevelMenu subMenuItem={subitem} />;
+                  })
+                ))}
             </motion.li>
           );
         })}

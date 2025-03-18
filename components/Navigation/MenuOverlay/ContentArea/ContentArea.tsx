@@ -79,7 +79,7 @@ interface FirstLevelMenuProps {
   onSubMenuSelect: (item: NavigationItem) => void;
 }
 
-function FirstLevelMenu({
+export function FirstLevelMenu({
   menuItem,
   selectedMenuItem,
   selectedSubmenuItem,
@@ -152,7 +152,7 @@ interface SecondLevelMenuProps {
   onLevelThreeSelect: (item: NavigationItem) => void;
 }
 
-function SecondLevelMenu({
+export function SecondLevelMenu({
   subMenuItem,
   selectedLevelThreeItem,
   menuLevelThreeItem,
@@ -248,7 +248,7 @@ function SubmenuItem({
         delayChildren: 0.1,
       },
     },
-    };
+  };
   return (
     <>
       <motion.li

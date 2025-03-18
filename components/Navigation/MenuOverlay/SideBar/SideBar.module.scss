@@ -1,3 +1,6 @@
+@import "../../../../styles/variables.scss";
+
+
 $padding-horizontal: 2rem;
 $padding-vertical: 1rem;
 $track-color: #282a2d;
@@ -105,5 +108,89 @@ $border-width: 2.5px;
 
   li.sidebar__grayedout h3:hover {
     background-size: 0% 1px;
+  }
+
+  @include tablet {
+    padding: $padding-vertical 1.5rem;
+    padding-top: 1.2rem;
+
+    // Scrollbar
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      min-height: 35px;
+      border-width: 2px;
+    }
+
+    ul {
+      margin: 1rem 0;
+    }
+
+    li {
+      margin: 1.2rem 0;
+    }
+
+    h3 {
+      font-size: 35px;
+      letter-spacing: 0.02em;
+    }
+  }
+
+  @include mobile {
+    padding: $padding-vertical 1rem;
+    padding-top: 1rem;
+
+    // Scrollbar
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      min-height: 30px;
+      border-width: 1.5px;
+    }
+
+    ul {
+      margin: 0.8rem 0;
+    }
+
+    li {
+      margin: 1rem 0;
+    }
+
+    h3 {
+      font-size: 28px;
+      letter-spacing: 0.01em;
+    }
+  }
+
+  @include mobile-landscape {
+    padding: 0.7rem 0.8rem;
+    padding-top: 0.5rem;
+
+    // Scrollbar
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      min-height: 25px;
+      border-width: 1px;
+    }
+
+    ul {
+      margin: 0.6rem 0;
+    }
+
+    li {
+      margin: 0.8rem 0;
+    }
+
+    h3 {
+      font-size: 22px;
+      letter-spacing: 0;
+    }
   }
 }
