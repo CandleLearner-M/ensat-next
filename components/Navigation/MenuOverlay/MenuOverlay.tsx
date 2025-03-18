@@ -31,8 +31,9 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
-      {isDesktop ||
-        (isTablet && backgroundImage && <Background src={backgroundImage} />)}
+      {(isDesktop || isTablet) && backgroundImage && (
+        <Background src={backgroundImage} />
+      )}
 
       {isMobile && <MobileSideBar />}
       {isTablet && <TabletSideBar />}

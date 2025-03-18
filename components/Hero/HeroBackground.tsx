@@ -11,10 +11,7 @@ function HeroBackground() {
         className={styles.hero__background__image}
         fill
         priority
-        style={{
-          objectFit: "cover",
-          objectPosition: "50% 0%",
-        }}
+      
       />
 
       <div className={styles.gradient_overlay}></div>

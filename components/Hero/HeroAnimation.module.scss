@@ -129,6 +129,17 @@ $text-offset: 170px;
   }
 }
 
+.hero {
+  position: relative;
+  min-height: 80vh; 
+  height: 100%; 
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    contain: layout paint;
+  }
+}
+
 .mask {
   position: absolute;
   mask-image: url("../../public/mask.svg");

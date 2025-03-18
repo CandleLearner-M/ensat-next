@@ -1,6 +1,6 @@
+import { useScreenSize } from "@/utils/useScreenSize";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-
 function AnimatedLine({
   className,
   isVisible,
@@ -38,6 +38,11 @@ function AnimatedLine({
     }
   }, [height]);
 
+  const { isMobile } = useScreenSize();
+
+  const mobileDuration = isMobile ? 1 : 2;
+  const mobileDelay = isMobile ? (delay ? delay * 0.5 : 0) : delay ?? 0;
+
   const lineVariants = {
     initial: {
       height: 0,
@@ -50,12 +55,12 @@ function AnimatedLine({
         height: {
           duration: 2,
           ease: [0.19, 1, 0.22, 1],
-          delay: delay ?? 0,
+          delay: mobileDelay,
         },
         opacity: {
-          duration: 3,
+          duration: mobileDuration,
           ease: [0, 0.4, 0.7, 1],
-          delay: delay ?? 0,
+          delay: mobileDelay,
         },
       },
     },
