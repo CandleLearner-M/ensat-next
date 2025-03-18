@@ -20,13 +20,13 @@ function ContentArea() {
   );
 }
 
-export function FirstLevelMenu() {
+export function FirstLevelMenu({ returnBtn = false }: { returnBtn?: boolean }) {
   const {
     state: { selectedMenuItem, selectedSubmenuItem },
     dispatch,
   } = useNavigation();
 
-  const { menuItem } = useSelectedMenuItem();
+  const { menuItem, subMenuItem } = useSelectedMenuItem();
 
   const onSubMenuSelect = (item: NavigationItem) => {
     const isCurrentlySelected = item.id === selectedSubmenuItem;
@@ -69,6 +69,19 @@ export function FirstLevelMenu() {
         selectedMenuItem === "ensat" ? styles.ensat : ""
       }`}
     >
+      {returnBtn && (
+        <>
+          <motion.div
+            className={styles.backbtn}
+            onClick={() =>
+              dispatch({ type: "SELECT_SUBMENU_ITEM", payload: null })
+            }
+          >
+            <IoIosArrowDropleft size={20} />
+            <span> {subMenuItem?.label}</span>
+          </motion.div>
+        </>
+      )}
       {menuItem?.path && (
         <motion.li
           variants={menuItemVariants}

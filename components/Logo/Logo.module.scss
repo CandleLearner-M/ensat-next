@@ -50,4 +50,18 @@
       font-size: 0.35rem;
     }
   }
+
+  @include mobile-landscape {
+    img {
+      height: 32px;
+      width: auto;
+    }
+    h1 {
+      font-size: 1rem;
+      letter-spacing: 0.03rem;
+    }
+    h2 {
+      font-size: 0.35rem;
+    }
+  }
 }

@@ -1,6 +1,5 @@
 @import "../../../../styles/variables.scss";
 
-
 $padding-horizontal: 2rem;
 $padding-vertical: 1rem;
 $track-color: #282a2d;
@@ -76,6 +75,14 @@ $border-width: 2.5px;
     letter-spacing: 0.03em;
     display: inline;
     position: relative;
+
+    @media (max-width: 1220px) {
+      font-size: 38px;
+    }
+
+    @media (max-width: 1094px) {
+      font-size: 35px;
+    }
 
     background-image: linear-gradient(#fff, #fff);
     background-position: 0 100%;

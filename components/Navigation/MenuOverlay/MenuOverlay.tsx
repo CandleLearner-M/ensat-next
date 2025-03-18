@@ -11,6 +11,7 @@ import ContentArea from "./ContentArea/ContentArea";
 import styles from "./MenuOverlay.module.scss";
 import SideBar from "./SideBar/SideBar";
 import MobileSideBar from "./SideBar/MobileSideBar";
+import TabletSideBar from "./SideBar/TabletSideBar";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -25,14 +26,17 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
     state: { selectedMenuItem, backgroundImage },
   } = useNavigation();
 
-  const { isDesktop, isMobile } = useScreenSize();
+  const { isDesktop, isMobile, isTablet } = useScreenSize();
 
   return (
     <motion.div className={styles.menu} {...motionProps}>
       <MenuNavBar />
-      {isDesktop && backgroundImage && <Background src={backgroundImage} />}
+      {isDesktop ||
+        (isTablet && backgroundImage && <Background src={backgroundImage} />)}
 
-      {isMobile ? <MobileSideBar /> : <SideBar />}
+      {isMobile && <MobileSideBar />}
+      {isTablet && <TabletSideBar />}
+      {isDesktop && <SideBar />}
       {selectedMenuItem && isDesktop && <ContentArea />}
 
       <MenuFooter />
@@ -110,7 +114,7 @@ function MenuNavBar() {
         </li>
         <li onClick={() => dispatch({ type: "CLOSE_MENU" })}>
           <span className={styles.menu__nav__close}>Close</span>
-          <IoIosCloseCircleOutline size={38} />
+          <IoIosCloseCircleOutline size={38} className={styles.close} />
         </li>
       </ul>
     </nav>

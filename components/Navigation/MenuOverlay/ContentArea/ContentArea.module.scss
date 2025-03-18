@@ -1,3 +1,4 @@
+@import "../../../../styles/variables.scss";
 $track-color: #282a2d;
 $thumb-color: #464a4f;
 $scrollbar-width: 10px;
@@ -109,6 +110,7 @@ $border-width: 2.5px;
       width: 100%;
       cursor: pointer;
       transition: color 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
 
       &:hover {
         color: white;
@@ -141,9 +143,88 @@ $border-width: 2.5px;
 
       flex-direction: column;
       gap: 1rem;
+
+      @include mobile {
+        gap: 0.2rem;
+      }
+    }
+  }
+
+  /* Tablet Media Query */
+  @include tablet {
+    grid-template-columns: 0.6fr 1fr;
+
+    &__firstsubmenu,
+    &__secondsubmenu {
+      padding: 1.5rem 2rem;
+
+      &__item {
+        font-size: 1.15rem;
+      }
+
+      li {
+        margin: 1.2rem 0;
+      }
+    }
+
+    &__secondsubmenu {
+      .dropdown {
+        width: 85%;
+      }
+    }
+  }
+
+  @include mobile {
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .dropdown {
+      width: 90%;
+      gap: 0.5rem !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-width: 1.5px;
+    }
+
+    a,
+    button,
+    [role="button"] {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+  }
+
+  @include mobile-landscape {
+    grid-template-columns: 0.5fr 1fr;
+    max-height: 100vh;
+
+    &__firstsubmenu,
+    &__secondsubmenu {
+      padding: 0.8rem 1rem;
+      justify-content: space-evenly;
+
+      &__item {
+        font-size: 0.9rem;
+      }
+
+      li {
+        margin: 0.6rem 0;
+      }
+    }
+
+    &__secondsubmenu {
+      padding: 0.8rem 1rem;
+
+      .dropdown {
+        width: 90%;
+        gap: 0.5rem;
+      }
     }
   }
 }
+
 .backbtn {
   position: absolute;
   top: 7vh;
@@ -155,7 +236,27 @@ $border-width: 2.5px;
   -webkit-box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
   -moz-box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
   box-shadow: -2px 2px 55px 30px rgba(14, 14, 14, 0.69);
+  -webkit-tap-highlight-color: transparent;
+
   span {
     position: relative;
-  top: -1px  }
+    top: -1px;
+  }
+
+  /* Tablet Media Query */
+  @include tablet {
+    top: 5vh;
+    left: 0.8rem;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+  }
+
+  /* Mobile Media Query */
+
+  /* Mobile Landscape Media Query */
+  @include mobile-landscape {
+    top: 0.5rem;
+    left: 0.5rem;
+    font-size: 0.8rem;
+  }
 }
