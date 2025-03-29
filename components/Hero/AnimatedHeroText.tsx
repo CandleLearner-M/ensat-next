@@ -20,8 +20,8 @@ function AnimatedHeroText({ isVisible, className }: { isVisible: boolean; classN
         École Nationale des Sciences Appliquées de Tanger
       </motion.h1>
       <motion.p variants={fadeInUp} transition={{ delay: 0.2 }}>
-        L'ENSAT, depuis 1998 : une formation d'ingénieur d'excellence, tournée
-        vers l'innovation et l'industrie.
+        L&apos;ENSAT, depuis 1998 : une formation d&apos;ingénieur d&apos;excellence, tournée
+        vers l&apos;innovation et l&apos;industrie.
       </motion.p>
     </motion.div>
   );

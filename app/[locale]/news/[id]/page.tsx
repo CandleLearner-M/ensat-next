@@ -8,7 +8,7 @@ async function fetchPost(id: string) {
     const data = await response.json();
 
     return data;
-  } catch (err) {
+  } catch (_err) {
     notFound();
   }
 }
