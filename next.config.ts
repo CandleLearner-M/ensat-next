@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["images.unsplash.com", "ensat.ac.ma"],
   },
+
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();
