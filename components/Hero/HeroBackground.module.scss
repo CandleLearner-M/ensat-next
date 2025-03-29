@@ -32,6 +32,7 @@
   -webkit-animation: kenburns-top 4s ease-out both;
   animation: kenburns-top 4s ease-out both;
   object-fit: cover;
+  object-position: 50% 20%;
 }
 
 @-webkit-keyframes kenburns-top {
@@ -42,8 +43,8 @@
     transform-origin: 50% 16%;
   }
   100% {
-    -webkit-transform: scale(1.12) translateY(-15px);
-    transform: scale(1.12) translateY(-15px);
+    -webkit-transform: scale(1.10) translateY(-15px);
+    transform: scale(1.10) translateY(-15px);
     -webkit-transform-origin: top;
     transform-origin: top;
   }
@@ -56,8 +57,8 @@
     transform-origin: 50% 16%;
   }
   100% {
-    -webkit-transform: scale(1.12) translateY(-15px);
-    transform: scale(1.12) translateY(-15px);
+    -webkit-transform: scale(1.10) translateY(-15px);
+    transform: scale(1.10) translateY(-15px);
     -webkit-transform-origin: top;
     transform-origin: top;
   }
