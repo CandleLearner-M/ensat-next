@@ -59,21 +59,22 @@ $text-size: 1.3rem;
     background: none;
 
     // Search
-    &:first-child {
-      background-color: #0e0e0e;
+      &:last-child {
+        background-color: #0e0e0e;
 
-      &:hover {
-        background-color: lighten(#0e0e0e, 10%);
+        &:hover {
+          background-color: lighten(#0e0e0e, 10%);
+        }
       }
-    }
 
     // Menu
     &:last-child {
-      background-color: rgba(14, 14, 14, 0.8);
+      background-color: rgba(14, 14, 14, 0.9);
+      transition: all 0.3s ease;
       padding: 0 1.7rem;
 
       &:hover {
-        background-color: rgba(14, 14, 14, 0.7);
+        background-color: rgba(14, 14, 14, 0.8);
       }
     }
   }

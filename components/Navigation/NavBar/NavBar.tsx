@@ -4,6 +4,7 @@ import MenuBtn from "./MenuBtn";
 import styles from "./NavBar.module.scss";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import LocaleSwitcher from "./LocaleSwitcher";
 
 function NavBar() {
   const t = useTranslations("Navigation.NavBar");
@@ -16,11 +17,11 @@ function NavBar() {
             <Logo />
           </Link>
         </div>
+
         <div className={styles.navbar__actions}>
-          <button
-            className={styles.navbar__action}
-            aria-label={t("search")}
-          >
+          <LocaleSwitcher />
+
+          <button className={styles.navbar__action} aria-label={t("search")}>
             <FiSearch size={30} className={styles.navbar__icon} />
             <span className={styles.navbar__actionText}>{t("search")}</span>
           </button>

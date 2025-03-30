@@ -14,6 +14,8 @@
     "lodash-es": "^4.17.21",
     "next": "15.2.2",
     "next-intl": "^4.0.2",
+    "nextjs-progressbar": "^0.0.16",
+    "nextjs-toploader": "^3.8.16",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",

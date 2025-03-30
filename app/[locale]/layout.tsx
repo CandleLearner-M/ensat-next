@@ -6,6 +6,7 @@ import Navigation from "@/components/Navigation/Navigation";
 import { canelaDeck } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.scss";
+import NextTopLoader from "nextjs-toploader";
 
 export async function generateMetadata({
   params,
@@ -48,6 +49,7 @@ export default async function LocaleLayout({
     <html lang={locale} className={canelaDeck.variable}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <NextTopLoader color="#002efe" showSpinner={false} />
           <Navigation />
           <main>{children}</main>
         </NextIntlClientProvider>
