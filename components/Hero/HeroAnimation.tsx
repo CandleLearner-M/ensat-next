@@ -32,6 +32,7 @@ function HeroAnimation() {
           className={`${styles.hero__line} ${styles.hero__line_top}`}
           height="20vh"
           isVisible={isVisible}
+          isUpper={true}
         />
 
         <AnimatedHeroText className={styles.hero__text} isVisible={isVisible} />
@@ -40,6 +41,7 @@ function HeroAnimation() {
           height="toBottom"
           isVisible={isVisible}
           delay={2}
+          isUpper={false}
         />
       </div>
     </>
