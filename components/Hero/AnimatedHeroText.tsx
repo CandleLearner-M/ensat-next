@@ -54,19 +54,19 @@ function AnimatedHeroText({
     },
   };
 
-  // Subtitle animation with a subtle slide effect
-  const subtitleAnimation = {
+  // New simplified paragraph animation
+  const paragraphAnimation = {
     hidden: {
       opacity: 0,
-      y: 10,
+      y: 15,
     },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.5,
+        duration: 0.7,
+        delay: 0.6,
         ease: [0.2, 0.65, 0.3, 0.9],
-        delay: 0.5, // Start after title animation
       },
     },
   };
@@ -83,15 +83,13 @@ function AnimatedHeroText({
         style={{ fontSize: "2rem !important" }}
       >
         {titleWords.map((word, index) => (
-          <>
+          <React.Fragment key={index}>
             <motion.span
-              key={index}
               className="inline-block whitespace-nowrap"
               variants={wordAnimation}
-              >
+            >
               {Array.from(word).map((char, charIndex) => (
                 <motion.span
-                // style={{ fontSize: "1rem !important", backgroundColor: "green" }}
                   key={`${index}-${charIndex}`}
                   className="inline-block"
                   variants={characterAnimation}
@@ -108,23 +106,24 @@ function AnimatedHeroText({
             </motion.span>
             {/* Add space after each word except the last one */}
             {index < titleWords.length - 1 && " "}
-          </>
+          </React.Fragment>
         ))}
       </motion.h1>
 
-      <motion.p variants={subtitleAnimation} className="relative inline-block">
-        {t("description")}
-        <motion.span
-          className="absolute bottom-0 left-0 w-full h-[2px] bg-current"
-          initial={{ scaleX: 0, originX: 0 }}
-          animate={isVisible ? { scaleX: 1 } : { scaleX: 0 }}
-          transition={{
-            delay: 0.8,
-            duration: 0.6,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
-      </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.3, delay: 0.7 }}
+      >
+        <motion.p
+          variants={paragraphAnimation}
+          className="relative"
+          initial="hidden"
+          animate={isVisible ? "visible" : "hidden"}
+        >
+          {t("description")}
+        </motion.p>
+      </motion.div>
     </motion.div>
   );
 }
