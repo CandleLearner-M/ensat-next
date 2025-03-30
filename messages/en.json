@@ -1,6 +1,10 @@
 {
   "Hero": {
     "title": "National School of Applied Sciences of Tangier",
-    "description": "ENSAT, since 1998: excellent engineering education, focused on innovation and industry."
+    "description": "ENSAT, since 1998: excellent engineering education, focused on innovation and industry.",
+    "Mask": {
+      "title": "Abdelmalek Essaadi University",
+      "description": "ENSAT, since 1998: excellent engineering education, focused on innovation and industry."
+    }
   }
 }

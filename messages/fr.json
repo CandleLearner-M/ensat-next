@@ -1,6 +1,10 @@
 {
   "Hero": {
     "title": "École Nationale des Sciences Appliquées de Tanger",
-    "description": "L'ENSAT, depuis 1998 : une formation d'ingénieur d'excellence, tournée vers l'innovation et l'industrie."
+    "description": "L'ENSAT, depuis 1998 : une formation d'ingénieur d'excellence, tournée vers l'innovation et l'industrie.",
+    "Mask": {
+      "title": "Université Abdelmalek Essaadi",
+      "description": "L’ENSAT, depuis 1998 : une formation d’ingénieur d’excellence, tournée vers l’innovation et l’industrie."
+    }
   }
 }

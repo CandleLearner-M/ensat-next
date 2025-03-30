@@ -3,6 +3,7 @@ import AnimatedLine from "./AnimatedLine";
 import styles from "./HeroAnimation.module.scss";
 import { motion } from "framer-motion";
 import {  useState } from "react";
+import { useTranslations } from "next-intl";
 
 function MaskAnimation({ isVisible }: { isVisible: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
@@ -11,6 +12,9 @@ function MaskAnimation({ isVisible }: { isVisible: boolean }) {
   const size = isHovered ? 400 : 30;
 
   const color = isHovered ? "#002efe" : "rgba(0, 46, 254, 1)";
+
+  // MULTILINGUAL SUPPORT 
+  const t = useTranslations("Hero.Mask");
 
   return (
     <motion.div
@@ -38,15 +42,14 @@ function MaskAnimation({ isVisible }: { isVisible: boolean }) {
           onMouseLeave={() => setIsHovered(false)}
           style={{ color: "black" }}
         >
-          Université Abdelmalek Essaadi{" "}
+          {t("title")}
         </h1>
         <p
           style={{ color: "black" }}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          L’ENSAT, depuis 1998 : une formation d’ingénieur d’excellence, tournée
-          vers l’innovation et l’industrie.
+         {t("description")}  
         </p>
         <AnimatedLine
           className={`${styles.mask__line} ${styles.mask__line_bottom}`}
