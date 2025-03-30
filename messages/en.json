@@ -6,5 +6,12 @@
       "title": "Abdelmalek Essaadi University",
       "description": "ENSAT, since 1998: excellent engineering education, focused on innovation and industry."
     }
+  },
+
+  "Navigation": {
+    "NavBar": {
+      "search": "Search",
+      "menu": "Menu"
+    }
   }
 }

@@ -6,5 +6,12 @@
       "title": "Université Abdelmalek Essaadi",
       "description": "L’ENSAT, depuis 1998 : une formation d’ingénieur d’excellence, tournée vers l’innovation et l’industrie."
     }
+  },
+
+  "Navigation": {
+    "NavBar": {
+      "search": "Rechercher",
+      "menu": "Menu"
+    }
   }
 }
