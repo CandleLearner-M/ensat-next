@@ -32,7 +32,11 @@
   -webkit-animation: kenburns-top 4s ease-out both;
   animation: kenburns-top 4s ease-out both;
   object-fit: cover;
-  object-position: right 20%;
+  object-position: center 10%;
+
+  @media (max-width: 768px) {
+    object-position: center center;
+  }
 }
 
 @-webkit-keyframes kenburns-top {
