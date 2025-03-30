@@ -6,6 +6,6 @@ import HeroBackgroundMobile from "./HeroBackgroundMobile";
 
 function HeroBG() {
   const { isMobile } = useScreenSize();
-  return <>{!isMobile ? <HeroBackground /> : <HeroBackgroundMobile />}</>;
+  return <>{isMobile ? <HeroBackgroundMobile /> : <HeroBackground />}</>;
 }
 export default HeroBG;
