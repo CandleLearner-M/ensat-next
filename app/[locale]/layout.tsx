@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
 import Navigation from "@/components/Navigation/Navigation";
-import { canelaDeck } from "@/lib/fonts";
+import { canelaDeck, outfit } from "@/lib/fonts";
+
 import type { Metadata } from "next";
 import "./globals.scss";
 import NextTopLoader from "nextjs-toploader";
@@ -46,7 +47,7 @@ export default async function LocaleLayout({
   const messages = (await import(`@/messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale} className={canelaDeck.variable}>
+    <html lang={locale} className={`${canelaDeck.variable} ${outfit.variable}`}>
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#002efe" showSpinner={false} />
