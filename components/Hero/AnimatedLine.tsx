@@ -40,8 +40,8 @@ function AnimatedLine({
 
   const { isMobile } = useScreenSize();
 
-  const mobileDuration = isMobile ? 1 : 2;
-  const mobileDelay = isMobile ? (delay ? delay * 0.5 : 0) : delay ?? 0;
+  const mobileDuration = isMobile ? 2 : 2;
+  const mobileDelay = isMobile ? (delay ? delay * 1 : 0) : delay ?? 0;
 
   const lineVariants = {
     initial: {

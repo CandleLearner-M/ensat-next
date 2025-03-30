@@ -47,6 +47,8 @@ $text-offset: 170px;
       }
     }
 
+   
+
     p {
       font-size: 1.2rem;
       width: $text-width-paragraph;
@@ -176,6 +178,10 @@ $text-offset: 170px;
   mask-repeat: no-repeat;
   mask-size: 40px;
   pointer-events: none;
+
+  h1 {
+    width: $text-width-heading;
+  }
 
   @include tablet {
     display: none;

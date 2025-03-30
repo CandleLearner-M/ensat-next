@@ -26,21 +26,18 @@ function AnimatedHeroText({
     },
   };
 
-  // Title animation - Split into words
   const titleWords = t("title").split(" ");
 
-  // Words animation variant
   const wordAnimation = {
     hidden: {},
     visible: {},
   };
 
-  // Character animation variant - keeping the scale at 1 to prevent text size changes
   const characterAnimation = {
     hidden: {
       opacity: 0,
       y: 20,
-      scale: 1, // Changed from 0.9 to 1 to maintain original size
+      scale: 1, 
     },
     visible: {
       opacity: 1,
@@ -54,7 +51,6 @@ function AnimatedHeroText({
     },
   };
 
-  // New simplified paragraph animation
   const paragraphAnimation = {
     hidden: {
       opacity: 0,

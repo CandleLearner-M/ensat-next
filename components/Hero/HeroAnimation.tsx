@@ -39,7 +39,7 @@ function HeroAnimation() {
           className={`${styles.hero__line} ${styles.hero__line_bottom}`}
           height="toBottom"
           isVisible={isVisible}
-          delay={1}
+          delay={2}
         />
       </div>
     </>
