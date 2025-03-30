@@ -53,7 +53,7 @@ function AnimatedLine({
       height: lineHeight,
       transition: {
         height: {
-          duration: 2,
+          duration: 3.5,
           ease: [0.19, 1, 0.22, 1],
           delay: mobileDelay,
         },
