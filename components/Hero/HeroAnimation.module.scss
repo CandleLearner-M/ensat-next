@@ -77,6 +77,9 @@ $text-offset: 170px;
       h1,
       .heroTitle {
         font-size: 3rem;
+        span {
+          font-size: 3rem;
+        }
         width: 60vw;
         margin-bottom: 0.8rem;
         gap: 0.5rem;
@@ -100,6 +103,10 @@ $text-offset: 170px;
       h1,
       .heroTitle {
         font-size: 2rem;
+
+        span {
+          font-size: 2rem;
+        }
         width: 85vw;
         margin-bottom: 1rem;
         gap: 0.3rem;
@@ -127,6 +134,9 @@ $text-offset: 170px;
       h1,
       .heroTitle {
         font-size: 1.8rem;
+        span {
+          font-size: 1.8rem;
+        }
         width: 90vw;
         margin-bottom: 0.5rem;
         gap: 0.2rem;
