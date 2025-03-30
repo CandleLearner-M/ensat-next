@@ -1,8 +1,8 @@
 import Image from "next/image";
-import heroBg from "../../assets/hero-bg-mobile.jpg";
+import heroBg from "../../assets/hero-bg.jpg";
 import styles from "./HeroBackground.module.scss";
 
-function HeroBackground() {
+function HeroBackgroundMobile() {
   return (
     <div className={styles.hero__background}>
       <Image
@@ -17,4 +17,4 @@ function HeroBackground() {
     </div>
   );
 }
-export default HeroBackground;
+export default HeroBackgroundMobile;
