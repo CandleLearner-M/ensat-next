@@ -58,7 +58,7 @@ function AnimatedLine({
           delay: mobileDelay,
         },
         opacity: {
-          duration: mobileDuration,
+          duration: 3.5,
           ease: [0, 0.4, 0.7, 1],
           delay: mobileDelay,
         },
