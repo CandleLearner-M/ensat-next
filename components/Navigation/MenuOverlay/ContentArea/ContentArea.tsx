@@ -1,12 +1,13 @@
 import { useSelectedMenuItem } from "@/utils/useSelectedItems";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigation } from "../../state/context";
 import { NavigationItem } from "../../state/ENSATNavDS";
 import styles from "./ContentArea.module.scss";
+import NavigationLabel from "../NavigationLabel";
+import { Link } from "@/i18n/navigation"; // Replace next/link with i18n Link
 
 function ContentArea() {
   const { hasSubmenu, subMenuItem, menuItem } = useSelectedMenuItem();
@@ -78,7 +79,13 @@ export function FirstLevelMenu({ returnBtn = false }: { returnBtn?: boolean }) {
             }
           >
             <IoIosArrowDropleft size={20} />
-            <span> {subMenuItem?.label}</span>
+            <span>
+              {subMenuItem && (
+                <NavigationLabel
+                  id={subMenuItem?.translationKey ?? subMenuItem?.id}
+                />
+              )}
+            </span>
           </motion.div>
         </>
       )}
@@ -156,7 +163,13 @@ export function SecondLevelMenu({
             }
           >
             <IoIosArrowDropleft size={20} />
-            <span> {subMenuItem?.label}</span>
+            <span>
+              {subMenuItem && (
+                <NavigationLabel
+                  id={subMenuItem?.translationKey ?? subMenuItem?.id}
+                />
+              )}
+            </span>
           </motion.div>
         </>
       )}
@@ -188,7 +201,6 @@ interface SubmenuItemProps {
   onClick?: () => void;
   children?: React.ReactNode;
   isSelected?: boolean;
-
   level?: number;
 }
 
@@ -233,6 +245,7 @@ function SubmenuItem({
       },
     },
   };
+
   return (
     <>
       <motion.li
@@ -245,7 +258,9 @@ function SubmenuItem({
       >
         {item.hasSubmenu ? (
           <p className={styles.contentarea__firstsubmenu__item}>
-            <span>{item.label}</span>
+            <span>
+              <NavigationLabel id={item?.translationKey ?? item.id} />
+            </span>
             <span>
               <MdKeyboardArrowRight
                 className={
@@ -257,7 +272,7 @@ function SubmenuItem({
             </span>
           </p>
         ) : (
-          <MenuItemLink item={item} />
+          <MenuItemLink item={item} level={level} />
         )}
       </motion.li>
       {!!children && (
@@ -274,10 +289,12 @@ function SubmenuItem({
   );
 }
 
-function MenuItemLink({ item }: { item: NavigationItem }) {
+function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
   return (
     <Link href={item.path} className={styles.contentarea__firstsubmenu__item}>
-      <span>{item.label}</span>
+      <span>
+        <NavigationLabel id={item?.translationKey ?? item.id} />
+      </span>
       <span className={styles.icon}>
         <FaArrowRightLong size={15} />
       </span>

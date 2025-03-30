@@ -5,6 +5,7 @@ import { useNavigation } from "../../state/context";
 import navigationData from "../../state/ENSATNavDS";
 import { FirstLevelMenu } from "../ContentArea/ContentArea";
 import styles from "./SideBar.module.scss";
+import NavigationLabel from "../NavigationLabel";
 
 function SideBar() {
   const {
@@ -76,7 +77,7 @@ function SideBar() {
                 }
                 className={isSelected ? styles.sidebar__selected : ""}
               >
-                {item.label}
+                <NavigationLabel id={item?.translationKey ?? item.id} />
               </h3>
               {isMobile && isSelected && <FirstLevelMenu />}
             </motion.li>

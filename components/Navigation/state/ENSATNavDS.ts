@@ -1,11 +1,12 @@
 // Define the navigation item type
 export interface NavigationItem {
-  id: string;
+  id: string; // Unchanged - use as translation key
   label: string;
-  path: string;
-  image?: string; // Property for background images
-  hasSubmenu?: boolean;
-  submenu?: NavigationItem[];
+  translationKey?: string; // Optional override if different from id
+  path: string; // Unchanged
+  image?: string; // Unchanged
+  hasSubmenu?: boolean; // Unchanged
+  submenu?: NavigationItem[]; // Unchanged
 }
 
 // Define the main navigation data
@@ -20,6 +21,7 @@ const navigationData: NavigationItem[] = [
     submenu: [
       {
         id: "mot-directeur",
+        translationKey: "motDirecteur",
         label: "Mot du Directeur",
         path: "/ensat/mot-directeur",
       },
@@ -30,6 +32,7 @@ const navigationData: NavigationItem[] = [
       },
       {
         id: "mission-valeurs",
+        translationKey: "missionValeurs",
         label: "Mission & Valeurs",
         path: "/ensat/mission-valeurs",
       },
@@ -67,17 +70,20 @@ const navigationData: NavigationItem[] = [
     submenu: [
       {
         id: "formation-initiale",
+        translationKey: "formationInitiale",
         label: "Formation Initiale",
         path: "/formations/initiale",
         hasSubmenu: true,
         submenu: [
           {
             id: "annees-preparatoires",
+            translationKey: "anneesPreparatoires",
             label: "Années Préparatoires (AP)",
             path: "/formations/initiale/ap",
           },
           {
             id: "cycle-ingenieur",
+            translationKey: "cycleIngenieur",
             label: "Cycle Ingénieur",
             path: "/formations/initiale/cycle-ingenieur",
             hasSubmenu: true,
@@ -116,6 +122,7 @@ const navigationData: NavigationItem[] = [
           },
           {
             id: "cycle-master",
+            translationKey: "cycleMaster",
             label: "Cycle Master",
             path: "/formations/initiale/cycle-master",
             hasSubmenu: true,
@@ -136,6 +143,7 @@ const navigationData: NavigationItem[] = [
       },
       {
         id: "formation-continue",
+        translationKey: "formationContinue",
         label: "Formation Continue",
         path: "/formations/continue",
         hasSubmenu: true,
@@ -200,6 +208,7 @@ const navigationData: NavigationItem[] = [
       },
       {
         id: "formation-doctorale",
+        translationKey: "formationDoctorale",
         label: "Formation Doctorale",
         path: "/recherche/formation-doctorale",
       },
@@ -225,6 +234,7 @@ const navigationData: NavigationItem[] = [
     submenu: [
       {
         id: "double-diplomation",
+        translationKey: "doubleDiplomation",
         label: "Conventions Double Diplomation",
         path: "/partenariats/double-diplomation",
       },
