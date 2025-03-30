@@ -25,14 +25,26 @@ $text-offset: 170px;
     display: grid;
     place-items: center;
 
-    h1 {
+    h1,
+    .heroTitle {
       font-size: 3.7rem;
-      width: $text-width-heading;
+
+      width: 70vw;
       color: white;
       font-weight: 700;
-      text-transform: capitalize;
+      // text-transform: capitalize;
       text-align: center;
       margin-bottom: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+
+      span {
+        font-size: 3.7rem;
+        display: inline-block;
+      }
     }
 
     p {
@@ -62,10 +74,12 @@ $text-offset: 170px;
 
   @include tablet {
     &__text {
-      h1 {
+      h1,
+      .heroTitle {
         font-size: 3rem;
-        width: 18ch;
+        width: 60vw;
         margin-bottom: 0.8rem;
+        gap: 0.5rem;
       }
 
       p {
@@ -83,10 +97,12 @@ $text-offset: 170px;
 
   @include mobile {
     &__text {
-      h1 {
+      h1,
+      .heroTitle {
         font-size: 2rem;
-        width: 15ch;
+        width: 85vw;
         margin-bottom: 1rem;
+        gap: 0.3rem;
       }
 
       p {
@@ -108,10 +124,12 @@ $text-offset: 170px;
     padding: 1rem 0;
 
     &__text {
-      h1 {
+      h1,
+      .heroTitle {
         font-size: 1.8rem;
-        width: 20ch;
+        width: 90vw;
         margin-bottom: 0.5rem;
+        gap: 0.2rem;
       }
 
       p {
@@ -131,8 +149,8 @@ $text-offset: 170px;
 
 .hero {
   position: relative;
-  min-height: 80vh; 
-  height: 100%; 
+  min-height: 80vh;
+  height: 100%;
   overflow: hidden;
 
   @media (max-width: 768px) {
