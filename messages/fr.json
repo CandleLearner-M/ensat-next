@@ -14,6 +14,14 @@
       "menu": "Menu"
     },
 
+    "MenuOverlay": {
+      "quickLinks": "Liens Rapides",
+      "news": "Actualités",
+      "defenses": "Soutenances",
+      "contact": "Contact",
+      "close": "Fermer"
+    },
+
     "Menu": {
       "ensat": "ENSAT",
       "formations": "Formations",

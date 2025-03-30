@@ -1,7 +1,8 @@
+"use client";
+
 import Logo from "@/components/Logo/Logo";
 import { useScreenSize } from "@/utils/useScreenSize";
 import { motion } from "framer-motion";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import { GrFormNext } from "react-icons/gr";
 import { IoIosCloseCircleOutline } from "react-icons/io";
@@ -12,6 +13,8 @@ import styles from "./MenuOverlay.module.scss";
 import SideBar from "./SideBar/SideBar";
 import MobileSideBar from "./SideBar/MobileSideBar";
 import TabletSideBar from "./SideBar/TabletSideBar";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -48,6 +51,7 @@ export default MenuOverlay;
 
 function MenuFooter() {
   const [isVisible, setIsVisible] = useState(false);
+  const t = useTranslations("Navigation.MenuOverlay");
 
   useEffect(() => {
     setIsVisible(true);
@@ -84,18 +88,18 @@ function MenuFooter() {
         animate={isVisible ? "visible" : "hidden"}
       >
         <motion.li variants={footerItemVariants}>
-          <span>Liens Rapides</span>
+          <span>{t("quickLinks")}</span>
           <GrFormNext className={styles.menu__footer__symbol} />
         </motion.li>
         <motion.li variants={footerItemVariants}>
-          <Link href="/news">Actualités</Link>
+          <Link href="/news">{t("news")}</Link>
         </motion.li>
 
         <motion.li variants={footerItemVariants}>
-          <Link href="/defenses">Soutenances</Link>
+          <Link href="/defenses">{t("defenses")}</Link>
         </motion.li>
         <motion.li variants={footerItemVariants}>
-          <Link href="/contact">Contact</Link>
+          <Link href="/contact">{t("contact")}</Link>
         </motion.li>
       </motion.ul>
     </footer>
@@ -104,6 +108,7 @@ function MenuFooter() {
 
 function MenuNavBar() {
   const { dispatch } = useNavigation();
+  const t = useTranslations("Navigation.MenuOverlay");
 
   return (
     <nav className={styles.menu__nav}>
@@ -114,7 +119,7 @@ function MenuNavBar() {
           </Link>
         </li>
         <li onClick={() => dispatch({ type: "CLOSE_MENU" })}>
-          <span className={styles.menu__nav__close}>Close</span>
+          <span className={styles.menu__nav__close}>{t("close")}</span>
           <IoIosCloseCircleOutline size={38} className={styles.close} />
         </li>
       </ul>

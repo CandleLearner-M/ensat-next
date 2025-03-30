@@ -13,6 +13,13 @@
       "search": "Search",
       "menu": "Menu"
     },
+    "MenuOverlay": {
+      "quickLinks": "Quick Links",
+      "news": "News",
+      "defenses": "Defenses",
+      "contact": "Contact",
+      "close": "Close"
+    },
     "Menu": {
       "ensat": "ENSAT",
       "formations": "Programs",
