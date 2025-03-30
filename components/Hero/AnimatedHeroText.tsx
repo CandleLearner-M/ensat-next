@@ -1,6 +1,10 @@
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 function AnimatedHeroText({ isVisible, className }: { isVisible: boolean; className: string }) {
+
+  const t = useTranslations("Hero");
+
   const fadeInUp = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -16,12 +20,9 @@ function AnimatedHeroText({ isVisible, className }: { isVisible: boolean; classN
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
     >
-      <motion.h1 variants={fadeInUp}>
-        École Nationale des Sciences Appliquées de Tanger
-      </motion.h1>
+      <motion.h1 variants={fadeInUp}>{t("title")}</motion.h1>
       <motion.p variants={fadeInUp} transition={{ delay: 0.2 }}>
-        L&apos;ENSAT, depuis 1998 : une formation d&apos;ingénieur d&apos;excellence, tournée
-        vers l&apos;innovation et l&apos;industrie.
+        {t("description")}
       </motion.p>
     </motion.div>
   );

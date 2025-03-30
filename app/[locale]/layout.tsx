@@ -7,11 +7,28 @@ import { canelaDeck } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.scss";
 
-export const metadata: Metadata = {
-  title: "ENSAT - École Nationale des Sciences Appliquées de Tanger",
-  description: "",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: { locale: string };
+}): Promise<Metadata> {
+  const titles = {
+    en: "ENSAT - National School of Applied Sciences of Tangier",
+    fr: "ENSAT - École Nationale des Sciences Appliquées de Tanger",
+  };
 
+  const descriptions = {
+    en: "Official website of ENSAT",
+    fr: "Site officiel de l'ENSAT",
+  };
+
+  const locale = params.locale as keyof typeof titles;
+
+  return {
+    title: titles[locale] || titles.fr,
+    description: descriptions[locale] || descriptions.fr,
+  };
+}
 export default async function LocaleLayout({
   children,
   params,
@@ -25,10 +42,12 @@ export default async function LocaleLayout({
     notFound();
   }
 
+  const messages = (await import(`@/messages/${locale}.json`)).default;
+
   return (
     <html lang={locale} className={canelaDeck.variable}>
       <body>
-        <NextIntlClientProvider>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <Navigation />
           <main>{children}</main>
         </NextIntlClientProvider>
