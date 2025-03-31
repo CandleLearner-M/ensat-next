@@ -8,6 +8,8 @@ import { NavigationItem } from "../../state/ENSATNavDS";
 import styles from "./ContentArea.module.scss";
 import NavigationLabel from "../NavigationLabel";
 import { Link } from "@/i18n/navigation"; // Replace next/link with i18n Link
+import { useRouter } from "@/i18n/navigation";
+import { useRef } from "react";
 
 function ContentArea() {
   const { hasSubmenu, subMenuItem, menuItem } = useSelectedMenuItem();
@@ -294,9 +296,8 @@ function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
 
   if (isPDF) {
     return (
-      <a
-        href={item.path}
-        rel="noopener noreferrer"
+      <PDFLink
+        path={item.path}
         className={styles.contentarea__firstsubmenu__item}
       >
         <span>
@@ -305,7 +306,7 @@ function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
         <span className={styles.icon}>
           <FaArrowRightLong size={15} />
         </span>
-      </a>
+      </PDFLink>
     );
   }
   return (
@@ -317,6 +318,48 @@ function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
         <FaArrowRightLong size={15} />
       </span>
     </Link>
+  );
+}
+
+function PDFLink({
+  path,
+  children,
+  className,
+}: {
+  path: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  const router = useRouter();
+  const linkRef = useRef<HTMLAnchorElement>(null);
+
+  // Create click handler that prevents TopLoader from running
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    // Show navigation loading state temporarily
+    router.prefetch("/");
+
+    // Use setTimeout to give appearance of loading
+    setTimeout(() => {
+      // Create temporary link and trigger download
+      if (linkRef.current) {
+        window.open(path, "_blank");
+      }
+    }, 300);
+  };
+
+  return (
+    <a
+      ref={linkRef}
+      href={path}
+      onClick={handleClick}
+      className={className}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {children}
+    </a>
   );
 }
 
