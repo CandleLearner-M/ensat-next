@@ -290,6 +290,24 @@ function SubmenuItem({
 }
 
 function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
+  const isPDF = item.path.endsWith(".pdf");
+
+  if (isPDF) {
+    return (
+      <a
+        href={item.path}
+        rel="noopener noreferrer"
+        className={styles.contentarea__firstsubmenu__item}
+      >
+        <span>
+          <NavigationLabel id={item?.translationKey ?? item.id} />
+        </span>
+        <span className={styles.icon}>
+          <FaArrowRightLong size={15} />
+        </span>
+      </a>
+    );
+  }
   return (
     <Link href={item.path} className={styles.contentarea__firstsubmenu__item}>
       <span>

@@ -39,7 +39,7 @@ const navigationData: NavigationItem[] = [
       {
         id: "reglement",
         label: "Réglement Intérieur",
-        path: "/ensat/reglement",
+        path: "/documents/Reglement-interieur-ENSAT.pdf",
       },
       {
         id: "instances",
@@ -56,7 +56,11 @@ const navigationData: NavigationItem[] = [
         label: "Infrastructures",
         path: "/ensat/infrastructures",
       },
-      { id: "charte", label: "Charte graphique", path: "/ensat/charte" },
+      {
+        id: "charte",
+        label: "Charte graphique",
+        path: "/documents/Charte-graphique-ENSA-Tanger.pdf",
+      },
       { id: "contact", label: "Contact", path: "/ensat/contact" },
     ],
   },
