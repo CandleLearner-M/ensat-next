@@ -35,7 +35,7 @@ function AnimatedHeroText({
     hidden: {
       opacity: 0,
       y: 30,
-      scale: 0.8,
+      scale: 0.7,
     },
     visible: {
       opacity: 1,
