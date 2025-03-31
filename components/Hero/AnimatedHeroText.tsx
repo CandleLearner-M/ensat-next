@@ -1,7 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import styles from "./HeroAnimation.module.scss";
+import { motion } from "framer-motion";
 
 function AnimatedHeroText({
   isVisible,
@@ -12,8 +11,7 @@ function AnimatedHeroText({
 }) {
   const t = useTranslations("Hero");
 
-  // Container animation (subtle fade in)
-  const containerAnimation = {
+  const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -21,7 +19,7 @@ function AnimatedHeroText({
         when: "beforeChildren",
         staggerChildren: 0.2,
         duration: 0.3,
-        ease: "easeOut",
+        ease: "easeInOut",
       },
     },
   };
@@ -36,8 +34,8 @@ function AnimatedHeroText({
   const characterAnimation = {
     hidden: {
       opacity: 0,
-      y: 20,
-      scale: 1, 
+      y: 30,
+      scale: 0.8,
     },
     visible: {
       opacity: 1,
@@ -54,7 +52,7 @@ function AnimatedHeroText({
   const paragraphAnimation = {
     hidden: {
       opacity: 0,
-      y: 15,
+      y: 20,
     },
     visible: {
       opacity: 1,
@@ -67,58 +65,33 @@ function AnimatedHeroText({
     },
   };
 
+  console.log(titleWords)
+
   return (
     <motion.div
       className={className}
       initial="hidden"
       animate={isVisible ? "visible" : "hidden"}
-      variants={containerAnimation}
+      variants={containerVariants}
     >
-      <motion.h1
-        className={`overflow-hidden pb-2 ${styles.heroTitle}`}
-        style={{ fontSize: "2rem !important" }}
-      >
+      <h1 className={`overflow-hidden pb-2 ${styles.heroTitle}`}>
         {titleWords.map((word, index) => (
-          <React.Fragment key={index}>
-            <motion.span
-              className="inline-block whitespace-nowrap"
-              variants={wordAnimation}
-            >
-              {Array.from(word).map((char, charIndex) => (
-                <motion.span
-                  key={`${index}-${charIndex}`}
-                  className="inline-block"
-                  variants={characterAnimation}
-                  transition={{
-                    delay: index * 0.08 + charIndex * 0.03,
-                    type: "spring",
-                    damping: 12,
-                    stiffness: 100,
-                  }}
-                >
-                  {char}
-                </motion.span>
-              ))}
-            </motion.span>
-            {/* Add space after each word except the last one */}
-            {index < titleWords.length - 1 && " "}
-          </React.Fragment>
+          <motion.span key={index} variants={wordAnimation}>
+            {Array.from(word).map((char, charIndex) => (
+              <motion.span key={charIndex} variants={characterAnimation} transition={{ delay: index * 0.08 + charIndex * 0.03, type: "spring", damping: 12, stiffness: 100 }}>
+                {char}
+              </motion.span>
+            ))}
+          </motion.span>
         ))}
-      </motion.h1>
+      </h1>
 
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.3, delay: 0.7 }}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        variants={paragraphAnimation}
       >
-        <motion.p
-          variants={paragraphAnimation}
-          className="relative"
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        >
-          {t("description")}
-        </motion.p>
+        <p>{t("description")}</p>
       </motion.div>
     </motion.div>
   );
