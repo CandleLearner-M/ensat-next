@@ -84,5 +84,10 @@
       "ids": "IDS",
       "masi": "MASI"
     }
+  },
+  "NotFound": {
+    "pageNotFound": "Page Non Trouvée",
+    "pageNotFoundDesc": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "backToHome": "Retour à l'Accueil"
   }
 }

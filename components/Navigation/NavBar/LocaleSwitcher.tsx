@@ -1,7 +1,8 @@
-import { useRouter, usePathname } from "@/i18n/navigation";
+import SwapUp from "@/components/common/SwapUp";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 function LocaleSwitcher() {
   const locale = useLocale();
@@ -20,11 +21,13 @@ function LocaleSwitcher() {
 
   return (
     <>
-      <label className="swap text-white !mr-4" onClick={onClick}>
-        <input type="checkbox" checked={locale === "en"} readOnly />
-        <div className="swap-on">EN</div>
-        <div className="swap-off">FR</div>
-      </label>
+      <SwapUp custom={false}>
+        <label className="swap text-white font-semi-bold " onClick={onClick}>
+          <input type="checkbox" checked={locale === "en"} readOnly />
+          <div className="swap-on ">EN</div>
+          <div className="swap-off">FR</div>
+        </label>
+      </SwapUp>
 
       <AnimatePresence>
         {isPending && (
