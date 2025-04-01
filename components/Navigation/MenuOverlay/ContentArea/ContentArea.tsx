@@ -1,15 +1,14 @@
+import { Link, useRouter } from "@/i18n/navigation"; // Replace next/link with i18n Link
 import { useSelectedMenuItem } from "@/utils/useSelectedItems";
 import { motion } from "framer-motion";
+import React, { ReactNode, useRef } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { IoIosArrowDropleft } from "react-icons/io";
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { useNavigation } from "../../state/context";
 import { NavigationItem } from "../../state/ENSATNavDS";
-import styles from "./ContentArea.module.scss";
 import NavigationLabel from "../NavigationLabel";
-import { Link } from "@/i18n/navigation"; // Replace next/link with i18n Link
-import { useRouter } from "@/i18n/navigation";
-import { useRef } from "react";
+import styles from "./ContentArea.module.scss";
 
 function ContentArea() {
   const { hasSubmenu, subMenuItem, menuItem } = useSelectedMenuItem();
@@ -321,28 +320,24 @@ function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
   );
 }
 
-function PDFLink({
+export function PDFLink({
   path,
   children,
   className,
 }: {
   path: string;
-  children: React.ReactNode;
-  className?: string;
+  children: ReactNode;
+  className: string;
 }) {
   const router = useRouter();
   const linkRef = useRef<HTMLAnchorElement>(null);
 
-  // Create click handler that prevents TopLoader from running
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
 
-    // Show navigation loading state temporarily
     router.prefetch("/");
 
-    // Use setTimeout to give appearance of loading
     setTimeout(() => {
-      // Create temporary link and trigger download
       if (linkRef.current) {
         window.open(path, "_blank");
       }
