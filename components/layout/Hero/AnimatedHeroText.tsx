@@ -65,8 +65,6 @@ function AnimatedHeroText({
     },
   };
 
-  console.log(titleWords)
-
   return (
     <motion.div
       className={className}
@@ -78,7 +76,16 @@ function AnimatedHeroText({
         {titleWords.map((word, index) => (
           <motion.span key={index} variants={wordAnimation}>
             {Array.from(word).map((char, charIndex) => (
-              <motion.span key={charIndex} variants={characterAnimation} transition={{ delay: index * 0.08 + charIndex * 0.03, type: "spring", damping: 12, stiffness: 100 }}>
+              <motion.span
+                key={charIndex}
+                variants={characterAnimation}
+                transition={{
+                  delay: index * 0.08 + charIndex * 0.03,
+                  type: "spring",
+                  damping: 12,
+                  stiffness: 100,
+                }}
+              >
                 {char}
               </motion.span>
             ))}
