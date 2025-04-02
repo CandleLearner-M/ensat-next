@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import logo from "../../assets/logo.png";
+import logo from "@/assets/logo.png";
 
 import styles from "./Logo.module.scss";
 

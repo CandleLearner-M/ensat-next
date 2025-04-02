@@ -1,5 +1,5 @@
-import { useNavigation } from "@/components/Navigation/state/context";
-import navigationData from "@/components/Navigation/state/ENSATNavDS";
+import { useNavigation } from "@/components/layout/Navigation/state/context";
+import navigationData from "@/components/layout/Navigation/state/ENSATNavDS";
 
 export function useSelectedMenuItem() {
   const { state } = useNavigation();

@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/components/Logo/Logo";
+import Logo from "@/components/layout/Logo/Logo";
 import { useScreenSize } from "@/utils/useScreenSize";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";

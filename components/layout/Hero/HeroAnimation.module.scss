@@ -1,4 +1,4 @@
-@import "../../styles/variables.scss";
+@import "@/styles/variables.scss";
 
 $text-width-heading: 20ch;
 $text-width-paragraph: 40ch;
@@ -170,7 +170,7 @@ $text-offset: 170px;
 
 .mask {
   position: absolute;
-  mask-image: url("../../public/mask.svg");
+  mask-image: url("../../../public/mask.svg");
   background-color: rgba(0, 46, 254, 0.7);
   z-index: 1;
   mask-repeat: no-repeat;

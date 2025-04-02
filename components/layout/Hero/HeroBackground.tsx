@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroBg from "../../assets/hero-bg-mobile.jpg";
+import heroBg from "@/assets/hero-bg-mobile.jpg";
 import styles from "./HeroBackground.module.scss";
 
 function HeroBackground() {

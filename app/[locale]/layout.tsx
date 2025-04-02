@@ -2,7 +2,7 @@ import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 
-import Navigation from "@/components/Navigation/Navigation";
+import Navigation from "@/components/layout/Navigation/Navigation";
 import { canelaDeck, outfit } from "@/lib/fonts";
 
 import type { Metadata } from "next";
