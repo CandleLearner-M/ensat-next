@@ -291,6 +291,7 @@ function SubmenuItem({
 }
 
 function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
+  const { dispatch } = useNavigation();
   const isPDF = item.path.endsWith(".pdf");
 
   if (isPDF) {
@@ -309,7 +310,11 @@ function MenuItemLink({ item }: { item: NavigationItem; level?: number }) {
     );
   }
   return (
-    <Link href={item.path} className={styles.contentarea__firstsubmenu__item}>
+    <Link
+      href={item.path}
+      className={styles.contentarea__firstsubmenu__item}
+      onClick={() => dispatch({ type: "CLOSE_MENU" })}
+    >
       <span>
         <NavigationLabel id={item?.translationKey ?? item.id} />
       </span>
@@ -334,7 +339,6 @@ export function PDFLink({
 
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
-
     router.prefetch("/");
 
     setTimeout(() => {
