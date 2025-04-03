@@ -33,7 +33,7 @@ export interface StrapiImage {
 
 // ENSAT components types
 export interface StrapiHeroComponent {
-  __component: "nav-item.hero";
+  __component: "page-component.hero";
   id: number;
   headline: string;
   subHeading: string;
@@ -44,29 +44,39 @@ export interface StrapiHeroComponent {
 export type StrapiComponent = StrapiHeroComponent;
 
 // Main item type
-export interface StrapiNavItem {
+export interface StrapiEnsatItem {
   id: number;
   documentId: string;
+  publishedAt: string;
   locale: string;
   title: string;
-  navItem: StrapiComponent[];
-  localizations: StrapiNavItem[];
+  pageComponents: StrapiComponent[];
+  localizations: StrapiEnsatItem[];
 }
 
 // Structured outputs types
-export interface LocalizedContent {
-  title: string;
+
+export interface LocalizedHeroComponent {
+  id: number;
   headline: string;
   subHeading: string;
+  background: string;
 }
 
-export interface StructuredNavItem {
+export interface LocaleComponents {
+  hero?: LocalizedHeroComponent;
+}
+
+export interface LocaleContent {
+  title: string;
+  components: LocaleComponents;
+}
+
+export interface StructuredEnsatPage {
   id: number;
   documentId: string;
+  publishedAt: string;
   locales: {
-    [locale: string]: LocalizedContent;
-  };
-  media: {
-    background: string;
+    [locale: string]: LocaleContent;
   };
 }

@@ -1,5 +1,5 @@
 import NavItemHero from "@/components/subComponents/navItemHero/NavItemHero";
-import { getEnsatItemFromStrapi } from "@/utils/strapi.utils";
+import { getEnsatItemFromStrapi } from "@/utils/api";
 
 export default async function Page({
   params,

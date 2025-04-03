@@ -24,11 +24,14 @@ export async function generateMetadata({
     fr: "Site officiel de l'ENSAT",
   };
 
-  const locale = params.locale as keyof typeof titles;
+  const locale = (await params.locale) as keyof typeof titles;
 
   return {
     title: titles[locale] || titles.fr,
     description: descriptions[locale] || descriptions.fr,
+    icons: {
+      icon: "/favicon.ico",
+    },
   };
 }
 export default async function LocaleLayout({
