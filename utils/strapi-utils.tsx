@@ -12,6 +12,8 @@ export function transformEnsatData(
 ): StructuredEnsatPage[] {
   return response.data.map((item: StrapiEnsatItem) => {
     const structuredPage: StructuredEnsatPage = {
+      title: item.title,
+      slug: item.slug,
       id: item.id,
       documentId: item.documentId,
       publishedAt: item.publishedAt,

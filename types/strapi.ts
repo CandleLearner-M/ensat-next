@@ -46,6 +46,7 @@ export type StrapiComponent = StrapiHeroComponent;
 // Main item type
 export interface StrapiEnsatItem {
   id: number;
+  slug: string;
   documentId: string;
   publishedAt: string;
   locale: string;
@@ -74,6 +75,8 @@ export interface LocaleContent {
 
 export interface StructuredEnsatPage {
   id: number;
+  title: string;
+  slug: string;
   documentId: string;
   publishedAt: string;
   locales: {

@@ -1,5 +1,6 @@
 import NavItemHero from "@/components/subComponents/navItemHero/NavItemHero";
 import { getEnsatItemFromStrapi } from "@/utils/api";
+import { notFound } from "next/navigation";
 
 export default async function Page({
   params,
@@ -9,9 +10,15 @@ export default async function Page({
     locale: string;
   };
 }) {
-  console.log("Dynamic route params:", params); // For debugging
 
-  const data = await getEnsatItemFromStrapi();
+  const items = await getEnsatItemFromStrapi();
+
+  const data = items.find(item => item.slug === params.navItem && item.locales[params.locale]);
+
+  if (!data) {
+    notFound();
+  }
+
 
   return (
     <main>

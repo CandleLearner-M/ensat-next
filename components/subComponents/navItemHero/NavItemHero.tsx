@@ -1,9 +1,10 @@
 "use client";
 
-function NavItemHero({data}: {data: string}) {
+function NavItemHero({data}: {data: string }) {
   console.log(data);
   return (
-    <div>NavItemHero</div>
+    <section>
+    </section>
   )
 }
 export default NavItemHero
