@@ -65,7 +65,7 @@ export interface LocalizedHeroComponent {
 }
 
 export interface LocaleComponents {
-  hero?: LocalizedHeroComponent;
+  hero: LocalizedHeroComponent;
 }
 
 export interface LocaleContent {

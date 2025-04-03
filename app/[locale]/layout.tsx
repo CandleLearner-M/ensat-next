@@ -24,7 +24,9 @@ export async function generateMetadata({
     fr: "Site officiel de l'ENSAT",
   };
 
-  const locale = params.locale as keyof typeof titles;
+  const resolvedParams = await params;
+
+  const locale = resolvedParams.locale as keyof typeof titles;
 
   return {
     title: titles[locale] || titles.fr,

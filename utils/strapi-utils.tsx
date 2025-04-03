@@ -7,6 +7,9 @@ import {
   LocaleComponents,
 } from "../types/strapi";
 
+const BASE_URL =
+  process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
+
 export function transformEnsatData(
   response: StrapiResponse<StrapiEnsatItem>
 ): StructuredEnsatPage[] {
@@ -40,10 +43,24 @@ export function transformEnsatData(
 
 function processComponents(components: StrapiComponent[]): LocaleComponents {
   if (!components || !Array.isArray(components)) {
-    return {};
+    return {
+      hero: {
+        id: 0,
+        headline: "",
+        subHeading: "",
+        background: "",
+      },
+    };
   }
 
-  const result: LocaleComponents = {};
+  const result: LocaleComponents = {
+    hero: {
+      id: 0,
+      headline: "",
+      subHeading: "",
+      background: "",
+    },
+  };
 
   components.forEach((component) => {
     const componentTypeFull = component.__component;
@@ -57,7 +74,7 @@ function processComponents(components: StrapiComponent[]): LocaleComponents {
           id: heroComponent.id,
           headline: heroComponent.headline,
           subHeading: heroComponent.subHeading,
-          background: heroComponent.background?.url || "",
+          background: BASE_URL + (heroComponent.background?.url || ""),
         };
         break;
 

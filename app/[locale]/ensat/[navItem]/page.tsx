@@ -10,19 +10,23 @@ export default async function Page({
     locale: string;
   };
 }) {
+  const resolvedParams = await params;
+  const locale = resolvedParams.locale;
+  const navItem = resolvedParams.navItem;
 
   const items = await getEnsatItemFromStrapi();
 
-  const data = items.find(item => item.slug === params.navItem && item.locales[params.locale]);
+  const data = items.find(
+    (item) => item.slug === navItem && item.locales[locale]
+  );
 
   if (!data) {
     notFound();
   }
 
-
   return (
     <main>
-      <NavItemHero data={data} />
+      <NavItemHero data={data.locales[locale].components.hero} />
     </main>
   );
 }
