@@ -7,12 +7,14 @@ function AnimatedLine({
   height,
   delay = 0,
   isUpper,
+  duration = 8,
 }: {
   className: string;
   isVisible: boolean;
   height: string;
   delay?: number;
   isUpper: boolean;
+  duration?: number;
 }) {
   const [lineHeight, setLineHeight] = useState(height);
   const lineRef = useRef<HTMLDivElement>(null);
@@ -54,7 +56,7 @@ function AnimatedLine({
       height: lineHeight,
       transition: {
         height: {
-          duration: isUpper ? 3.5 : 5,
+          duration: isUpper ? 3.5 : duration,
           ease: [0.19, 1, 0.22, 1],
           delay: mobileDelay,
         },

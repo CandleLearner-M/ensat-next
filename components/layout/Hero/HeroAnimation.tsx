@@ -42,6 +42,7 @@ function HeroAnimation() {
           isVisible={isVisible}
           delay={2}
           isUpper={false}
+          duration={6}
         />
       </div>
     </>

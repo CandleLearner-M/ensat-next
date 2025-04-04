@@ -1,0 +1,182 @@
+// Main hero container
+.hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 1024px) { // Added tablet landscape
+    height: 68vh;
+  }
+
+  @media (max-width: 768px) { // Tablet portrait
+    height: 65vh;
+  }
+
+  @media (max-width: 480px) { // Mobile
+    height: 60vh;
+  }
+
+  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+    height: 85vh;
+  }
+
+  // Background elements
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+}
+
+// Background elements
+.backgroundImage {
+  z-index: 0;
+  animation: kenburns-top 5s ease-out both;
+}
+
+.darkOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  background-color: #002efe;
+  transform: translateX(-50%);
+  z-index: 5;
+  top: 0;
+  height: 100%;
+
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.textContainer {
+  display: flex;
+  height: 100%;
+  padding: 0 4rem;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+
+  @media (max-width: 1024px) { // Added tablet landscape
+    padding: 0 3rem; // Reduced padding
+  }
+
+  @media (max-width: 767px) { // Tablet portrait
+    padding: 2rem 2.5rem; // Further reduced padding
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 480px) { // Mobile
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+    padding: 0 2rem;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.headline {
+  font-size: 4.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  z-index: 2;
+  max-width: 50%;
+  word-wrap: break-word;
+  hyphens: auto;
+
+  @media (max-width: 1024px) { // Added tablet landscape
+    font-size: 3.8rem; // Decreased text size
+    max-width: 55%;
+  }
+
+  @media (max-width: 768px) { // Tablet portrait
+    font-size: 2.8rem;
+    max-width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 480px) { // Mobile
+    font-size: 2.2rem;
+  }
+
+  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+    font-size: 2rem;
+    max-width: 45%;
+  }
+}
+
+.subheading {
+  font-size: 1.6rem;
+  text-align: left;
+  margin-left: 2rem;
+  width: 40ch;
+  position: relative;
+  top: 20%;
+  z-index: 2;
+
+  @media (max-width: 1024px) { // Added tablet landscape
+    font-size: 1.5rem; // Decreased text size
+    width: 35ch; // Decreased width
+    top: 15%; // Adjusted position
+  }
+
+  @media (max-width: 768px) { // Tablet portrait
+    font-size: 1.3rem;
+    width: 100%;
+    max-width: 40ch;
+    margin-left: 0;
+    top: 0;
+  }
+
+  @media (max-width: 480px) { // Mobile
+    font-size: 1.1rem;
+  }
+
+  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+    font-size: 1.1rem;
+    width: 25ch;
+    top: 0;
+    margin-left: 1rem;
+  }
+}
+
+// Animations
+@keyframes kenburns-top {
+  0% {
+    transform: scale(1) translateY(0);
+    transform-origin: 50% 16%;
+  }
+  100% {
+    transform: scale(1.07) translateY(-15px);
+    transform-origin: top;
+  }
+}
