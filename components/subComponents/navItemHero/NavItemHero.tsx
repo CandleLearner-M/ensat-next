@@ -60,7 +60,7 @@ function NavItemHero({ data }: { data: LocalizedHeroComponent }) {
         )}
       </div>
 
-      <motion.div
+      <motion.div 
         className={styles.textContainer}
         variants={textContainer}
         initial="hidden"
