@@ -2,7 +2,7 @@
 .hero {
   position: relative;
   width: 100%;
-  height: 85vh;
+  height: 80vh;
   overflow: hidden;
   color: white;
   display: flex;
@@ -10,23 +10,22 @@
   justify-content: center;
   align-items: center;
 
-  @media (max-width: 1024px) { // Added tablet landscape
+  @media (max-width: 1024px) {
     height: 68vh;
   }
 
-  @media (max-width: 768px) { // Tablet portrait
+  @media (max-width: 768px) {
     height: 65vh;
   }
 
-  @media (max-width: 480px) { // Mobile
+  @media (max-width: 480px) {
     height: 60vh;
   }
 
-  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+  @media (max-height: 480px) and (orientation: landscape) {
     height: 85vh;
   }
 
-  // Background elements
   &__background {
     position: absolute;
     top: 0;
@@ -79,24 +78,24 @@
   max-width: 1600px;
   margin: 0 auto;
 
-  @media (max-width: 1024px) { // Added tablet landscape
-    padding: 0 3rem; // Reduced padding
+  @media (max-width: 1024px) {
+    padding: 0 2.5rem;
   }
 
-  @media (max-width: 767px) { // Tablet portrait
-    padding: 2rem 2.5rem; // Further reduced padding
+  @media (max-width: 768px) {
+    padding: 2rem 2.5rem;
     flex-direction: column;
     justify-content: flex-end;
     align-items: flex-start;
     gap: 1.5rem;
   }
 
-  @media (max-width: 480px) { // Mobile
+  @media (max-width: 480px) {
     padding: 1.5rem 1rem;
     gap: 1rem;
   }
 
-  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+  @media (max-height: 480px) and (orientation: landscape) {
     padding: 0 2rem;
     flex-direction: row;
     justify-content: space-between;
@@ -109,26 +108,30 @@
   margin-bottom: 1rem;
   text-align: left;
   z-index: 2;
-  max-width: 50%;
+  width: 50%;
   word-wrap: break-word;
   hyphens: auto;
-
-  @media (max-width: 1024px) { // Added tablet landscape
-    font-size: 3.8rem; // Decreased text size
-    max-width: 55%;
+  @media (max-width: 1124px) {
+    font-size: 3.5rem;
+    width: 45%;
   }
 
-  @media (max-width: 768px) { // Tablet portrait
+  @media (max-width: 1024px) {
+    font-size: 3rem;
+    width: 45%;
+  }
+
+  @media (max-width: 768px) {
     font-size: 2.8rem;
-    max-width: 100%;
+    width: 100%;
     margin-bottom: 0.5rem;
   }
 
-  @media (max-width: 480px) { // Mobile
+  @media (max-width: 480px) {
     font-size: 2.2rem;
   }
 
-  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+  @media (max-height: 480px) and (orientation: landscape) {
     font-size: 2rem;
     max-width: 45%;
   }
@@ -138,30 +141,39 @@
   font-size: 1.6rem;
   text-align: left;
   margin-left: 2rem;
-  width: 40ch;
+  width: 40%;
   position: relative;
   top: 20%;
   z-index: 2;
-
-  @media (max-width: 1024px) { // Added tablet landscape
-    font-size: 1.5rem; // Decreased text size
-    width: 35ch; // Decreased width
-    top: 15%; // Adjusted position
+  @media (max-width: 1324px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 1124px) {
+    font-size: 1.2rem;
+    max-width: 55%;
   }
 
-  @media (max-width: 768px) { // Tablet portrait
-    font-size: 1.3rem;
+  @media (max-width: 1024px) {
+    font-size: 1.2rem;
+    top: 15%;
+  }
+
+  @media (max-width: 768px) {
+    // Tablet portrait
+    font-size: 1rem;
     width: 100%;
-    max-width: 40ch;
+    max-width: 45ch;
     margin-left: 0;
     top: 0;
   }
 
-  @media (max-width: 480px) { // Mobile
-    font-size: 1.1rem;
+  @media (max-width: 480px) {
+    // Mobile
+    font-size: 0.9rem;
   }
 
-  @media (max-height: 480px) and (orientation: landscape) { // Mobile landscape
+  @media (max-height: 480px) and (orientation: landscape) {
+    // Mobile landscape
     font-size: 1.1rem;
     width: 25ch;
     top: 0;

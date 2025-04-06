@@ -8,7 +8,7 @@ export function useScreenSize() {
   const [isMounted, setIsMounted] = useState(false);
 
   // Always call hooks unconditionally
-  const mobileMQ = useMediaQuery({ maxWidth: 767 });
+  const mobileMQ = useMediaQuery({ maxWidth: 768 });
   const tabletMQ = useMediaQuery({ minWidth: 768, maxWidth: 1023 });
   const desktopMQ = useMediaQuery({ minWidth: 1024 });
 
