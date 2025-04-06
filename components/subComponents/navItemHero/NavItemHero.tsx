@@ -45,7 +45,7 @@ function NavItemHero({ data }: { data: LocalizedHeroComponent }) {
           src={data.background}
           alt="hero"
           fill
-          style={{ objectFit: "cover", objectPosition: "center 32%" }}
+          style={{ objectFit: "cover", objectPosition: "center" }}
           className={styles.backgroundImage}
         />
         <div className={styles.darkOverlay}></div>
@@ -60,7 +60,7 @@ function NavItemHero({ data }: { data: LocalizedHeroComponent }) {
         )}
       </div>
 
-      <motion.div 
+      <motion.div
         className={styles.textContainer}
         variants={textContainer}
         initial="hidden"
