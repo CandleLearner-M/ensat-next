@@ -7,9 +7,6 @@ import {
   LocaleComponents,
 } from "../types/strapi";
 
-const BASE_URL =
-  process.env.NEXT_PUBLIC_STRAPI_API_URL || "http://localhost:1337";
-
 export function transformEnsatData(
   response: StrapiResponse<StrapiEnsatItem>
 ): StructuredEnsatPage[] {
@@ -74,7 +71,7 @@ function processComponents(components: StrapiComponent[]): LocaleComponents {
           id: heroComponent.id,
           headline: heroComponent.headline,
           subHeading: heroComponent.subHeading,
-          background: BASE_URL + (heroComponent.background?.url || ""),
+          background: heroComponent.background?.url || "",
         };
         break;
 

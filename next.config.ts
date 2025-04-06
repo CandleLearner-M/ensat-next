@@ -3,7 +3,12 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["images.unsplash.com", "ensat.ac.ma", "localhost"],
+    domains: [
+      "images.unsplash.com",
+      "ensat.ac.ma",
+      "localhost",
+      "res.cloudinary.com",
+    ],
   },
   eslint: {
     ignoreDuringBuilds: true,
