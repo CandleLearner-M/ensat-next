@@ -33,7 +33,7 @@ function NavItemHero({ data }: { data: LocalizedHeroComponent }) {
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        duration: 0.7,
+        duration: 0.8,
       },
     },
   };

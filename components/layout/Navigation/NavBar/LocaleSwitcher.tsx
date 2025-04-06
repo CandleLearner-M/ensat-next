@@ -21,7 +21,7 @@ function LocaleSwitcher() {
 
   return (
     <>
-      <SwapUp custom={false}>
+      <SwapUp custom={false} locale="!mr-3">
         <label className="swap text-white font-semi-bold " onClick={onClick}>
           <input type="checkbox" checked={locale === "en"} readOnly />
           <div className="swap-on ">EN</div>
