@@ -26,14 +26,14 @@ function NavItemHero({ data }: { data: LocalizedHeroComponent }) {
     hidden: {
       y: 30,
       opacity: 0,
-      filter: "blur(1px)",
+      filter: "blur(2px)",
     },
     show: {
       y: 0,
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        duration: 1.1,
+        duration: 0.7,
       },
     },
   };
