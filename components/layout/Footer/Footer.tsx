@@ -66,31 +66,31 @@ function Footer() {
         <div className={styles.second}>
           <div className={`${styles.socials}`}>
             <Link
-              href="https://facebook.com/yourpage"
+              href="https://facebook.com/ensatanger"
               aria-label={t("socialLinks.facebook")}
             >
               <FaFacebook size={35} color="white" />
             </Link>
             <Link
-              href="https://instagram.com/yourhandle"
+              href="https://www.instagram.com/ensatanger"
               aria-label={t("socialLinks.instagram")}
             >
               <FaInstagram size={35} color="white" />
             </Link>
             <Link
-              href="https://youtube.com/"
+              href="https://www.youtube.com/channel/UCYA_OZWbeGT9YQGvHzhAvCQ"
               aria-label={t("socialLinks.youtube")}
             >
               <FaYoutube size={35} color="white" />
             </Link>
             <Link
-              href="https://linkedin.com/company/yourcompany"
+              href="https://ma.linkedin.com/company/ensat-tanger"
               aria-label={t("socialLinks.linkedin")}
             >
               <FaLinkedin size={35} color="white" />
             </Link>
             <Link
-              href="https://x.com/yourhandle"
+              href="https://x.com/ensatg"
               aria-label={t("socialLinks.twitter")}
             >
               <FaXTwitter size={35} color="white" />

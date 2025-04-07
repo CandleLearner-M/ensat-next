@@ -36,7 +36,7 @@
     div.first,
     div.second {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1.2fr;
+      grid-template-columns: 1.5fr 1fr 1.5fr;
       width: 100%;
       gap: 2rem;
 
@@ -97,8 +97,6 @@
     }
 
     div.second {
-      grid-template-columns: 1.6fr 1fr 1.6fr;
-
       align-items: flex-end;
       margin-top: auto;
 
@@ -187,14 +185,4 @@
   }
 }
 
-.div1 {
-  @media (min-width: 900px) {
-    justify-self: end;
-  }
-}
 
-.div3 {
-  @media (min-width: 900px) {
-    justify-self: start;
-  }
-}
