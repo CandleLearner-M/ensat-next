@@ -8,6 +8,7 @@ import { canelaDeck, outfit } from "@/lib/fonts";
 import type { Metadata } from "next";
 import "./globals.scss";
 import NextTopLoader from "nextjs-toploader";
+import Footer from "@/components/layout/Footer/Footer";
 
 export async function generateMetadata({
   params,
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
           <NextTopLoader color="#002efe" showSpinner={false} />
           <Navigation />
           <main>{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

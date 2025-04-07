@@ -1,4 +1,5 @@
 import NavItemHero from "@/components/subComponents/navItemHero/NavItemHero";
+import ParagraphComponent from "@/components/subComponents/ParagraphComponent/ParagraphComponent";
 import { getEnsatItemFromStrapi } from "@/utils/api";
 import { notFound } from "next/navigation";
 
@@ -56,6 +57,7 @@ export default async function Page({
   return (
     <main>
       <NavItemHero data={data.locales[locale].components.hero} />
+      <ParagraphComponent data={data} />
     </main>
   );
 }

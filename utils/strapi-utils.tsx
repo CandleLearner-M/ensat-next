@@ -1,10 +1,11 @@
 import {
-  StrapiResponse,
-  StrapiEnsatItem,
-  StrapiComponent,
-  StrapiHeroComponent,
-  StructuredEnsatPage,
   LocaleComponents,
+  StrapiComponent,
+  StrapiEnsatItem,
+  StrapiHeroComponent,
+  StrapiParagraphComponent,
+  StrapiResponse,
+  StructuredEnsatPage
 } from "../types/strapi";
 
 export function transformEnsatData(
@@ -66,12 +67,21 @@ function processComponents(components: StrapiComponent[]): LocaleComponents {
     switch (componentType) {
       case "hero":
         const heroComponent = component as StrapiHeroComponent;
-
         result.hero = {
           id: heroComponent.id,
           headline: heroComponent.headline,
           subHeading: heroComponent.subHeading,
           background: heroComponent.background?.url || "",
+        };
+        break;
+
+      case "paragraph":
+        const paragraphComponent = component as StrapiParagraphComponent;
+        result.paragraph = {
+          id: paragraphComponent.id,
+          quote: paragraphComponent.quote,
+          saidBy: paragraphComponent.saidBy,
+          slug: paragraphComponent.slug,
         };
         break;
 

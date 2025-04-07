@@ -40,8 +40,16 @@ export interface StrapiHeroComponent {
   background: StrapiImage;
 }
 
+export interface StrapiParagraphComponent {
+  __component: "page-component.paragraph";
+  id: number;
+  quote: string;
+  saidBy: string;
+  slug: string;
+}
+
 // Type for all Possible Components
-export type StrapiComponent = StrapiHeroComponent;
+export type StrapiComponent = StrapiHeroComponent | StrapiParagraphComponent;
 
 // Main item type
 export interface StrapiEnsatItem {
@@ -64,8 +72,16 @@ export interface LocalizedHeroComponent {
   background: string;
 }
 
+export interface LocalizedParagraphComponent {
+  id: number;
+  quote: string;
+  saidBy: string;
+  slug: string;
+}
+
 export interface LocaleComponents {
   hero: LocalizedHeroComponent;
+  paragraph?: LocalizedParagraphComponent;
 }
 
 export interface LocaleContent {
