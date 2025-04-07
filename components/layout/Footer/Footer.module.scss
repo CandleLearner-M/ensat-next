@@ -6,11 +6,11 @@
   flex-direction: column;
   background-color: #0e0e0e;
   color: white;
-  padding: 4rem 2rem; 
+  padding: 4rem 2rem;
 
   @media (max-width: 576px) {
     padding: 3rem 1rem;
-    min-height: auto; 
+    min-height: auto;
   }
 
   section {
@@ -33,11 +33,10 @@
       padding: 0 1rem;
     }
 
-    
     div.first,
     div.second {
       display: grid;
-      grid-template-columns: 1.5fr 1fr 1.5fr;
+      grid-template-columns: 1.2fr 1fr 1.2fr;
       width: 100%;
       gap: 2rem;
 
@@ -67,7 +66,7 @@
 
       p {
         font-weight: 600;
-        font-size: clamp(1.1rem, 2vw, 1.3rem); 
+        font-size: clamp(1.1rem, 2vw, 1.3rem);
         margin-bottom: 0.6rem;
 
         @media (max-width: 576px) {
@@ -80,7 +79,7 @@
         list-style: none;
 
         @media (max-width: 576px) {
-          margin-bottom: 0.4rem; 
+          margin-bottom: 0.4rem;
         }
       }
 
@@ -98,6 +97,8 @@
     }
 
     div.second {
+      grid-template-columns: 1.6fr 1fr 1.6fr;
+
       align-items: flex-end;
       margin-top: auto;
 
@@ -109,7 +110,7 @@
 
       p {
         color: #8996a0;
-        font-size: clamp(0.9rem, 1.5vw, 1.2rem); 
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem);
         order: -1;
         @media (max-width: 768px) {
           order: 2;
@@ -127,21 +128,20 @@
   order: 2;
 
   @media (max-width: 576px) {
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem; 
+    gap: 1.5rem;
     order: 1;
   }
 
   a {
     display: flex;
     align-items: center;
-    
+
     @media (max-width: 576px) {
-      padding: 0.5rem; 
+      padding: 0.5rem;
     }
   }
-  
 }
 
 .logo {
@@ -155,26 +155,26 @@
 
   @media (max-width: 576px) {
     gap: 0.5rem;
-    order: -1
+    order: -1;
   }
 
   h1 {
-    font-size: clamp(1.4rem, 3vw, 1.9rem); 
+    font-size: clamp(1.4rem, 3vw, 1.9rem);
     font-weight: 500;
     letter-spacing: 0.3rem;
-    
+
     @media (max-width: 576px) {
       letter-spacing: 0.2rem;
     }
   }
-  
+
   h2 {
-    font-size: clamp(0.5rem, 1vw, 0.6rem); 
+    font-size: clamp(0.5rem, 1vw, 0.6rem);
     font-weight: 400;
     letter-spacing: 0.2rem;
     position: relative;
     top: -2px;
-    
+
     @media (max-width: 576px) {
       letter-spacing: 0.15rem;
       top: -1px;
@@ -182,7 +182,19 @@
   }
 
   img {
-    height: clamp(35px, 6vw, 45px); 
+    height: clamp(35px, 6vw, 45px);
     width: auto;
+  }
+}
+
+.div1 {
+  @media (min-width: 900px) {
+    justify-self: end;
+  }
+}
+
+.div3 {
+  @media (min-width: 900px) {
+    justify-self: start;
   }
 }
