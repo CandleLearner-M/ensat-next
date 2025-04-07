@@ -28,6 +28,21 @@ $text-size: 1.3rem;
   height: $navbar-height;
   transition: all 0.5s ease;
 
+  &__visible {
+    transform: translateY(0);
+    background-color: white;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    color: black !important;
+  }
+
+  &__transparent {
+    background-color: transparent !important;
+    border: unset;
+  }
+
+  &__hidden {
+    transform: translateY(-100%);
+  }
   &__container {
     @include flex-center;
     justify-content: space-between;

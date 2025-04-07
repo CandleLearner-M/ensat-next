@@ -30,10 +30,29 @@ function Footer() {
           ))}
         </div>
         <div className={styles.second}>
-          <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} ENSAT. The Director and Fellows
-            of ENSAT
-          </p>
+          <div className={`${styles.socials}`}>
+            <Link href="https://facebook.com/yourpage" aria-label="Facebook">
+              <FaFacebook size={35} color="white" />
+            </Link>
+            <Link
+              href="https://instagram.com/yourhandle"
+              aria-label="Instagram"
+            >
+              <FaInstagram size={35} color="white" />
+            </Link>
+            <Link href="https://youtube.com/" aria-label="YouTube">
+              <FaYoutube size={35} color="white" />
+            </Link>
+            <Link
+              href="https://linkedin.com/company/yourcompany"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedin size={35} color="white" />
+            </Link>
+            <Link href="https://x.com/yourhandle" aria-label="X">
+              <FaXTwitter size={35} color="white" />
+            </Link>
+          </div>
 
           <div className={styles.logo}>
             <div>
@@ -49,29 +68,10 @@ function Footer() {
             />
           </div>
 
-          <div className={`${styles.socials}`}>
-            <Link href="https://facebook.com/yourpage" aria-label="Facebook">
-              <FaFacebook size={35} color="white" />
-            </Link>
-            <Link
-              href="https://instagram.com/yourhandle"
-              aria-label="Instagram"
-            >
-              <FaInstagram size={35} color="white" />
-            </Link>
-            <Link href="https://youtube.com/yourchannel" aria-label="YouTube">
-              <FaYoutube size={35} color="white" />
-            </Link>
-            <Link
-              href="https://linkedin.com/company/yourcompany"
-              aria-label="LinkedIn"
-            >
-              <FaLinkedin size={35} color="white" />
-            </Link>
-            <Link href="https://x.com/yourhandle" aria-label="X">
-              <FaXTwitter size={35} color="white" />
-            </Link>
-          </div>
+          <p className={styles.copyright}>
+            &copy; {new Date().getFullYear()} ENSAT. The Director and Fellows of
+            ENSAT
+          </p>
         </div>
       </section>
     </footer>

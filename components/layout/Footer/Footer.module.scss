@@ -6,7 +6,12 @@
   flex-direction: column;
   background-color: #0e0e0e;
   color: white;
-  padding: 4rem 0;
+  padding: 4rem 2rem; 
+
+  @media (max-width: 576px) {
+    padding: 3rem 1rem;
+    min-height: auto; 
+  }
 
   section {
     flex: 1;
@@ -16,7 +21,19 @@
     justify-content: space-between;
     padding: 0 4rem;
 
-    // Common styles for both grid sections
+    @media (max-width: 992px) {
+      padding: 0 3rem;
+    }
+
+    @media (max-width: 768px) {
+      padding: 0 2rem;
+    }
+
+    @media (max-width: 576px) {
+      padding: 0 1rem;
+    }
+
+    
     div.first,
     div.second {
       display: grid;
@@ -24,38 +41,52 @@
       width: 100%;
       gap: 2rem;
 
+      @media (max-width: 992px) {
+        gap: 1.5rem;
+      }
+
       @media (max-width: 768px) {
         grid-template-columns: 1fr;
         gap: 3rem;
       }
+
+      @media (max-width: 576px) {
+        gap: 2rem;
+      }
     }
 
-    
     div.first {
       align-items: center;
       text-align: center;
+      padding: 0 4rem;
       margin-bottom: 2rem;
 
-      // &:first-child {
-      //   // &:first-child {
-      //   //   background-color: green;
-      //   // }
-      // }
+      @media (max-width: 576px) {
+        margin-bottom: 1.5rem;
+      }
 
       p {
         font-weight: 600;
-        font-size: 1.3rem;
+        font-size: clamp(1.1rem, 2vw, 1.3rem); 
         margin-bottom: 0.6rem;
+
+        @media (max-width: 576px) {
+          margin-bottom: 0.4rem;
+        }
       }
 
       li {
         margin-bottom: 0.3rem;
         list-style: none;
+
+        @media (max-width: 576px) {
+          margin-bottom: 0.4rem; 
+        }
       }
 
       a {
         color: #8996a0;
-        font-size: 1.2rem;
+        font-size: clamp(1rem, 1.5vw, 1.2rem); // Responsive font size
         transition: color 0.2s ease, border-bottom 0.2s ease;
         text-decoration: none;
 
@@ -70,14 +101,20 @@
       align-items: flex-end;
       margin-top: auto;
 
+      @media (max-width: 768px) {
+        align-items: center;
+        text-align: center;
+        margin-top: 2rem;
+      }
+
       p {
         color: #8996a0;
-        font-size: 1.2rem;
+        font-size: clamp(0.9rem, 1.5vw, 1.2rem); 
+        order: -1;
+        @media (max-width: 768px) {
+          order: 2;
+        }
       }
-    }
-
-    @media (max-width: 576px) {
-      padding: 0 2rem;
     }
   }
 }
@@ -87,11 +124,24 @@
   width: 100%;
   justify-content: space-evenly;
   gap: 1rem;
+  order: 2;
+
+  @media (max-width: 576px) {
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 1.5rem; 
+    order: 1;
+  }
 
   a {
     display: flex;
     align-items: center;
+    
+    @media (max-width: 576px) {
+      padding: 0.5rem; 
+    }
   }
+  
 }
 
 .logo {
@@ -101,22 +151,38 @@
   color: white;
   text-align: center;
   gap: 0.8rem;
+  order: 0;
+
+  @media (max-width: 576px) {
+    gap: 0.5rem;
+    order: -1
+  }
 
   h1 {
-    font-size: 1.9rem;
+    font-size: clamp(1.4rem, 3vw, 1.9rem); 
     font-weight: 500;
     letter-spacing: 0.3rem;
+    
+    @media (max-width: 576px) {
+      letter-spacing: 0.2rem;
+    }
   }
+  
   h2 {
-    font-size: 0.6rem;
+    font-size: clamp(0.5rem, 1vw, 0.6rem); 
     font-weight: 400;
     letter-spacing: 0.2rem;
     position: relative;
     top: -2px;
+    
+    @media (max-width: 576px) {
+      letter-spacing: 0.15rem;
+      top: -1px;
+    }
   }
 
   img {
-    height: 45px;
+    height: clamp(35px, 6vw, 45px); 
     width: auto;
   }
 }
