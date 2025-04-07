@@ -31,7 +31,8 @@ function Footer() {
         </div>
         <div className={styles.second}>
           <p className={styles.copyright}>
-            &copy; {new Date().getFullYear()} ENSAT. All rights reserved.
+            &copy; {new Date().getFullYear()} ENSAT. The Director and Fellows
+            of ENSAT
           </p>
 
           <div className={styles.logo}>
