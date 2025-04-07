@@ -82,5 +82,48 @@
       "ids": "IDS",
       "masi": "MASI"
     }
+  },
+
+  "Footer": {
+    "sections": {
+      "about": {
+        "title": "About",
+        "links": {
+          "contactUs": "Contact Us",
+          "careers": "Careers",
+          "directions": "Maps & Directions"
+        }
+      },
+      "resources": {
+        "title": "Resources",
+        "links": {
+          "calendar": "Academic Calendar",
+          "library": "Library",
+          "portal": "Student Portal"
+        }
+      },
+      "legal": {
+        "title": "Legal",
+        "links": {
+          "privacy": "Privacy Policy",
+          "accessibility": "Accessibility",
+          "terms": "Terms of Service"
+        }
+      }
+    },
+    "socialLinks": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn",
+      "twitter": "X"
+    },
+    "logo": {
+      "main": "ENSA",
+      "sub": "TANGER",
+      "alt": "ENSA",
+      "title": "ENSA Tanger"
+    },
+    "copyright": "© {year} ENSAT. The Director and Fellows of ENSAT"
   }
 }

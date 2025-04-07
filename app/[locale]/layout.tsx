@@ -53,7 +53,11 @@ export default async function LocaleLayout({
   const messages = (await import(`@/messages/${locale}.json`)).default;
 
   return (
-    <html lang={locale} className={`${canelaDeck.variable} ${outfit.variable}`} data-theme="light">
+    <html
+      lang={locale}
+      className={`${canelaDeck.variable} ${outfit.variable}`}
+      data-theme="autumn"
+    >
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#002efe" showSpinner={false} />

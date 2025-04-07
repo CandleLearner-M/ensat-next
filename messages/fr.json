@@ -84,5 +84,48 @@
       "ids": "IDS",
       "masi": "MASI"
     }
+  },
+
+  "Footer": {
+    "sections": {
+      "about": {
+        "title": "À propos",
+        "links": {
+          "contactUs": "Nous contacter",
+          "careers": "Carrières",
+          "directions": "Plans et directions"
+        }
+      },
+      "resources": {
+        "title": "Ressources",
+        "links": {
+          "calendar": "Calendrier académique",
+          "library": "Bibliothèque",
+          "portal": "Portail étudiant"
+        }
+      },
+      "legal": {
+        "title": "Mentions légales",
+        "links": {
+          "privacy": "Politique de confidentialité",
+          "accessibility": "Accessibilité",
+          "terms": "Conditions d'utilisation"
+        }
+      }
+    },
+    "socialLinks": {
+      "facebook": "Facebook",
+      "instagram": "Instagram",
+      "youtube": "YouTube",
+      "linkedin": "LinkedIn",
+      "twitter": "X"
+    },
+    "logo": {
+      "main": "ENSA",
+      "sub": "TANGER",
+      "alt": "ENSA",
+      "title": "ENSA Tanger"
+    },
+    "copyright": "© {year} ENSAT. Le Directeur et les Membres d'ENSAT"
   }
 }

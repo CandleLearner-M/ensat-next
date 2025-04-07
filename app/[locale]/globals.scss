@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "daisyui" {
+  themes: all;
+}
 
 
 @import "../../styles/variables.scss";
@@ -24,7 +27,7 @@ body {
 
 body {
   color: $color-black;
-  background-color: $color-white;
+  background-color: whitesmoke !important;
 }
 
 #__next {
