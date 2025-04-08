@@ -4,7 +4,11 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import { useTransition } from "react";
 
-function LocaleSwitcher() {
+function LocaleSwitcher({
+  txtColor = "white",
+}: {
+  txtColor: "black" | "white";
+}) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -22,7 +26,10 @@ function LocaleSwitcher() {
   return (
     <>
       <SwapUp custom={false} locale="!mr-3">
-        <label className="swap text-white font-semi-bold " onClick={onClick}>
+        <label
+          className={`swap font-semi-bold text-${txtColor} transition-all duration-300 ease-in-out`}
+          onClick={onClick}
+        >
           <input type="checkbox" checked={locale === "en"} readOnly />
           <div className="swap-on ">EN</div>
           <div className="swap-off">FR</div>

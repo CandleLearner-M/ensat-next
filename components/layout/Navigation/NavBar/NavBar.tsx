@@ -40,16 +40,20 @@ function NavBar() {
       <div className={styles.navbar__container}>
         <div className={styles.navbar__brand}>
           <Link href="/" className={styles.navbar__logo}>
-            <Logo />
+            <Logo color={!isTransparent ? "black" : "white"} />
           </Link>
         </div>
 
         <div className={styles.navbar__actions}>
-          <LocaleSwitcher />
+          <LocaleSwitcher txtColor={isTransparent ? "white" : "black"} />
 
           <button className={styles.navbar__action} aria-label={t("search")}>
             <SwapUp custom={true}>
-              <div className="flex justify-space-between gap-6">
+              <div
+                className={`flex justify-space-between gap-6 transition-all duration-300 ease-in-out ${
+                  !isTransparent ? "text-black" : "text-white"
+                }`}
+              >
                 <FiSearch size={30} className={styles.navbar__icon} />
                 <span className={`${styles.navbar__actionText}  `}>
                   {t("search")}
