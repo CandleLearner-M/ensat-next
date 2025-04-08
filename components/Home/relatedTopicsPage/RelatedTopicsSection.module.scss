@@ -1,15 +1,28 @@
 .relatedTopicsSection {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr; // Default two columns for desktop
+  gap: 10vw;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   min-height: 60vh;
-  max-height: 80vh;
-  padding-top: 2.5rem;
-  padding-bottom: 2.5rem;
+  max-height: none; // Removed max-height to prevent overflow issues
+  padding: 2.5rem 7rem; // Default desktop padding
   background-color: #eeebf6;
   overflow: hidden;
+
+  // Tablet styles
+  @media (max-width: 1023px) {
+    gap: 5vw;
+    padding: 2.5rem 3rem;
+  }
+
+  // Mobile styles
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr; // Single column on mobile
+    gap: 2rem;
+    padding: 2rem 1.5rem;
+  }
 
   &__background {
     position: absolute;
@@ -21,9 +34,8 @@
     opacity: 0.5;
 
     img {
-      color: black !important;
       width: 100%;
-      height: auto;
+      height: 100%; // Changed to ensure full coverage
       object-fit: cover;
     }
 
@@ -37,9 +49,83 @@
         135deg,
         rgba(234, 238, 243, 0.9) 0%,
         rgba(238, 235, 246, 0.85) 50%,
-        rgba(220, 230, 255, 0.8) 100%,
-      );
+        rgba(220, 230, 255, 0.8) 100%
+      ); // Fixed missing comma
+    }
+  }
+
+  &__header {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 3rem; // Default desktop padding
+    
+    // Tablet styles
+    @media (max-width: 1023px) {
+      padding: 1.5rem 2rem;
+    }
+    
+    // Mobile styles
+    @media (max-width: 767px) {
+      padding: 1rem;
+    }
+
+    h2 {
+      font-size: 3rem; // Default desktop size
+      font-weight: 400;
+      margin-bottom: 1rem;
+      color: black;
       
+      // Tablet styles
+      @media (max-width: 1023px) {
+        font-size: 2.5rem;
+      }
+      
+      // Mobile styles
+      @media (max-width: 767px) {
+        font-size: 1.75rem;
+        margin-bottom: 0.5rem;
+      }
+    }
+
+    p {
+      font-size: 1rem; // Default desktop size
+      font-weight: 400;
+      color: black;
+      
+      // Mobile styles
+      @media (max-width: 767px) {
+        font-size: 0.875rem;
+      }
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+
+    li {
+      font-size: 1.5rem; // Default desktop size
+      font-weight: 500;
+      padding-bottom: 1rem;
+      
+      // Mobile styles
+      @media (max-width: 767px) {
+        font-size: 1rem;
+        padding-bottom: 0.75rem;
+      }
+      
+      &:not(:last-of-type) {
+        margin-bottom: 1rem;
+        border-bottom: 1px solid black;
+        
+        // Mobile styles
+        @media (max-width: 767px) {
+          margin-bottom: 0.75rem;
+        }
+      }
     }
   }
 }

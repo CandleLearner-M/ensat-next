@@ -1,0 +1,27 @@
+.link {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  padding-bottom: 1px;
+
+  --underline-color: black;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: 2;
+  left: 0;
+  background-color: var(--underline-color);
+
+  transition: 0.3s ease;
+}
+
+
+.link:hover::after {
+  width: 100%;
+}
