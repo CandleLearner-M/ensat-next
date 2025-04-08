@@ -1,23 +1,23 @@
 .relatedTopicsSection {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr; // Default two columns for desktop
+  grid-template-columns: 1fr 1fr;
   gap: 10vw;
   align-items: center;
   justify-content: space-between;
   min-height: 60vh;
-  max-height: none; // Removed max-height to prevent overflow issues
-  padding: 2.5rem 7rem; // Default desktop padding
+  max-height: none;
+  padding: 2.5rem 7rem;
   background-color: #eeebf6;
   overflow: hidden;
 
-  // Tablet styles
+  // Tablet
   @media (max-width: 1023px) {
     gap: 5vw;
     padding: 2.5rem 3rem;
   }
 
-  // Mobile styles
+  // Mobile
   @media (max-width: 767px) {
     grid-template-columns: 1fr; // Single column on mobile
     gap: 2rem;
@@ -35,7 +35,7 @@
 
     img {
       width: 100%;
-      height: 100%; // Changed to ensure full coverage
+      height: 100%;
       object-fit: cover;
     }
 
@@ -50,7 +50,7 @@
         rgba(234, 238, 243, 0.9) 0%,
         rgba(238, 235, 246, 0.85) 50%,
         rgba(220, 230, 255, 0.8) 100%
-      ); // Fixed missing comma
+      );
     }
   }
 
@@ -60,30 +60,30 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding: 2rem 3rem; // Default desktop padding
-    
-    // Tablet styles
+    padding: 2rem 3rem;
+
+    // Tablet
     @media (max-width: 1023px) {
       padding: 1.5rem 2rem;
     }
-    
-    // Mobile styles
+
+    // Mobile
     @media (max-width: 767px) {
       padding: 1rem;
     }
 
     h2 {
-      font-size: 3rem; // Default desktop size
+      font-size: 3rem;
       font-weight: 400;
       margin-bottom: 1rem;
       color: black;
-      
-      // Tablet styles
+
+      // Tablet
       @media (max-width: 1023px) {
         font-size: 2.5rem;
       }
-      
-      // Mobile styles
+
+      // Mobile
       @media (max-width: 767px) {
         font-size: 1.75rem;
         margin-bottom: 0.5rem;
@@ -91,11 +91,11 @@
     }
 
     p {
-      font-size: 1rem; // Default desktop size
+      font-size: 1rem;
       font-weight: 400;
       color: black;
-      
-      // Mobile styles
+
+      // Mobile
       @media (max-width: 767px) {
         font-size: 0.875rem;
       }
@@ -107,21 +107,21 @@
     flex-direction: column;
 
     li {
-      font-size: 1.5rem; // Default desktop size
+      font-size: 1.5rem;
       font-weight: 500;
       padding-bottom: 1rem;
-      
-      // Mobile styles
+
+      // Mobile
       @media (max-width: 767px) {
         font-size: 1rem;
         padding-bottom: 0.75rem;
       }
-      
+
       &:not(:last-of-type) {
         margin-bottom: 1rem;
         border-bottom: 1px solid black;
-        
-        // Mobile styles
+
+        // Mobile
         @media (max-width: 767px) {
           margin-bottom: 0.75rem;
         }
