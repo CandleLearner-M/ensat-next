@@ -1,0 +1,45 @@
+.relatedTopicsSection {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  max-height: 80vh;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+  background-color: #eeebf6;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    inset: 0;
+    opacity: 0.5;
+
+    img {
+      color: black !important;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(234, 238, 243, 0.9) 0%,
+        rgba(238, 235, 246, 0.85) 50%,
+        rgba(220, 230, 255, 0.8) 100%,
+      );
+      
+    }
+  }
+}
