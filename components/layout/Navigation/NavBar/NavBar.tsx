@@ -62,7 +62,7 @@ function NavBar() {
             </SwapUp>
           </button>
 
-          <MenuBtn />
+          <MenuBtn color={!isTransparent ? 'black' : 'white'} />
         </div>
       </div>
     </nav>
