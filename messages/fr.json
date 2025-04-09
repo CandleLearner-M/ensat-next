@@ -85,6 +85,16 @@
       "masi": "MASI"
     }
   },
+  "relatedTopics": {
+    "imageAlt": "Sujets connexes",
+    "heading": "Vous pourriez aussi aimer",
+    "subheading": "Sujets connexes en vedette",
+    "links": {
+      "director": "Directeur",
+      "ourStuff": "Notre Personnel",
+      "news": "Actualités"
+    }
+  },
 
   "Footer": {
     "sections": {

@@ -83,6 +83,16 @@
       "masi": "MASI"
     }
   },
+  "relatedTopics": {
+    "imageAlt": "Related Topics",
+    "heading": "You May Also Like",
+    "subheading": "Related In Focus topics",
+    "links": {
+      "director": "Director",
+      "ourStuff": "Our Staff",
+      "news": "News"
+    }
+  },
 
   "Footer": {
     "sections": {

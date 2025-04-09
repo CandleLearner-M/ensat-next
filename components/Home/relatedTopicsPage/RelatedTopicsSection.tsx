@@ -7,8 +7,10 @@ import styles from "./RelatedTopicsSection.module.scss";
 import { useRef } from "react";
 import { useInView } from "framer-motion";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 function RelatedTopicsSection() {
+  const t = useTranslations("relatedTopics");
   const div1 = useRef(null);
   const div2 = useRef(null);
 
@@ -36,13 +38,14 @@ function RelatedTopicsSection() {
     },
   };
 
-  const listContainerAnimation = { 
+  const listContainerAnimation = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15, 
-        delayChildren: 0.2, },
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
     },
   };
 
@@ -61,7 +64,7 @@ function RelatedTopicsSection() {
   return (
     <section className={styles.relatedTopicsSection}>
       <div className={styles.relatedTopicsSection__background}>
-        <Image src={img} alt="Related Topics" width={500} height={300} />
+        <Image src={img} alt={t("imageAlt")} width={500} height={300} />
         <div className={styles.overlay}></div>
       </div>
 
@@ -72,8 +75,8 @@ function RelatedTopicsSection() {
         animate={div1IsInview ? "visible" : "hidden"}
         ref={div1}
       >
-        <p>You May Also Like</p>
-        <h2>Related In Focus topics</h2>
+        <p>{t("heading")}</p>
+        <h2>{t("subheading")}</h2>
       </motion.div>
 
       <motion.ul
@@ -84,13 +87,13 @@ function RelatedTopicsSection() {
         ref={div2}
       >
         <motion.li variants={listItemAnimation}>
-          <AnimatedLink href="/director">Director</AnimatedLink>
+          <AnimatedLink href="/director">{t("links.director")}</AnimatedLink>
         </motion.li>
         <motion.li variants={listItemAnimation}>
-          <AnimatedLink href="/director">Our Stuff</AnimatedLink>
+          <AnimatedLink href="/director">{t("links.ourStuff")}</AnimatedLink>
         </motion.li>
         <motion.li variants={listItemAnimation}>
-          <AnimatedLink href="/director">News</AnimatedLink>
+          <AnimatedLink href="/director">{t("links.news")}</AnimatedLink>
         </motion.li>
       </motion.ul>
     </section>
