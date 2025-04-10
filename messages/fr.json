@@ -85,6 +85,20 @@
       "masi": "MASI"
     }
   },
+
+  "Overview": {
+    "title": "ENSAT en un coup d'œil",
+    "description": "Depuis 1998, l'ENSAT s'engage à former des ingénieurs innovants, en intégrant l'excellence académique à la collaboration avec l'industrie, et en façonnant l'avenir du paysage technologique marocain.",
+    "learnMore": "En savoir plus sur l'ENSAT",
+    "enseignants": "Enseignants Chercheurs",
+    "filieres": "Filières",
+    "etudiants": "Étudiants",
+    "centres": "Centres De Recherche",
+    "nationalites": "Nationalités",
+    "clubs": "Clubs Étudiants",
+    "batiments": "Bâtiments",
+    "locaux": "M² De Locaux"
+  },
   "relatedTopics": {
     "imageAlt": "Sujets connexes",
     "heading": "Vous pourriez aussi aimer",
