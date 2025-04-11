@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
       "ensat.ac.ma",
       "localhost",
       "res.cloudinary.com",
+      "media.licdn.com",
     ],
   },
   eslint: {

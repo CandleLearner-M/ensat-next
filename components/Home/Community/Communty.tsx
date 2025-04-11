@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import CustomBtn from "@/components/common/CustomBtn";
+import { delay, motion } from "framer-motion";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import styles from "./Community.module.scss";
 import { imageBlocks } from "./communityDS";
 
@@ -45,6 +45,16 @@ function Community() {
     },
   };
 
+  const secondContainerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+      },
+    },
+  };
+
   const baseVariants = {
     hidden: (index: number) => ({
       opacity: 0,
@@ -65,7 +75,7 @@ function Community() {
   };
 
   const titleVariants = {
-    hidden: { opacity: 0, y: 60, scale: 0.9 },
+    hidden: { opacity: 0, y: 60, scale: 0.94 },
     visible: {
       opacity: 1,
       y: 0,
@@ -84,16 +94,34 @@ function Community() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: false, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.1 }}
     >
       <motion.div
         className={styles.div1}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: false, amount: 0.6 }}
-        variants={titleVariants}
+        viewport={{ once: true, amount: 0.6 }}
+        variants={secondContainerVariants}
       >
-        <h1>Welcome to the community</h1>
+        <motion.h1 variants={titleVariants}>Welcome to the community</motion.h1>
+        <motion.div
+          initial={{ opacity: 0, y: 40, scale: 0.9 }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            transition: {
+              ease: [0.34, 1.3, 0.64, 1],
+              duration: 0.8,
+              delay: 0.6,
+            },
+          }}
+          viewport={{ once: true, amount: 0.6 }}
+        >
+          <CustomBtn>
+            <p>Meet ENSAT Staff and Students</p>
+          </CustomBtn>
+        </motion.div>
       </motion.div>
 
       {imageBlocks.map((img, index) => (

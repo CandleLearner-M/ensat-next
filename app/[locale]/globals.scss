@@ -23,6 +23,7 @@ body {
   height: 100%;
   font-family: var(--font-outfit), sans-serif !important;
   transition: overflow 0.5s ease !important;
+  overflow-x: hidden !important;
 }
 
 body {

@@ -1,62 +1,65 @@
+import mrSarsri from "@/assets/Mr.Sarsri.jpg";
+import mrMoussa from "@/assets/Mr.Moussa.jpg";
+
 export const imageBlocks = [
   {
     className: "div2",
-    url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQE4GL_gxfo-7w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1720294013244?e=1749686400&v=beta&t=InubEb6b0MFAAErR26tT36O8GWCNF3-fyVhllDi0S4g",
     alt: "Headphones on wooden surface",
   },
   {
     className: "div3",
-    url: "https://images.unsplash.com/photo-1452780212940-6f5c0d14d848?auto=format&fit=crop&w=800",
+    url: mrSarsri,
     alt: "Classic camera on table",
   },
   {
     className: "div4",
-    url: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQHdwSTZbgiXOw/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1718216850789?e=1749686400&v=beta&t=Ryl3vZ-uNln1XSWVVOsh-t8MazmUJtxy5OkV59zPFwU",
     alt: "Retro computer keyboard",
   },
   {
     className: "div5",
-    url: "https://images.unsplash.com/photo-1558000143-a78f8299c40b?auto=format&fit=crop&w=800",
+    url: "https://ensat.ac.ma/Portail/wp-content/uploads/2022/05/50f86152-ead8-4dea-9398-b1aba89058f8-768x959.jpg",
     alt: "Typewriter on desk",
   },
   {
     className: "div6",
-    url: "https://images.unsplash.com/photo-1463320726281-696a485928c7?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQFFwXSv0Iew5A/profile-displayphoto-shrink_800_800/B4EZTMxdq2HMAg-/0/1738602306801?e=1749686400&v=beta&t=wWdT4ec2oU_hJ75N24mIRunslv1tGpidOsSPGillLqk",
     alt: "Succulent plant in white pot",
   },
   {
     className: "div7",
-    url: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=800",
+    url: "https://ensat.ac.ma/Portail/wp-content/uploads/2022/05/e3101afb-c762-4a40-b96a-931d39bf70cd..-731x1024.jpg",
     alt: "Stylish sunglasses",
   },
   {
     className: "div8",
-    url: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQGbGX_FHY5OVA/profile-displayphoto-shrink_800_800/B4EZOER_IaHwAg-/0/1733091129842?e=1749686400&v=beta&t=Nyk5rFs93g0_9Hto1x2XEUvtKCHuvqq2e04bsXk7NOo",
     alt: "Wristwatch on brown surface",
   },
   {
     className: "div9",
-    url: "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/C4D03AQFsNDnmQFes0w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1632666354684?e=1749686400&v=beta&t=nNATRlNlfP1SMGp0tmyKyDIHqVB5HUFwSijfHSdm_mw",
     alt: "Chair next to minimalist desk",
   },
   {
     className: "div10",
-    url: "https://images.unsplash.com/photo-1491637639811-60e2756cc1c7?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E22AQET5VnAzzQXKA/feedshare-shrink_2048_1536/B4EZPj3nsOHsAs-/0/1734694834431?e=1747267200&v=beta&t=H8hXYHtEGryl8FDncJn4mpxKK_121fY6TG6Fks814AQ",
     alt: "Backpack on the floor",
   },
   {
     className: "div11",
-    url: "https://images.unsplash.com/photo-1587731556938-38755b4803a6?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQFv647aNIrqqg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709768315909?e=1749686400&v=beta&t=g7FvPdr3x7_K4TFaUflCgR06Y1iCnr6nYvn3dJB3pNQ",
     alt: "Vinyl record player",
   },
   {
     className: "div12",
-    url: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=800",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQFy5bcYTZyziQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1674758159494?e=1749686400&v=beta&t=4HxJEbq1J0dogn1ynuSXKEnhSInpdAkWmvtZu5BEnLA",
     alt: "Desk lamp with glowing bulb",
   },
   {
     className: "div13",
-    url: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1000",
+    url: mrMoussa,
     alt: "Books stacked on a table",
   },
 ];
