@@ -21,9 +21,12 @@
     aspect-ratio: 1/1;
   }
 
-@media (min-width: 641px) and (max-width: 950px)  {
-  height: 140vh !important;
-}
+  @media (min-width: 641px) and (max-width: 950px) and (orientation: landscape) {
+    height: 140vh !important;
+  }
+  @media (min-height: 950px) and (max-width: 1050px) {
+    height: 80vh !important;
+  }
 
   @media (max-width: 600px) {
     height: 60vh;
