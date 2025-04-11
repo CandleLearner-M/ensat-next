@@ -21,6 +21,10 @@
     aspect-ratio: 1/1;
   }
 
+  @media (max-width: 400px) and (max-height: 690px) {
+    height: 80vh !important;
+  }
+
   @media (min-width: 641px) and (max-width: 950px) and (orientation: landscape) {
     height: 140vh !important;
   }
@@ -76,13 +80,23 @@
     }
   }
 
+
+
   @media (max-width: 600px) {
     h1 {
-      font-size: 1.5rem;
-      width: 120%;
+      font-size: 2rem;
     }
     p {
       font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 400px)  {
+    h1 {
+      font-size: 1.7rem;
+    }
+    p {
+      font-size: 0.6rem;
     }
   }
 }
