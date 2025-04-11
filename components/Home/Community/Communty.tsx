@@ -1,19 +1,15 @@
 "use client";
 
 import CustomBtn from "@/components/common/CustomBtn";
-import { delay, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./Community.module.scss";
 import { imageBlocks } from "./communityDS";
 
 function Community() {
-  // Improved delay calculation for more strategic timing
   const getCustomDelay = (index: number) => {
-    // Base delay for all animations
-    const baseDelay = 0.8;
+    const baseDelay = 0.7;
 
-    // Grid position-based delays to create a wave-like effect
-    // Map the div classes to their grid positions
     const gridPositions: { [key: string]: number } = {
       div2: 0, // top-left
       div3: 1, // top-middle
@@ -26,69 +22,76 @@ function Community() {
       div11: 8, // bottom-left
       div10: 9, // bottom-middle-left
       div9: 10, // bottom-middle-right
-      div8: 11, // bottom-right
+      div8: 8, // bottom-right
     };
 
-    // Get the className from the imageBlocks array
     const className = imageBlocks[index]?.className;
     const position = gridPositions[className] || index;
 
-    // Create a ripple effect from the center (div1)
-    const distanceFromCenter = Math.abs(position - 5) * 0.15;
+    const distanceFromCenter = Math.abs(position - 5) * 0.2;
 
-    // Add some strategic grouping
-    // Images near the edges appear later than those near the center
     let groupDelay = 0;
     if (position < 3) {
-      groupDelay = 0.3; // Top row
+      groupDelay = 0.6;
     } else if (position >= 8) {
-      groupDelay = 0.6; // Bottom row
+      groupDelay = 1.5;
+    } else if (position >= 5 && position < 8) {
+      groupDelay = 1.0;
     } else {
-      groupDelay = 0.15; // Middle elements
+      groupDelay = 0.3;
     }
 
-    // Add a small random variation to make it feel organic
-    const randomVariation = Math.sin(index * 7123) * 0.1;
+    const randomVariation = Math.sin(index * 7123) * 0.2;
 
-    return baseDelay + distanceFromCenter + groupDelay + randomVariation;
+    let specialDelay = 0;
+    if (className === "div3" || className === "div13") {
+      specialDelay = 0.4;
+    } else if (className === "div8") {
+      specialDelay = 0.7;
+    }
+
+    return (
+      baseDelay +
+      distanceFromCenter +
+      groupDelay +
+      randomVariation +
+      specialDelay
+    );
   };
 
   const getDuration = (index: number) => {
-    // Slightly longer durations for larger images
-    const sizeBasedDuration = {
-      div3: 1.6, // Mr. Sarsri (larger image)
-      div4: 1.5, // Larger profile pic
-      div5: 1.5, // Larger image
-      div7: 1.6, // Larger image
-      div10: 1.5, // Larger image
-      div13: 1.6, // Mr. Moussa (larger image)
+    const sizeBasedDuration: Record<string, number> = {
+      div3: 1.8,
+      div4: 1.7,
+      div5: 1.7,
+      div7: 1.8,
+      div10: 1.7,
+      div13: 1.9,
     };
 
     const className = imageBlocks[index]?.className;
-    return sizeBasedDuration[className] || 1.3;
+    return sizeBasedDuration[className] || 1.5; 
   };
 
   const getEasing = (index: number) => {
-    // Different easing for different image types
     const easingOptions = [
-      [0.33, 1, 0.68, 1], // Standard easing
-      [0.25, 0.1, 0.25, 1], // Quick start, slower end
-      [0.34, 1.3, 0.64, 1], // Bouncy easing
-      [0.42, 0, 0.58, 1], // Ease-in-out
+      [0.33, 1, 0.68, 1],
+      [0.25, 0.1, 0.25, 1], 
+      [0.34, 1.3, 0.64, 1], 
+      [0.42, 0, 0.58, 1], 
     ];
 
-    // Use different easing based on image position
     const className = imageBlocks[index]?.className;
     if (className === "div3" || className === "div13") {
-      return easingOptions[2]; // Bouncy for professor images
+      return easingOptions[2];
     } else if (
       className === "div2" ||
       className === "div8" ||
       className === "div6"
     ) {
-      return easingOptions[1]; // Quick start for smaller images
+      return easingOptions[1]; 
     } else if (className === "div5" || className === "div7") {
-      return easingOptions[3]; // Smooth for large images
+      return easingOptions[3]; 
     }
 
     return easingOptions[index % 4];
@@ -98,7 +101,7 @@ function Community() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 0.8 },
+      transition: { duration: 1.0 }, 
     },
   };
 
@@ -107,7 +110,7 @@ function Community() {
     visible: {
       opacity: 1,
       transition: {
-        duration: 0.8,
+        duration: 1.0,
       },
     },
   };
@@ -138,8 +141,8 @@ function Community() {
       scale: 1,
       transition: {
         ease: [0.34, 1.3, 0.64, 1],
-        duration: 1,
-        delay: 0.2,
+        duration: 1, 
+        delay: 0.3,
       },
     },
   };
@@ -169,7 +172,7 @@ function Community() {
             transition: {
               ease: [0.34, 1.3, 0.64, 1],
               duration: 0.8,
-              delay: 0.6,
+              delay: 0.6, 
             },
           }}
           viewport={{ once: true, amount: 0.6 }}
