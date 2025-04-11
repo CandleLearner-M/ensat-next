@@ -1,3 +1,4 @@
+import Communty from "@/components/Home/Community/Communty";
 import OverView from "@/components/Home/overView/overView";
 import RelatedTopicsSection from "@/components/Home/relatedTopicsPage/RelatedTopicsSection";
 import Hero from "@/components/layout/Hero/Hero";
@@ -9,6 +10,7 @@ export default function Home() {
     <main className="">
       <Hero />
       <OverView />
+      <Communty />
       <Test />
       <RelatedTopicsSection />
     </main>
