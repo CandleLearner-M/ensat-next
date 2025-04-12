@@ -1,14 +1,15 @@
 "use client";
 
 import { SliderItem } from "@/components/Home/Community/communityDS";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { IoClose } from "react-icons/io5";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import styles from "./Slider.module.scss";
-import Image from "next/image";
 import LearnMoreBtn from "../LearnMoreBtn";
+import styles from "./Slider.module.scss";
+import { useSwipeable } from "react-swipeable";
 
 function Slider({
   data,
@@ -18,17 +19,21 @@ function Slider({
   onClose: () => void;
 }) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState<"left" | "right">("right");
 
   const goToNext = function () {
-    setDirection("right");
-    setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+    setCurrentIndex((prev) => (prev + 1) % data.length);
   };
 
   const goToPrev = function () {
-    setDirection("left");
-    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+    setCurrentIndex((prev) => (prev - 1 + data.length) % data.length);
   };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: goToNext,
+    onSwipedRight: goToPrev,
+    preventDefaultTouchmoveEvent: true,
+    trackMouse: true,
+  });
 
   const overlayVariants = {
     hidden: {
@@ -54,31 +59,6 @@ function Slider({
         when: "afterChildren",
         staggerChildren: 0.05,
         staggerDirection: -1,
-      },
-    },
-  };
-  const contentVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.96,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.34, 1.3, 0.64, 1],
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.96,
-      y: 10,
-      transition: {
-        duration: 0.25,
-        ease: [0.34, 1.3, 0.64, 1],
       },
     },
   };
@@ -121,41 +101,45 @@ function Slider({
       animate="visible"
       exit="exit"
     >
-      <motion.div className={styles.sliderContent} variants={contentVariants}>
-        <AnimatePresence initial={false} mode="wait" custom={direction}>
-          <motion.div className={styles.slide}>
-            <div className={styles.slideInner}>
-              <div className={styles.imageContainer}>
-                <Image
-                  src={data[currentIndex].url}
-                  alt={data[currentIndex].alt || "Slider Image"}
-                  fill
-                  style={{ objectFit: "cover" }}
-                  quality={100}
-                />
+      <div className={styles.slidesWindow} {...handlers}>
+        <motion.div
+          className={styles.slidesContainer}
+          animate={{ x: `-${currentIndex * 100}%` }}
+          transition={{ duration: 0.5 }}
+        >
+          {data.map((item, index) => (
+            <motion.div key={index} className={styles.slide}>
+              <div className={styles.slideInner}>
+                <div className={styles.imageContainer}>
+                  <Image
+                    src={item.url}
+                    alt={item.alt || "Slider Image"}
+                    fill
+                    style={{ objectFit: "cover" }}
+                    quality={100}
+                  />
+                </div>
+
+                <div className={styles.slideDetails}>
+                  <h2 className={styles.slideTitle}>
+                    {item.title || `Image ${currentIndex + 1}`}
+                  </h2>
+
+                  {item.text && (
+                    <p className={styles.slideDescription}>{item.text}</p>
+                  )}
+
+                  {item.slug && (
+                    <LearnMoreBtn href={`/community/${item.slug}`}>
+                      Learn More
+                    </LearnMoreBtn>
+                  )}
+                </div>
               </div>
-
-              <div className={styles.slideDetails}>
-                <h2 className={styles.slideTitle}>
-                  {data[currentIndex].title || `Image ${currentIndex + 1}`}
-                </h2>
-
-                {data[currentIndex].text && (
-                  <p className={styles.slideDescription}>
-                    {data[currentIndex].text}
-                  </p>
-                )}
-
-                {data[currentIndex].slug && (
-                  <LearnMoreBtn href={`/community/${data[currentIndex].slug}`}>
-                    Learn More
-                  </LearnMoreBtn>
-                )}
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
       <motion.button
         className={styles.close}
@@ -165,11 +149,19 @@ function Slider({
         <IoClose />
       </motion.button>
 
-      <motion.button className={styles.previous} variants={buttonVariants} onClick={goToPrev}>
+      <motion.button
+        className={styles.previous}
+        variants={buttonVariants}
+        onClick={goToPrev}
+      >
         <MdChevronLeft />
       </motion.button>
 
-      <motion.button className={styles.next} variants={buttonVariants} onClick={goToNext}>
+      <motion.button
+        className={styles.next}
+        variants={buttonVariants}
+        onClick={goToNext}
+      >
         <MdChevronRight />
       </motion.button>
     </motion.div>,
