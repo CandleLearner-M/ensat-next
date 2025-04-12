@@ -1,0 +1,124 @@
+// Variables for common values
+$button-border-radius: 50%;
+$button-color: #fff;
+$button-font-size-desktop: 1.5rem;
+$button-font-size-mobile: 1.2rem;
+$button-padding-desktop: 0.5rem;
+$button-padding-mobile: 0.3rem;
+$navigation-offset-desktop: 2%;
+$navigation-offset-mobile: 3%;
+$slider-bg: #0e0e0e;
+$transition-duration: 0.3s;
+
+// Mixin for button base styles
+@mixin button-base {
+  background-color: transparent;
+  border: 1px solid gray;
+  border-radius: $button-border-radius;
+  color: $button-color;
+  cursor: pointer;
+  transition: all $transition-duration ease-in-out;
+  z-index: 1010; // Ensure buttons are above content
+  
+  &:hover {
+    border-color: $button-color;
+  }
+}
+
+// Mixin for navigation buttons
+@mixin navigation-button {
+  @include button-base;
+  border-color: $button-color;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  
+  &:hover {
+    background-color: $button-color;
+    color: #000;
+  }
+}
+
+.slider {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($slider-bg, 0.98);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .sliderContent {
+    position: relative;
+    width: 80%;
+    height: 80%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  // Close button - positioned independently
+  .close {
+    @include button-base;
+    position: absolute;
+    top: 2%;
+    right: 2.5%; // Increased to avoid overlap
+    font-size: $button-font-size-desktop;
+    padding: $button-padding-desktop;
+    
+    @media (max-width: 768px) {
+      font-size: $button-font-size-mobile;
+      padding: $button-padding-mobile;
+      top: 1.5%;
+      right: 1% ;
+    }
+  }
+  
+  // Previous button
+  .previous {
+    @include navigation-button;
+    left: $navigation-offset-desktop;
+    font-size: $button-font-size-desktop;
+    padding: $button-padding-desktop;
+    
+    @media (max-width: 768px) {
+      font-size: $button-font-size-mobile;
+      padding: $button-padding-mobile;
+      left: $navigation-offset-mobile;
+    }
+  }
+  
+  // Next button
+  .next {
+    @include navigation-button;
+    right: $navigation-offset-desktop;
+    font-size: $button-font-size-desktop;
+    padding: $button-padding-desktop;
+    
+    @media (max-width: 768px) {
+      font-size: $button-font-size-mobile;
+      padding: $button-padding-mobile;
+      right: $navigation-offset-mobile;
+    }
+  }
+  
+  // For smaller screens
+  @media (max-width: 480px) {
+    .close, .previous, .next {
+      padding: 0.25rem;
+      font-size: 1rem;
+    }
+    
+    .previous {
+      left: 1%;
+    }
+    
+    .next {
+      right: 1%;
+    }
+  }
+}

@@ -48,3 +48,7 @@ h5 {
   font-family: var(--font-canela-deck), "Times New Roman", Georgia, Baskerville,
     serif !important;
 }
+
+body.slider-open {
+  overflow: hidden !important;
+}

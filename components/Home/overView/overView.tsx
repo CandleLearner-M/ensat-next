@@ -13,11 +13,11 @@ function OverView() {
 
   // Reference for the stats section
   const statsRef = useRef(null);
-  const statsInView = useInView(statsRef, { once: true, amount: 0.3 });
+  const statsInView = useInView(statsRef, { once: true, amount: 0.7 });
 
   // Reference for the main section
   const sectionRef = useRef(null);
-  const sectionInView = useInView(sectionRef, { once: true, amount: 0.1 });
+  const sectionInView = useInView(sectionRef, { once: true, amount: 0.4 });
 
   const stats = [
     { number: 58, label: t("enseignants") },

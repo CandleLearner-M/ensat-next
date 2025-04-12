@@ -1,12 +1,16 @@
 "use client";
 
 import CustomBtn from "@/components/common/CustomBtn";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./Community.module.scss";
 import { imageBlocks } from "./communityDS";
+import { useState } from "react";
+import Slider from "@/components/common/Slider/Slider";
 
 function Community() {
+  const [sliderShown, setSliderShown] = useState(false);
+
   const getCustomDelay = (index: number) => {
     const baseDelay = 0.7;
 
@@ -70,15 +74,15 @@ function Community() {
     };
 
     const className = imageBlocks[index]?.className;
-    return sizeBasedDuration[className] || 1.5; 
+    return sizeBasedDuration[className] || 1.5;
   };
 
   const getEasing = (index: number) => {
     const easingOptions = [
       [0.33, 1, 0.68, 1],
-      [0.25, 0.1, 0.25, 1], 
-      [0.34, 1.3, 0.64, 1], 
-      [0.42, 0, 0.58, 1], 
+      [0.25, 0.1, 0.25, 1],
+      [0.34, 1.3, 0.64, 1],
+      [0.42, 0, 0.58, 1],
     ];
 
     const className = imageBlocks[index]?.className;
@@ -89,9 +93,9 @@ function Community() {
       className === "div8" ||
       className === "div6"
     ) {
-      return easingOptions[1]; 
+      return easingOptions[1];
     } else if (className === "div5" || className === "div7") {
-      return easingOptions[3]; 
+      return easingOptions[3];
     }
 
     return easingOptions[index % 4];
@@ -101,7 +105,7 @@ function Community() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { duration: 1.0 }, 
+      transition: { duration: 1.0 },
     },
   };
 
@@ -141,7 +145,7 @@ function Community() {
       scale: 1,
       transition: {
         ease: [0.34, 1.3, 0.64, 1],
-        duration: 1, 
+        duration: 1,
         delay: 0.3,
       },
     },
@@ -153,7 +157,7 @@ function Community() {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.4 }}
     >
       <motion.div
         className={styles.div1}
@@ -172,12 +176,12 @@ function Community() {
             transition: {
               ease: [0.34, 1.3, 0.64, 1],
               duration: 0.8,
-              delay: 0.6, 
+              delay: 0.6,
             },
           }}
           viewport={{ once: true, amount: 0.6 }}
         >
-          <CustomBtn>
+          <CustomBtn onClick={() => setSliderShown(true)}>
             <p>Meet ENSAT Staff and Students</p>
           </CustomBtn>
         </motion.div>
@@ -199,6 +203,12 @@ function Community() {
           />
         </motion.div>
       ))}
+
+      <AnimatePresence>
+        {sliderShown && (
+          <Slider data={imageBlocks} onClose={() => setSliderShown(false)} />
+        )}
+      </AnimatePresence>
     </motion.section>
   );
 }
