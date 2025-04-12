@@ -1,12 +1,14 @@
 "use client";
 
 import { SliderItem } from "@/components/Home/Community/communityDS";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { IoClose } from "react-icons/io5";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import styles from "./Slider.module.scss";
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
-import { motion, stagger } from "framer-motion";
+import Image from "next/image";
+import LearnMoreBtn from "../LearnMoreBtn";
 
 function Slider({
   data,
@@ -15,29 +17,46 @@ function Slider({
   data: SliderItem[];
   onClose: () => void;
 }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  const goToNext = function () {
+    setDirection("right");
+    setCurrentIndex((prev) => (prev === data.length - 1 ? 0 : prev + 1));
+  };
+
+  const goToPrev = function () {
+    setDirection("left");
+    setCurrentIndex((prev) => (prev === 0 ? data.length - 1 : prev - 1));
+  };
+
   const overlayVariants = {
-    hidden: { opacity: 0 },
+    hidden: {
+      clipPath: "inset(50% 50% 50% 50%)",
+      backgroundColor: "rgba(14, 14, 14, 0)",
+    },
     visible: {
-      opacity: 1,
+      clipPath: "inset(0% 0% 0% 0%)",
+      backgroundColor: "rgba(14, 14, 14, 0.98)",
       transition: {
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1],
+        clipPath: { duration: 0.7, ease: [0.76, 0, 0.24, 1] },
+        backgroundColor: { duration: 0.5, delay: 0.2 },
         when: "beforeChildren",
         staggerChildren: 0.1,
       },
     },
     exit: {
-      opacity: 0,
+      clipPath: "inset(50% 50% 50% 50%)",
+      backgroundColor: "rgba(14, 14, 14, 0)",
       transition: {
-        duration: 0.3,
-        ease: [0.25, 0.1, 0.25, 1],
+        clipPath: { duration: 0.4, ease: [0.76, 0, 0.24, 1] },
+        backgroundColor: { duration: 0.3 },
         when: "afterChildren",
         staggerChildren: 0.05,
         staggerDirection: -1,
       },
     },
   };
-
   const contentVariants = {
     hidden: {
       opacity: 0,
@@ -64,7 +83,6 @@ function Slider({
     },
   };
 
-  // New animation variants for the buttons
   const buttonVariants = {
     hidden: {
       opacity: 0,
@@ -104,10 +122,41 @@ function Slider({
       exit="exit"
     >
       <motion.div className={styles.sliderContent} variants={contentVariants}>
-        {/* Content will go here */}
+        <AnimatePresence initial={false} mode="wait" custom={direction}>
+          <motion.div className={styles.slide}>
+            <div className={styles.slideInner}>
+              <div className={styles.imageContainer}>
+                <Image
+                  src={data[currentIndex].url}
+                  alt={data[currentIndex].alt || "Slider Image"}
+                  fill
+                  style={{ objectFit: "cover" }}
+                  quality={100}
+                />
+              </div>
+
+              <div className={styles.slideDetails}>
+                <h2 className={styles.slideTitle}>
+                  {data[currentIndex].title || `Image ${currentIndex + 1}`}
+                </h2>
+
+                {data[currentIndex].text && (
+                  <p className={styles.slideDescription}>
+                    {data[currentIndex].text}
+                  </p>
+                )}
+
+                {data[currentIndex].slug && (
+                  <LearnMoreBtn href={`/community/${data[currentIndex].slug}`}>
+                    Learn More
+                  </LearnMoreBtn>
+                )}
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
 
-      {/* Animate buttons independently with their own variants */}
       <motion.button
         className={styles.close}
         onClick={onClose}
@@ -116,11 +165,11 @@ function Slider({
         <IoClose />
       </motion.button>
 
-      <motion.button className={styles.previous} variants={buttonVariants}>
+      <motion.button className={styles.previous} variants={buttonVariants} onClick={goToPrev}>
         <MdChevronLeft />
       </motion.button>
 
-      <motion.button className={styles.next} variants={buttonVariants}>
+      <motion.button className={styles.next} variants={buttonVariants} onClick={goToNext}>
         <MdChevronRight />
       </motion.button>
     </motion.div>,
