@@ -46,10 +46,10 @@ export const imageBlocks: SliderItem[] = [
   },
   {
     className: "div6",
-    url: "https://media.licdn.com/dms/image/v2/D4E03AQFFwXSv0Iew5A/profile-displayphoto-shrink_800_800/B4EZTMxdq2HMAg-/0/1738602306801?e=1749686400&v=beta&t=wWdT4ec2oU_hJ75N24mIRunslv1tGpidOsSPGillLqk",
+    url: "https://media.licdn.com/dms/image/v2/D4E03AQFhWvcM8jiTJw/profile-displayphoto-shrink_800_800/B4EZYpjnMWHcAc-/0/1744453924068?e=1749686400&v=beta&t=1j3aYQ-sN7JdRxfhNN1VQNKDveF_qMdUxwxRgtm6R-k",
     alt: "Succulent plant in white pot",
     slug: "ms-green-thumb",
-    title: "Ms. Nour",
+    title: "Mostafa El Issati",
     text: "Brings life to the room—literally and intellectually.",
   },
   {
