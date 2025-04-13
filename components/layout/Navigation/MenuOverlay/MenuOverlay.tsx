@@ -1,20 +1,20 @@
 "use client";
 
 import Logo from "@/components/layout/Logo/Logo";
+import { Link } from "@/i18n/navigation";
 import { useScreenSize } from "@/utils/useScreenSize";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useTranslations } from "next-intl";
+import React, { useCallback } from "react";
 import { GrFormNext } from "react-icons/gr";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigation } from "../state/context";
 import Background from "./Background/Background";
 import ContentArea from "./ContentArea/ContentArea";
 import styles from "./MenuOverlay.module.scss";
-import SideBar from "./SideBar/SideBar";
 import MobileSideBar from "./SideBar/MobileSideBar";
+import SideBar from "./SideBar/SideBar";
 import TabletSideBar from "./SideBar/TabletSideBar";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
 
 type MenuOverlayProps = {
   initial: { y: string };
@@ -24,7 +24,9 @@ type MenuOverlayProps = {
   key: string;
 };
 
-function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
+const MenuOverlay = React.memo(function MenuOverlay({
+  ...motionProps
+}: MenuOverlayProps) {
   const {
     state: { selectedMenuItem, backgroundImage },
   } = useNavigation();
@@ -46,46 +48,40 @@ function MenuOverlay({ ...motionProps }: MenuOverlayProps) {
       <MenuFooter />
     </motion.div>
   );
-}
+});
 export default MenuOverlay;
 
-function MenuFooter() {
-  const [isVisible, setIsVisible] = useState(false);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const footerItemVariants = {
+  hidden: { opacity: 0, x: -20 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+};
+const MenuFooter = React.memo(function MenuFooter() {
   const t = useTranslations("Navigation.MenuOverlay");
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const footerItemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-  };
 
   return (
     <footer className={styles.menu__footer}>
       <motion.ul
         variants={containerVariants}
         initial="hidden"
-        animate={isVisible ? "visible" : "hidden"}
+        animate="visible"
       >
         <motion.li variants={footerItemVariants}>
           <span>{t("quickLinks")}</span>
@@ -104,25 +100,30 @@ function MenuFooter() {
       </motion.ul>
     </footer>
   );
-}
+});
 
-function MenuNavBar() {
+const MenuNavBar = React.memo(function MenuNavBar() {
   const { dispatch } = useNavigation();
   const t = useTranslations("Navigation.MenuOverlay");
+
+  const handleCloseMenu = useCallback(
+    () => dispatch({ type: "CLOSE_MENU" }),
+    [dispatch]
+  );
 
   return (
     <nav className={styles.menu__nav}>
       <ul>
         <li>
-          <Link href="/" onClick={() => dispatch({ type: "CLOSE_MENU" })}>
+          <Link href="/" onClick={handleCloseMenu}>
             <Logo />
           </Link>
         </li>
-        <li onClick={() => dispatch({ type: "CLOSE_MENU" })}>
+        <li onClick={handleCloseMenu}>
           <span className={styles.menu__nav__close}>{t("close")}</span>
           <IoIosCloseCircleOutline size={38} className={styles.close} />
         </li>
       </ul>
     </nav>
   );
-}
+});

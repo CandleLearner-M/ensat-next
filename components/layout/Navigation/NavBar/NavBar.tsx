@@ -6,7 +6,9 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import LocaleSwitcher from "./LocaleSwitcher";
 import SwapUp from "@/components/common/SwapUp";
-import { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
+
+import throttle from "lodash-es/throttle";
 
 function NavBar() {
   const t = useTranslations("Navigation.NavBar");
@@ -15,21 +17,32 @@ function NavBar() {
   const [visible, setVisible] = useState(true);
   const [isTransparent, setIsTransparent] = useState(true);
 
-  useEffect(() => {
-    const handleScroll = function () {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const throttledScrolledHandler = useCallback(
+    throttle((currentPrevScrollPos) => {
       setIsTransparent(window.scrollY < 10);
       const currentScrollPos = window.scrollY;
 
-      const isScrollingUp = prevScrollPos > currentScrollPos;
+      const isScrollingUp = currentPrevScrollPos > currentScrollPos;
 
       setVisible(isScrollingUp);
 
       setPrevScrollPos(currentScrollPos);
-    };
+    }, 100),
+    []
+  );
 
+  const handleScroll = useCallback(() => {
+    throttledScrolledHandler(prevScrollPos);
+  }, [prevScrollPos, throttledScrolledHandler]);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos]);
+    return () => {
+      throttledScrolledHandler.cancel();
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll, throttledScrolledHandler]);
 
   return (
     <nav
@@ -62,11 +75,11 @@ function NavBar() {
             </SwapUp>
           </button>
 
-          <MenuBtn color={!isTransparent ? 'black' : 'white'} />
+          <MenuBtn color={!isTransparent ? "black" : "white"} />
         </div>
       </div>
     </nav>
   );
 }
 
-export default NavBar;
+export default React.memo(NavBar);

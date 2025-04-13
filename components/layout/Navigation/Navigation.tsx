@@ -5,7 +5,7 @@ import NavBar from "./NavBar/NavBar";
 
 import { AnimatePresence } from "framer-motion";
 import { NavigationProvider, useNavigation } from "./state/context";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 
 function Navigation() {
   return (
@@ -15,7 +15,7 @@ function Navigation() {
   );
 }
 
-function NavigationContent() {
+const NavigationContent = React.memo(function NavigationContent () {
   const {
     state: { isMenuOpen },
   } = useNavigation();
@@ -43,5 +43,5 @@ function NavigationContent() {
       </AnimatePresence>
     </>
   );
-}
+});
 export default Navigation;

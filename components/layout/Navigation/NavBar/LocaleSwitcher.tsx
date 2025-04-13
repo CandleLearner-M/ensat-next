@@ -2,7 +2,7 @@ import SwapUp from "@/components/common/SwapUp";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
-import { useTransition } from "react";
+import React, { useTransition } from "react";
 
 function LocaleSwitcher({
   txtColor = "white",
@@ -63,4 +63,4 @@ function LocaleSwitcher({
   );
 }
 
-export default LocaleSwitcher;
+export default React.memo(LocaleSwitcher);

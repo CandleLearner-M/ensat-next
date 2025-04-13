@@ -3,6 +3,7 @@ import Image from "next/image";
 import logo from "@/assets/logo.png";
 
 import styles from "./Logo.module.scss";
+import React from "react";
 
 function Logo({ color = "white" }: { color?: "black" | "white" }) {
   const colors = {
@@ -19,4 +20,4 @@ function Logo({ color = "white" }: { color?: "black" | "white" }) {
     </div>
   );
 }
-export default Logo;
+export default React.memo(Logo);
