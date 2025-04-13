@@ -15,19 +15,18 @@ const mobileVisibleImages = imageBlocks.filter(
 );
 
 // Using the exact same animation logic as desktop
-const getCustomDelay = (index) => {
+const getCustomDelay = (index: number) => {
   const baseDelay = 0.2;
 
-  const gridPositions = {
+  const gridPositions: Record<string, number> = {
     div3: 0, // top-middle
     div4: 1.5, // top-right
     div6: 2, // middle-right
     div8: 3, // bottom-right
     div11: 7, // bottom-left
-    div13: 5  , // second row left
+    div13: 5, // second row left
   };
 
-  // Get the original image from imageBlocks that corresponds to this mobile index
   const img = mobileVisibleImages[index];
   const className = img?.className;
   const position = gridPositions[className] || index;
@@ -59,8 +58,8 @@ const getCustomDelay = (index) => {
   );
 };
 
-const getDuration = (index) => {
-  const sizeBasedDuration = {
+const getDuration = (index: number) => {
+  const sizeBasedDuration: Record<string, number> = {
     div3: 1.8,
     div4: 1.7,
     div6: 1.5,
@@ -74,7 +73,7 @@ const getDuration = (index) => {
   return sizeBasedDuration[className] || 1.5;
 };
 
-const getEasing = (index) => {
+const getEasing = (index: number) => {
   const easingOptions = [
     [0.33, 1, 0.68, 1],
     [0.25, 0.1, 0.25, 1],
@@ -112,12 +111,12 @@ const secondContainerVariants = {
 };
 
 const baseVariants = {
-  hidden: (index) => ({
+  hidden: (index: number) => ({
     opacity: 0,
     y: 80 + (index % 3) * 15,
     scale: 0.92,
   }),
-  visible: (index) => ({
+  visible: (index: number) => ({
     opacity: 1,
     y: 0,
     scale: 1,
