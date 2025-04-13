@@ -28,7 +28,6 @@ function Slider({
 
   const [dragStartPosition, setDragStartPosition] = useState(0);
 
-  // Show content after main animation completes
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -46,13 +45,11 @@ function Slider({
     setCurrentIndex((prev) => prev - 1);
   };
 
-  // Handler for close with animation sequence
   const handleClose = () => {
     setIsExiting(true);
-    // Give time for content exit animations to play before overlay exits
     setTimeout(() => {
       onClose();
-    }, 400);
+    }, 600);
   };
 
   useEffect(() => {
@@ -60,7 +57,7 @@ function Slider({
       x: `-${currentIndex * slideWidth}%`,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.1, 0.25, 1], // Smooth cubic bezier
+        ease: [0.25, 0.1, 0.25, 1],
       },
     });
 
@@ -147,7 +144,7 @@ function Slider({
       opacity: 0,
       transition: {
         duration: 0.5,
-        ease: [0.36, 0, 0.66, -0.56], // Premium easing for exit
+        ease: [0.36, 0, 0.66, -0.56],
         when: "afterChildren",
         delayChildren: 0.1,
       },
@@ -178,7 +175,6 @@ function Slider({
     },
   };
 
-  // Enhanced content animations with premium exit
   const contentVariants = {
     hidden: {
       opacity: 0,
@@ -202,7 +198,6 @@ function Slider({
     },
   };
 
-  // Specialized exit animations for each content type
   const titleExitVariants = {
     exit: {
       opacity: 0,
@@ -239,7 +234,6 @@ function Slider({
     },
   };
 
-  // Enhanced image exit animation
   const imageExitVariants = {
     exit: {
       opacity: 0,
@@ -317,7 +311,6 @@ function Slider({
                   animate={
                     isVisible && currentIndex === index ? "visible" : "hidden"
                   }
-                  variants={contentVariants}
                   exit="exit"
                   variants={isExiting ? imageExitVariants : contentVariants}
                   custom={0}
@@ -340,14 +333,16 @@ function Slider({
                 <div className={styles.slideDetails}>
                   <AnimatePresence mode="wait">
                     {currentIndex === index && (
-                      <>
+                      <motion.div
+                        key={`slide-content-${index}`}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={overlayVariants}
+                      >
                         <motion.h2
                           key={`title-${index}`}
                           className={styles.slideTitle}
-                          variants={contentVariants}
-                          initial="hidden"
-                          animate={isVisible ? "visible" : "hidden"}
-                          exit="exit"
                           variants={
                             isExiting ? titleExitVariants : contentVariants
                           }
@@ -361,10 +356,6 @@ function Slider({
                           <motion.p
                             key={`text-${index}`}
                             className={styles.slideDescription}
-                            variants={contentVariants}
-                            initial="hidden"
-                            animate={isVisible ? "visible" : "hidden"}
-                            exit="exit"
                             variants={
                               isExiting
                                 ? descriptionExitVariants
@@ -380,10 +371,6 @@ function Slider({
                         {item.slug && (
                           <motion.div
                             key={`btn-${index}`}
-                            variants={contentVariants}
-                            initial="hidden"
-                            animate={isVisible ? "visible" : "hidden"}
-                            exit="exit"
                             variants={
                               isExiting ? buttonExitVariants : contentVariants
                             }
@@ -395,7 +382,7 @@ function Slider({
                             </LearnMoreBtn>
                           </motion.div>
                         )}
-                      </>
+                      </motion.div>
                     )}
                   </AnimatePresence>
                 </div>
