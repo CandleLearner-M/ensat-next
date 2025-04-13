@@ -4,9 +4,62 @@ import LearnMoreBtn from "@/components/common/LearnMoreBtn";
 import styles from "./overView.module.scss";
 import CountUp from "@/components/common/CountUp";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import { useInView } from "framer-motion";
 import { useTranslations } from "next-intl";
+
+// Animation variants
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const titleVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const textVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+      delay: 0.2,
+    },
+  },
+};
+
+const statsContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const statItemVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 20 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      type: "spring",
+      stiffness: 100,
+    },
+  },
+};
 
 function OverView() {
   const t = useTranslations("Overview");
@@ -19,7 +72,7 @@ function OverView() {
   const sectionRef = useRef(null);
   const sectionInView = useInView(sectionRef, { once: true, amount: 0.4 });
 
-  const stats = [
+  const stats = useMemo(() => [
     { number: 58, label: t("enseignants") },
     { number: 11, label: t("filieres") },
     { number: 1290, label: t("etudiants") },
@@ -28,60 +81,7 @@ function OverView() {
     { number: 30, label: t("clubs") },
     { number: 4, label: t("batiments") },
     { number: 14500, label: t("locaux") },
-  ];
-
-  // Animation variants
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
-  };
-
-  const titleVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.7, ease: "easeOut" },
-    },
-  };
-
-  const textVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        delay: 0.2,
-      },
-    },
-  };
-
-  const statsContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const statItemVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        type: "spring",
-        stiffness: 100,
-      },
-    },
-  };
+  ], [t]);
 
   return (
     <motion.section

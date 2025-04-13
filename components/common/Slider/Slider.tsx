@@ -10,6 +10,123 @@ import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import LearnMoreBtn from "../LearnMoreBtn";
 import styles from "./Slider.module.scss";
 
+const overlayVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.4,
+      ease: [0.25, 0.1, 0.25, 1],
+      when: "beforeChildren",
+      staggerChildren: 0.1,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.36, 0, 0.66, -0.56],
+      when: "afterChildren",
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const buttonVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.9,
+  },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.8,
+    filter: "blur(8px)",
+    transition: {
+      duration: 0.4,
+      ease: [0.22, 0, 0.36, 1],
+    },
+  },
+};
+
+const contentVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.1, 0.25, 1],
+    },
+  },
+  exit: {
+    opacity: 0,
+    y: -30,
+    transition: {
+      duration: 0.3,
+      ease: [0.25, 0, 0.25, 1],
+    },
+  },
+};
+
+const titleExitVariants = {
+  exit: {
+    opacity: 0,
+    y: -40,
+    filter: "blur(8px)",
+    transition: {
+      duration: 0.5,
+      ease: [0.36, 0, 0.66, -0.56],
+    },
+  },
+};
+
+const descriptionExitVariants = {
+  exit: {
+    opacity: 0,
+    y: -20,
+    filter: "blur(4px)",
+    transition: {
+      duration: 0.4,
+      ease: [0.36, 0, 0.66, -0.56],
+    },
+  },
+};
+
+const buttonExitVariants = {
+  exit: {
+    opacity: 0,
+    y: -10,
+    scale: 0.9,
+    transition: {
+      duration: 0.3,
+      ease: [0.36, 0, 0.66, -0.56],
+    },
+  },
+};
+
+const imageExitVariants = {
+  exit: {
+    opacity: 0,
+    scale: 1.05,
+    filter: "blur(10px)",
+    transition: {
+      duration: 0.6,
+      ease: [0.36, 0, 0.66, -0.56],
+    },
+  },
+};
+
 function Slider({
   data,
   onClose,
@@ -160,123 +277,6 @@ function Slider({
       document.body.classList.remove("slider-open");
     };
   }, []);
-
-  const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.4,
-        ease: [0.25, 0.1, 0.25, 1],
-        when: "beforeChildren",
-        staggerChildren: 0.1,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.36, 0, 0.66, -0.56],
-        when: "afterChildren",
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      filter: "blur(8px)",
-      transition: {
-        duration: 0.4,
-        ease: [0.22, 0, 0.36, 1],
-      },
-    },
-  };
-
-  const contentVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-        ease: [0.25, 0.1, 0.25, 1],
-      },
-    },
-    exit: {
-      opacity: 0,
-      y: -30,
-      transition: {
-        duration: 0.3,
-        ease: [0.25, 0, 0.25, 1],
-      },
-    },
-  };
-
-  const titleExitVariants = {
-    exit: {
-      opacity: 0,
-      y: -40,
-      filter: "blur(8px)",
-      transition: {
-        duration: 0.5,
-        ease: [0.36, 0, 0.66, -0.56],
-      },
-    },
-  };
-
-  const descriptionExitVariants = {
-    exit: {
-      opacity: 0,
-      y: -20,
-      filter: "blur(4px)",
-      transition: {
-        duration: 0.4,
-        ease: [0.36, 0, 0.66, -0.56],
-      },
-    },
-  };
-
-  const buttonExitVariants = {
-    exit: {
-      opacity: 0,
-      y: -10,
-      scale: 0.9,
-      transition: {
-        duration: 0.3,
-        ease: [0.36, 0, 0.66, -0.56],
-      },
-    },
-  };
-
-  const imageExitVariants = {
-    exit: {
-      opacity: 0,
-      scale: 1.05,
-      filter: "blur(10px)",
-      transition: {
-        duration: 0.6,
-        ease: [0.36, 0, 0.66, -0.56],
-      },
-    },
-  };
 
   const handleMouseDown = useCallback(() => setIsDragging(true), []);
   const handleMouseUp = useCallback(() => setIsDragging(false), []);
