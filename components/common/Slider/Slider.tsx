@@ -45,71 +45,73 @@ function Slider({
     }, 600);
   }, [onClose]);
 
+  const handleDragStart = useCallback(() => {
+    setIsDragging(true);
+    setDragStartPosition(-currentIndex * slideWidth);
+  }, [currentIndex, slideWidth]);
 
-   const handleDragStart = function () {
-     setIsDragging(true);
-     setDragStartPosition(-currentIndex * slideWidth);
-   };
+  const handleDrag = useCallback(
+    (_event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+      const delta = (info.offset.x / window.innerWidth) * 100;
 
-   const handleDrag = (
-     _event: MouseEvent | TouchEvent | PointerEvent,
-     info: PanInfo
-   ) => {
-     const delta = (info.offset.x / window.innerWidth) * 100;
+      let newPosition = dragStartPosition + delta;
+      if (currentIndex === 0 && delta > 0) {
+        newPosition = delta * 0.2;
+      } else if (currentIndex === data.length - 1 && delta < 0) {
+        const maxNegativePosition = -(data.length - 1) * slideWidth;
+        newPosition = maxNegativePosition + delta * 0.2;
+      }
 
-     let newPosition = dragStartPosition + delta;
-     if (currentIndex === 0 && delta > 0) {
-       newPosition = delta * 0.2;
-     } else if (currentIndex === data.length - 1 && delta < 0) {
-       const maxNegativePosition = -(data.length - 1) * slideWidth;
-       newPosition = maxNegativePosition + delta * 0.2;
-     }
+      sliderControls.set({ x: `${newPosition}%` });
+    },
+    [currentIndex, data.length, dragStartPosition, sliderControls]
+  );
 
-     sliderControls.set({ x: `${newPosition}%` });
-   };
+  const handleDragEnd = useCallback(
+    (
+      _event: MouseEvent | TouchEvent | PointerEvent,
+      info: { offset: { x: number } }
+    ) => {
+      setIsDragging(false);
 
-   const handleDragEnd = function (
-     _event: MouseEvent | TouchEvent | PointerEvent,
-     info: { offset: { x: number } }
-   ) {
-     setIsDragging(false);
+      const offsetX = info.offset.x;
 
-     const offsetX = info.offset.x;
+      if (currentIndex === 0 && offsetX > 0) {
+        sliderControls.start({
+          x: "0%",
+          transition: {
+            duration: 0.5,
+            ease: [0.25, 1, 0.5, 1],
+          },
+        });
+        return;
+      } else if (currentIndex === data.length - 1 && offsetX < 0) {
+        sliderControls.start({
+          x: `-${(data.length - 1) * slideWidth}%`,
+          transition: {
+            duration: 0.5,
+            ease: [0.25, 1, 0.5, 1],
+          },
+        });
+        return;
+      }
 
-     if (currentIndex === 0 && offsetX > 0) {
-       sliderControls.start({
-         x: "0%",
-         transition: {
-           duration: 0.5,
-           ease: [0.25, 1, 0.5, 1],
-         },
-       });
-       return;
-     } else if (currentIndex === data.length - 1 && offsetX < 0) {
-       sliderControls.start({
-         x: `-${(data.length - 1) * slideWidth}%`,
-         transition: {
-           duration: 0.5,
-           ease: [0.25, 1, 0.5, 1],
-         },
-       });
-       return;
-     }
-
-     if (offsetX > threshold) {
-       goToPrev();
-     } else if (offsetX < -threshold) {
-       goToNext();
-     } else {
-       sliderControls.start({
-         x: `-${currentIndex * slideWidth}%`,
-         transition: {
-           duration: 0.4,
-           ease: [0.25, 1, 0.5, 1],
-         },
-       });
-     }
-   };
+      if (offsetX > threshold) {
+        goToPrev();
+      } else if (offsetX < -threshold) {
+        goToNext();
+      } else {
+        sliderControls.start({
+          x: `-${currentIndex * slideWidth}%`,
+          transition: {
+            duration: 0.4,
+            ease: [0.25, 1, 0.5, 1],
+          },
+        });
+      }
+    },
+    [currentIndex, data.length, goToNext, goToPrev, sliderControls]
+  );
 
   // Close the slider when clicking the close btn
   useEffect(() => {
@@ -132,33 +134,32 @@ function Slider({
     setDragStartPosition(-currentIndex * slideWidth);
   }, [currentIndex, sliderControls]);
 
- 
   // Handle keyboard navigation
-   useEffect(() => {
-     const handleKeyDown = (event: KeyboardEvent) => {
-       if (event.key === "Escape") {
-         handleClose();
-       }
-       if (event.key === "ArrowRight") {
-         goToNext();
-       }
-       if (event.key === "ArrowLeft") {
-         goToPrev();
-       }
-     };
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleClose();
+      }
+      if (event.key === "ArrowRight") {
+        goToNext();
+      }
+      if (event.key === "ArrowLeft") {
+        goToPrev();
+      }
+    };
 
-     window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
-     return () => window.removeEventListener("keydown", handleKeyDown);
-   }, [currentIndex, onClose, goToPrev, goToNext, handleClose]);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [goToNext, goToPrev, handleClose, currentIndex]);
 
-   // Add class to body when slider is open
-   useEffect(() => {
-     document.body.classList.add("slider-open");
-     return () => {
-       document.body.classList.remove("slider-open");
-     };
-   }, []);
+  // Add class to body when slider is open
+  useEffect(() => {
+    document.body.classList.add("slider-open");
+    return () => {
+      document.body.classList.remove("slider-open");
+    };
+  }, []);
 
   const overlayVariants = {
     hidden: { opacity: 0 },
@@ -277,10 +278,8 @@ function Slider({
     },
   };
 
- 
-
-  const handleMouseDown = () => setIsDragging(true);
-  const handleMouseUp = () => setIsDragging(false);
+  const handleMouseDown = useCallback(() => setIsDragging(true), []);
+  const handleMouseUp = useCallback(() => setIsDragging(false), []);
 
   return createPortal(
     <motion.div
