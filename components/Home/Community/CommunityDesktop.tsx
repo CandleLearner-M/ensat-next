@@ -198,7 +198,7 @@ function CommunityDesktop() {
             alt={img.alt}
             fill
             quality={85}
-            loading={index === 0 ? "eager" : "lazy"}
+            loading={index < 3 ? "eager" : "lazy"}
           />
         </motion.div>
       ))}

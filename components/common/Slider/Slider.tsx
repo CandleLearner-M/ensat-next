@@ -1,9 +1,9 @@
 "use client";
 
 import { SliderItem } from "@/components/Home/Community/communityDS";
-import { motion, PanInfo, useAnimation, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion, PanInfo, useAnimation } from "framer-motion";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { IoClose } from "react-icons/io5";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
@@ -446,4 +446,4 @@ function Slider({
   );
 }
 
-export default Slider;
+export default React.memo(Slider);

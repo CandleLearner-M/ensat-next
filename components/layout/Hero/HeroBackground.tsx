@@ -1,12 +1,12 @@
-import Image from "next/image";
-import heroBg from "@/assets/hero-bg-mobile.jpg";
+import Image, { StaticImageData } from "next/image";
 import styles from "./HeroBackground.module.scss";
+import React from "react";
 
-function HeroBackground() {
+function HeroBackground({ bgImg }: { bgImg: string | StaticImageData }) {
   return (
     <div className={styles.hero__background}>
       <Image
-        src={heroBg}
+        src={bgImg}
         alt="ENSAT"
         className={styles.hero__background__image}
         fill
@@ -17,4 +17,4 @@ function HeroBackground() {
     </div>
   );
 }
-export default HeroBackground;
+export default React.memo(HeroBackground);

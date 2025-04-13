@@ -1,6 +1,59 @@
 import { useTranslations } from "next-intl";
 import styles from "./HeroAnimation.module.scss";
 import { motion } from "framer-motion";
+import React, { useMemo } from "react";
+
+const wordAnimation = {
+  hidden: {},
+  visible: {},
+};
+
+const characterAnimation = {
+  hidden: {
+    opacity: 0,
+    y: 30,
+    scale: 0.7,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: "spring",
+      damping: 12,
+      stiffness: 100,
+    },
+  },
+};
+
+const paragraphAnimation = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: 0.6,
+      ease: [0.2, 0.65, 0.3, 0.9],
+    },
+  },
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.2,
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+};
 
 function AnimatedHeroText({
   isVisible,
@@ -11,59 +64,7 @@ function AnimatedHeroText({
 }) {
   const t = useTranslations("Hero");
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-        duration: 0.3,
-        ease: "easeInOut",
-      },
-    },
-  };
-
-  const titleWords = t("title").split(" ");
-
-  const wordAnimation = {
-    hidden: {},
-    visible: {},
-  };
-
-  const characterAnimation = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      scale: 0.7,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: "spring",
-        damping: 12,
-        stiffness: 100,
-      },
-    },
-  };
-
-  const paragraphAnimation = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.7,
-        delay: 0.6,
-        ease: [0.2, 0.65, 0.3, 0.9],
-      },
-    },
-  };
+  const titleWords = useMemo(() => t("title").split(" "), [t]);
 
   return (
     <motion.div
@@ -104,4 +105,4 @@ function AnimatedHeroText({
   );
 }
 
-export default AnimatedHeroText;
+export default React.memo(AnimatedHeroText);

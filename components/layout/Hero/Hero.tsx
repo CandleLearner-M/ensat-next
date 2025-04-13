@@ -1,3 +1,4 @@
+import React from "react";
 import styles from "./Hero.module.scss";
 import HeroAnimation from "./HeroAnimation";
 import HeroBG from "./HeroBG";
@@ -10,4 +11,4 @@ function Hero() {
     </main>
   );
 }
-export default Hero;
+export default React.memo(Hero);

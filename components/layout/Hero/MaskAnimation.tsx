@@ -2,7 +2,7 @@ import { useMousePosition } from "@/utils/useMousePosition";
 import AnimatedLine from "./AnimatedLine";
 import styles from "./HeroAnimation.module.scss";
 import { motion } from "framer-motion";
-import {  useState } from "react";
+import React, {  useState } from "react";
 import { useTranslations } from "next-intl";
 
 function MaskAnimation({ isVisible }: { isVisible: boolean }) {
@@ -61,4 +61,4 @@ function MaskAnimation({ isVisible }: { isVisible: boolean }) {
     </motion.div>
   );
 }
-export default MaskAnimation;
+export default React.memo(MaskAnimation);

@@ -2,7 +2,7 @@
 
 import styles from "./HeroAnimation.module.scss";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedHeroText from "./AnimatedHeroText";
 import AnimatedLine from "./AnimatedLine";
 
@@ -48,4 +48,4 @@ function HeroAnimation() {
     </>
   );
 }
-export default HeroAnimation;
+export default React.memo(HeroAnimation);
