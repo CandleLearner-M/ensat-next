@@ -64,8 +64,14 @@ $transition-duration: 0.3s;
     display: flex;
     width: 100%;
     height: 100%;
-  }
+    &.grab {
+      cursor: grab;
+    }
 
+    &.grabbing {
+      cursor: grabbing;
+    }
+  }
 
   .slide {
     width: 100%;
@@ -143,7 +149,7 @@ $transition-duration: 0.3s;
     @include button-base;
     position: absolute;
     top: 2%;
-    right: 1%; // Increased to avoid overlap
+    right: 1%;
     font-size: $button-font-size-desktop;
     padding: 0.4rem;
     @media (max-width: 768px) {
@@ -154,7 +160,6 @@ $transition-duration: 0.3s;
     }
   }
 
-  // Previous button
   .previous {
     @include navigation-button;
     left: $navigation-offset-desktop;
@@ -179,6 +184,17 @@ $transition-duration: 0.3s;
       font-size: $button-font-size-mobile;
       padding: $button-padding-mobile;
       right: $navigation-offset-mobile;
+    }
+  }
+
+  .disabled {
+    border-color: lighten(#0e0e0e, 10%);
+    color: lighten(#0e0e0e, 10%);
+    &:hover {
+      background-color: transparent;
+      border-color: lighten(#0e0e0e, 10%);
+      cursor: default;
+      color: lighten(#0e0e0e, 10%);
     }
   }
 
