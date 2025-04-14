@@ -14,8 +14,8 @@
     flex-direction: column;
     gap: clamp(2rem, 4vw, 3rem);
     padding: clamp(1.5rem, 4vw, 3rem);
-    min-height: auto; // Remove fixed height constraint on mobile
-    padding-bottom: 3rem; // Ensure adequate padding at bottom
+    min-height: auto; 
+    padding-bottom: 3rem; 
   }
 
   .imageContainer {
@@ -35,23 +35,28 @@
     }
 
     @media (max-width: 992px) {
-      width: 100%;
-      height: 300px; // Consistent height
+      flex: none;
+      width: 90%;
+      height: 400px; 
       margin-bottom: 1rem;
+
     }
 
     @media (max-width: 480px) {
-      height: 250px; // Slightly smaller but still visible
+      height: 250px; 
     }
 
     .parallaxContainer {
-      overflow: hidden;
-      will-change: transform;
-      
+      position: absolute;
+      width: 100%;
+      height: 120%;
+      top: -10%;
+      left: 0;
+
       @media (max-width: 992px) {
-        height: 100% !important; // Override inline style on mobile
-        top: 0 !important; // Override inline style on mobile
-        position: relative !important; // Ensure proper positioning
+        position: relative !important;
+        height: 100% !important;
+        top: 0 !important;
       }
     }
 
@@ -107,7 +112,7 @@
     position: relative;
     height: 4px;
     width: 100px;
-    margin: 0 0 1.5rem 0; // Space after divider
+    margin: 0 0 2.5rem 0; // Space after divider
     display: flex;
     align-items: center;
 
@@ -178,7 +183,7 @@
       background: linear-gradient(90deg, #007eff, #00a3ff);
       color: white;
       padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
-      border-radius: 50px;
+      border-radius: 10px;
       border: none;
       cursor: pointer;
       font-size: clamp(0.9rem, 1.2vw, 1rem);

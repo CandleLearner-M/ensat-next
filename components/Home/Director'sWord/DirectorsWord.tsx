@@ -2,16 +2,9 @@
 
 import director from "@/assets/director.jpg";
 import { Link } from "@/i18n/navigation";
-import { useScreenSize } from "@/utils/useScreenSize";
-import {
-  motion,
-  useAnimation,
-  useInView,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import styles from "./DirectorsWord.module.scss";
 
@@ -45,66 +38,56 @@ const imageVariants = {
 };
 
 function DirectorsWord() {
-  const { isMobile } = useScreenSize();
+  const [parallaxActive, setParallaxActive] = useState(true);
   const sectionRef = useRef(null);
-  const imageRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: false, amount: 0.3 });
-  const controls = useAnimation();
 
-  // Enhanced parallax effect for image (only on desktop)
+  useEffect(() => {
+    const checkScreenWidth = () => setParallaxActive(window.innerWidth > 992);
+
+    checkScreenWidth();
+
+    window.addEventListener("resize", checkScreenWidth);
+
+    return window.removeEventListener("resize", checkScreenWidth);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
   });
 
-  // More pronounced parallax effect
   const imageY = useTransform(scrollYProgress, [0, 1], ["-15%", "15%"]);
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [isInView, controls]);
 
   return (
     <motion.section
       className={styles.director}
+      whileInView="visible"
       ref={sectionRef}
+      viewport={{ once: true, amount: 0.3 }}
       initial="hidden"
-      animate={controls}
       variants={containerVariants}
     >
-      <motion.div
-        className={styles.imageContainer}
-        variants={imageVariants}
-        ref={imageRef}
-      >
+      <motion.div className={styles.imageContainer} variants={imageVariants}>
         <motion.div
-          style={
-            isMobile
-              ? {} // No parallax on mobile
-              : {
-                  y: imageY,
-                  height: "120%",
-                  width: "100%",
-                  position: "absolute",
-                  top: "-10%",
-                }
-          }
           className={styles.parallaxContainer}
+          style={parallaxActive ? { y: imageY } : {}}
         >
           <Image
             src={director}
             alt="Professor Ahmed Moussa"
             fill
-            objectFit="cover"
+            style={{
+              objectFit: "cover",
+            }}
+            sizes="(max-width: 992px) 100vw, 45vw"
             priority
           />
         </motion.div>
         <motion.div
           className={styles.overlay}
           initial={{ opacity: 0 }}
-          animate={{ opacity: isInView ? 1 : 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: false, amount: 0.3 }}
           transition={{ delay: 0.5, duration: 1 }}
         ></motion.div>
       </motion.div>
@@ -130,7 +113,6 @@ function DirectorsWord() {
             }}
           />
 
-          {/* Sliding glow effect */}
           <motion.div
             className={styles.dividerGlow}
             animate={{
