@@ -48,7 +48,9 @@ function DirectorsWord() {
 
     window.addEventListener("resize", checkScreenWidth);
 
-    return window.removeEventListener("resize", checkScreenWidth);
+    return () => {
+      window.removeEventListener("resize", checkScreenWidth);
+    };
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -78,8 +80,9 @@ function DirectorsWord() {
             fill
             style={{
               objectFit: "cover",
+              objectPosition: !parallaxActive ? "center 0%" : "center",
             }}
-            sizes="(max-width: 992px) 100vw, 45vw"
+            // sizes="(max-width: 992px) 100vw, 45vw"
             priority
           />
         </motion.div>
