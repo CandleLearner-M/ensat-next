@@ -1,0 +1,211 @@
+.director {
+  position: relative;
+  min-height: clamp(500px, 75vh, 700px);
+  width: 100%;
+  background-color: #0a0a0a;
+  display: flex;
+  padding: clamp(1.5rem, 5vw, 7rem);
+  gap: clamp(1.5rem, 5vw, 8rem);
+  color: white;
+  align-items: center;
+  overflow: hidden;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    gap: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    min-height: auto; // Remove fixed height constraint on mobile
+    padding-bottom: 3rem; // Ensure adequate padding at bottom
+  }
+
+  .imageContainer {
+    position: relative;
+    flex: 0 0 45%;
+    height: clamp(300px, 50vh, 500px);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    transition: transform 0.5s ease;
+
+    &:hover {
+      transform: scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 126, 255, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+    }
+
+    @media (max-width: 992px) {
+      width: 100%;
+      height: 300px; // Consistent height
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      height: 250px; // Slightly smaller but still visible
+    }
+
+    .parallaxContainer {
+      overflow: hidden;
+      will-change: transform;
+      
+      @media (max-width: 992px) {
+        height: 100% !important; // Override inline style on mobile
+        top: 0 !important; // Override inline style on mobile
+        position: relative !important; // Ensure proper positioning
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      z-index: 2;
+    }
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem; // Reduced gap for tighter layout
+
+    @media (max-width: 992px) {
+      width: 100%;
+      gap: 1rem; // Consistent gap on mobile
+    }
+  }
+
+  .title {
+    color: #fff;
+    margin-bottom: 0.5rem; // Space between title and divider
+
+    h3 {
+      font-size: clamp(0.8rem, 1.2vw, 1.2rem);
+      font-weight: 600;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      color: #007eff;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: 1px;
+      background: linear-gradient(90deg, #007eff, #00c6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+  }
+
+  .dividerWrapper {
+    position: relative;
+    height: 4px;
+    width: 100px;
+    margin: 0 0 1.5rem 0; // Space after divider
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 992px) {
+      height: 3px;
+      width: 80px;
+      margin-bottom: 1.2rem;
+    }
+
+    @media (max-width: 480px) {
+      height: 2px;
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .creativeDivider {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(90deg, #007eff, #00c6ff);
+    border-radius: 2px;
+    will-change: transform, background-color;
+    position: relative;
+    box-shadow: 0 0 10px rgba(0, 126, 255, 0.7);
+  }
+
+  .dividerGlow {
+    position: absolute;
+    height: 100%;
+    width: 40px;
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    will-change: transform, opacity;
+    z-index: 2;
+    filter: blur(3px);
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(1rem, 3vw, 2rem);
+
+    p {
+      font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+      line-height: 1.8;
+      max-width: min(100%, 650px);
+      font-style: italic;
+      color: #e0e0e0;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+
+      @media (max-width: 480px) {
+        line-height: 1.6;
+      }
+    }
+
+    .readMoreLink {
+      align-self: flex-start;
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: linear-gradient(90deg, #007eff, #00a3ff);
+      color: white;
+      padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      font-size: clamp(0.9rem, 1.2vw, 1rem);
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 126, 255, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+
+      @media (max-width: 480px) {
+        padding: 0.6rem 1.5rem;
+        gap: 0.5rem;
+      }
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 126, 255, 0.4);
+
+        .icon {
+          transform: translateX(4px);
+        }
+      }
+
+      .icon {
+        font-size: 0.9rem;
+        transition: transform 0.3s ease;
+      }
+    }
+  }
+}
