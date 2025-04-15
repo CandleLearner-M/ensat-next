@@ -115,17 +115,17 @@
     display: flex;
     align-items: center;
 
-    @media (max-width: 992px) {
-      height: 3px;
-      width: 80px;
-      margin-bottom: 1.2rem;
-    }
+    // @media (max-width: 992px) {
+    //   height: 3px;
+    //   width: 80px;
+    //   margin-bottom: 1.2rem;
+    // }
 
-    @media (max-width: 480px) {
-      height: 2px;
-      width: 60px;
-      margin-bottom: 1rem;
-    }
+    // @media (max-width: 480px) {
+    //   height: 2px;
+    //   width: 60px;
+    //   margin-bottom: 1rem;
+    // }
   }
 
   .creativeDivider {
