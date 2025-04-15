@@ -107,6 +107,14 @@
       "news": "News"
     }
   },
+  "DirectorsWord": {
+    "directorAlt": "Professor Ahmed Moussa",
+    "sectionTitle": "DIRECTOR'S WORD",
+    "directorName": "PR. AHMED MOUSSA",
+    "messageExcerpt": "First of all, I would like to thank the Government of His Majesty King Mohammed VI, may God assist him, for renewing its confidence in me by appointing me Director of the National School of Applied Sciences of Tangier for...",
+    "fullMessageLink": "ensat/mot-directeur",
+    "readMoreButton": "Read More"
+  },
 
   "Footer": {
     "sections": {

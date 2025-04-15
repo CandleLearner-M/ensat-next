@@ -2,6 +2,7 @@
 
 import director from "@/assets/director.jpg";
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -38,6 +39,7 @@ const imageVariants = {
 };
 
 function DirectorsWord() {
+  const t = useTranslations("DirectorsWord");
   const [parallaxActive, setParallaxActive] = useState(true);
   const sectionRef = useRef(null);
 
@@ -76,7 +78,7 @@ function DirectorsWord() {
         >
           <Image
             src={director}
-            alt="Professor Ahmed Moussa"
+            alt={t("directorAlt")}
             fill
             style={{
               objectFit: "cover",
@@ -97,8 +99,8 @@ function DirectorsWord() {
 
       <div className={styles.content}>
         <motion.div className={styles.title} variants={itemVariants}>
-          <h3>MOT DU DIRECTEUR</h3>
-          <h2>PR. AHMED MOUSSA</h2>
+          <h3>{t("sectionTitle")}</h3>
+          <h2>{t("directorName")}</h2>
         </motion.div>
 
         <motion.div className={styles.dividerWrapper} variants={itemVariants}>
@@ -131,14 +133,9 @@ function DirectorsWord() {
         </motion.div>
 
         <motion.div className={styles.text} variants={itemVariants}>
-          <p>
-            Je tiens tout d&apos;abord à remercier le Gouvernement de Sa Majesté
-            le Roi Mohammed VI, que Dieu l&apos;assiste, d&apos;avoir renouvelé
-            sa confiance en moi en me nommant Directeur de l&apos;Ecole
-            Nationale des Sciences Appliquées de Tanger pour...
-          </p>
+          <p>{t("messageExcerpt")}</p>
 
-          <Link href="ensat/mot-directeur" className={styles.readMoreLink}>
+          <Link href={t("fullMessageLink")} className={styles.readMoreLink}>
             <motion.button
               whileHover={{
                 scale: 1.05,
@@ -146,7 +143,7 @@ function DirectorsWord() {
               }}
               whileTap={{ scale: 0.95 }}
             >
-              <span>Lire La Suite</span>
+              <span>{t("readMoreButton")}</span>
               <motion.div
                 animate={{
                   x: [0, 5, 0],

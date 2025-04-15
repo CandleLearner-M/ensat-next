@@ -109,6 +109,14 @@
       "news": "Actualités"
     }
   },
+  "DirectorsWord": {
+    "directorAlt": "Professeur Ahmed Moussa",
+    "sectionTitle": "MOT DU DIRECTEUR",
+    "directorName": "PR. AHMED MOUSSA",
+    "messageExcerpt": "Je tiens tout d'abord à remercier le Gouvernement de Sa Majesté le Roi Mohammed VI, que Dieu l'assiste, d'avoir renouvelé sa confiance en moi en me nommant Directeur de l'Ecole Nationale des Sciences Appliquées de Tanger pour...",
+    "fullMessageLink": "ensat/mot-directeur",
+    "readMoreButton": "Lire La Suite"
+  },
 
   "Footer": {
     "sections": {
