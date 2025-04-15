@@ -3,7 +3,6 @@ import DirectorsWord from "@/components/Home/Director'sWord/DirectorsWord";
 import OverView from "@/components/Home/overView/overView";
 import RelatedTopicsSection from "@/components/Home/relatedTopicsPage/RelatedTopicsSection";
 import Hero from "@/components/layout/Hero/Hero";
-import Test from "@/components/Test/Test";
 
 export default function Home() {
 
@@ -12,7 +11,6 @@ export default function Home() {
       <Hero />
       <OverView />
       <Communty />
-      <Test />
       <DirectorsWord />
       <RelatedTopicsSection />
     </main>
