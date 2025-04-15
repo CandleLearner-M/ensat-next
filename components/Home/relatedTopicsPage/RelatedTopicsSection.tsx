@@ -57,7 +57,7 @@ function RelatedTopicsSection() {
         variants={headerAnimation}
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.5, margin: "0px 0px -100px 0px" }}
+        viewport={{ once: true, amount: 0.4, margin: "0px 0px -100px 0px" }}
       >
         <p>{t("heading")}</p>
         <h2>{t("subheading")}</h2>

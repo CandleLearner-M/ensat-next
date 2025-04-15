@@ -66,11 +66,11 @@ function OverView() {
 
   // Reference for the stats section
   const statsRef = useRef(null);
-  const statsInView = useInView(statsRef, { once: true, amount: 0.7 });
+  const statsInView = useInView(statsRef, { once: true, amount: 0.4 });
 
   // Reference for the main section
   const sectionRef = useRef(null);
-  const sectionInView = useInView(sectionRef, { once: true, amount: 0.4 });
+  const sectionInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
   const stats = useMemo(() => [
     { number: 58, label: t("enseignants") },
