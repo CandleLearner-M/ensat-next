@@ -12,6 +12,25 @@ $text-offset: 170px;
   flex-direction: column;
 }
 
+/* Large screen mixins */
+@mixin large-desktop {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+
+@mixin xlarge-desktop {
+  @media (min-width: 1920px) {
+    @content;
+  }
+}
+
+@mixin xxlarge-desktop {
+  @media (min-width: 2560px) {
+    @content;
+  }
+}
+
 .hero,
 .mask {
   position: relative;
@@ -28,7 +47,6 @@ $text-offset: 170px;
     h1,
     .heroTitle {
       font-size: 3.7rem;
-
       width: 70vw;
       color: white;
       font-weight: 700;
@@ -41,9 +59,46 @@ $text-offset: 170px;
       flex-wrap: wrap;
       gap: 0.7rem;
 
+      @include large-desktop {
+        font-size: 4.5rem;
+        width: 65vw;
+        max-width: 1400px;
+        gap: 0.9rem;
+        margin-bottom: 1.5rem;
+      }
+
+      @include xlarge-desktop {
+        font-size: 5.2rem;
+        width: 60vw;
+        max-width: 1600px;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+      }
+
+      @include xxlarge-desktop {
+        font-size: 6rem;
+        width: 55vw;
+        max-width: 1800px;
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+        line-height: 1.1;
+      }
+
       span {
         font-size: 3.7rem;
         display: inline-block;
+
+        @include large-desktop {
+          font-size: 4.5rem;
+        }
+
+        @include xlarge-desktop {
+          font-size: 5.2rem;
+        }
+
+        @include xxlarge-desktop {
+          font-size: 6rem;
+        }
       }
     }
 
@@ -53,6 +108,29 @@ $text-offset: 170px;
       color: white;
       text-align: center;
       margin-bottom: 1rem;
+
+      @include large-desktop {
+        font-size: 1.4rem;
+        width: 45ch;
+        margin-bottom: 1.5rem;
+        max-width: 900px;
+      }
+
+      @include xlarge-desktop {
+        font-size: 1.6rem;
+        width: 50ch;
+        margin-bottom: 1.8rem;
+        line-height: 1.5;
+        max-width: 1000px;
+      }
+
+      @include xxlarge-desktop {
+        font-size: 1.8rem;
+        width: 55ch;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+        max-width: 1200px;
+      }
     }
   }
 
@@ -63,12 +141,36 @@ $text-offset: 170px;
     background-color: $color-blue;
     transform: translateX(-50%);
 
+    @include large-desktop {
+      width: 0.15px;
+    }
+
+    @include xlarge-desktop {
+      width: 0.2px;
+    }
+
+    @include xxlarge-desktop {
+      width: 0.25px;
+    }
+
     &_top {
       top: 0;
     }
 
     &_bottom {
       top: calc(50% + 14rem);
+
+      @include large-desktop {
+        top: calc(50% + 16rem);
+      }
+
+      @include xlarge-desktop {
+        top: calc(50% + 18rem);
+      }
+
+      @include xxlarge-desktop {
+        top: calc(50% + 20rem);
+      }
     }
   }
 
@@ -163,6 +265,19 @@ $text-offset: 170px;
   height: 100%;
   overflow: hidden;
 
+  @include large-desktop {
+    min-height: 85vh;
+  }
+
+  @include xlarge-desktop {
+    min-height: 88vh;
+  }
+
+  @include xxlarge-desktop {
+    min-height: 90vh;
+    max-height: 1200px; /* Prevents excessive height on ultra-tall screens */
+  }
+
   @media (max-width: 768px) {
     contain: layout paint;
   }
@@ -177,8 +292,24 @@ $text-offset: 170px;
   mask-size: 40px;
   pointer-events: none;
 
+  @include large-desktop {
+    mask-size: 50px;
+  }
+
+  @include xlarge-desktop {
+    mask-size: 60px;
+  }
+
+  @include xxlarge-desktop {
+    mask-size: 70px;
+  }
+
   h1 {
     width: $text-width-heading;
+
+    @include large-desktop {
+      width: 25ch;
+    }
   }
 
   @include tablet {
