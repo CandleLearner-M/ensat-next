@@ -87,13 +87,13 @@
     position: relative;
     padding: 2rem 1rem;
     margin: 0 -1rem;
-    min-height: 500px;
+    min-height: 700px;
 
     @media (min-width: 641px) {
       &:hover {
         .navButton {
           opacity: 1;
-          transform: translateY(-50%) translateX(0); // Slide in from sides
+          transform: translateY(-50%) translateX(0);
         }
       }
     }
@@ -171,7 +171,7 @@
   .carouselTrack {
     position: relative;
     width: 80%;
-    min-height: 500px;
+    min-height: 700px;
 
     @media (min-width: 768px) {
       width: 100%;
@@ -182,7 +182,7 @@
     display: flex;
     position: relative;
     align-items: center;
-    min-height: 500px;
+    min-height: 700px;
   }
 
   .carouselItem {
@@ -231,7 +231,7 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    min-height: 300px;
+    min-height: 700px;
     display: flex;
     align-items: center;
     justify-content: center;

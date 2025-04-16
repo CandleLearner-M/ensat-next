@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
 import Card from "./Card/Card";
+import fallbackImg from "@/assets/ensat.jpeg";
 import { sampleAnnouncements, type Announcement } from "./dummydata";
+import { useResponsiveCardWidth } from "./hooks/useResponsiveCardWidth";
 
 type AnnouncementsProps = {
   title?: string;
@@ -30,8 +33,6 @@ function Announcements({
 
   const [activeFilter, setActiveFilter] = useState("All");
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [cardWidth, setCardWidth] = useState(320);
-  const [containerWidth, setContainerWidth] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
@@ -72,40 +73,12 @@ function Announcements({
     return data.filter((item) => item.category === internalFilter);
   }, [data, activeFilter, categoryMap]);
 
-  useEffect(() => {
-    if (!isClient || !carouselTrackRef.current) return;
-
-    const calculateWidths = () => {
-      const trackWidth =
-        carouselTrackRef.current?.offsetWidth || window.innerWidth * 0.9;
-      setContainerWidth(trackWidth);
-
-      const viewPortWidth = window.innerWidth;
-      let numCardToShow: number;
-
-      if (viewPortWidth < 640) {
-        numCardToShow = 1;
-      } else if (viewPortWidth < 1024) {
-        numCardToShow = Math.min(2, maxVisibleCards);
-      } else {
-        numCardToShow = maxVisibleCards;
-      }
-
-      const effectiveNumCardsToShow = Math.max(numCardToShow, 1);
-      const totalGapSpace = (effectiveNumCardsToShow - 1) * cardGap;
-      const widthPerCard =
-        (trackWidth - totalGapSpace) / effectiveNumCardsToShow;
-
-      setCardWidth(Math.max(widthPerCard, 280));
-    };
-
-    calculateWidths();
-    window.addEventListener("resize", calculateWidths);
-
-    calculateWidths();
-
-    return () => window.removeEventListener("resize", calculateWidths);
-  }, [isClient, maxVisibleCards, cardGap, filteredAnnouncements.length]);
+  const { cardWidth, containerWidth } = useResponsiveCardWidth(
+    carouselTrackRef as RefObject<HTMLDivElement>,
+    maxVisibleCards,
+    cardGap,
+    filteredAnnouncements.length
+  );
 
   useEffect(() => {
     if (autoplayTimerRef.current) {
@@ -221,17 +194,7 @@ function Announcements({
                     aria-label={t("prevButtonLabel")}
                     disabled={!isClient}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="15 18 9 12 15 6"></polyline>
-                    </svg>
+                    <FiChevronLeft />
                   </button>
                   <button
                     className={`${styles.navButton} ${styles.nextButton}`}
@@ -239,17 +202,7 @@ function Announcements({
                     aria-label={t("nextButtonLabel")}
                     disabled={!isClient}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <polyline points="9 18 15 12 9 6"></polyline>
-                    </svg>
+                    <FiChevronRight />
                   </button>
                 </>
               )}
@@ -286,9 +239,7 @@ function Announcements({
                         }}
                       >
                         <Card
-                          imageSrc={
-                            announcement?.imageSrc || "/images/placeholder.jpg"
-                          }
+                          imageSrc={announcement?.imageSrc || fallbackImg}
                           imageAlt={announcement.title}
                           title={announcement.title}
                           description={announcement.description}
@@ -331,20 +282,7 @@ function Announcements({
         <div className={styles.viewAllWrapper}>
           <a href={viewAllLink} className={styles.viewAll}>
             {t("viewAll")}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14"></path>
-              <path d="M12 5l7 7-7 7"></path>
-            </svg>
+            <FiArrowRight />
           </a>
         </div>
       </div>
