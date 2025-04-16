@@ -15,6 +15,7 @@ function Card({
   description,
   link = "#",
   linkText = "Learn More",
+  style
 }: {
   imageSrc: string;
   imageAlt?: string;
@@ -24,7 +25,7 @@ function Card({
   linkText?: string;
 }) {
   return (
-    <Link href={link} className={styles.card}>
+    <Link href={link} className={styles.card} style={style}>
       <div className={styles.imageContainer}>
         <div className={styles.imageWrapper}>
           <Image
