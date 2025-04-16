@@ -458,11 +458,11 @@ function Announcements({
                         <button
                           key={idx}
                           className={`${styles.indicator} ${
-                            idx === currentIndex ? styles.active : "" // Apply active class
+                            idx === currentIndex ? styles.active : "" 
                           }`}
-                          onClick={() => handleDotClick(idx)} // Attach click handler
+                          onClick={() => handleDotClick(idx)} 
                           aria-label={`Go to announcement ${idx + 1}`}
-                          aria-current={idx === currentIndex ? "true" : "false"} // Accessibility
+                          aria-current={idx === currentIndex ? "true" : "false"} 
                         />
                       ))}
                     </div>
