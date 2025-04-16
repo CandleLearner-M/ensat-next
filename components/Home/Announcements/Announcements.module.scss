@@ -168,8 +168,12 @@
 
   .carouselTrack {
     position: relative;
-    width: 100%;
+    width: 80%;
     min-height: 500px;
+
+    @media (min-width: 768px) {
+      width: 100%;
+    }
   }
 
   .carouselInner {
@@ -188,7 +192,7 @@
   .indicators {
     display: flex;
     justify-content: center;
-    gap: 0.5rem;
+    gap: 0.4rem;
     margin-top: 2.5rem;
     .indicator {
       width: 0.4rem;
@@ -202,6 +206,8 @@
 
       @media (min-width: 600px) {
         width: 0.6rem;
+        gap: 0.6rem;
+
         height: 0.6rem;
       }
 
