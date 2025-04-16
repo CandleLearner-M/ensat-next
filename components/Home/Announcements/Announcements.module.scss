@@ -200,20 +200,25 @@
       transition: all 0.3s ease;
       cursor: pointer;
 
+      @media (min-width: 600px) {
+        width: 0.6rem;
+        height: 0.6rem;
+      }
+
       &.active {
         background-color: #0070f3;
-        transform: scale(1.2); 
+        transform: scale(1.2);
       }
 
       &:hover {
-        background-color: #9ca3af; 
+        background-color: #9ca3af;
       }
     }
   }
 
   .empty {
     text-align: center;
-    padding: 4rem 2rem; 
+    padding: 4rem 2rem;
     background-color: white;
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
@@ -232,8 +237,8 @@
 
   .viewAllWrapper {
     display: flex;
-    justify-content: center; 
-    margin-top: 3rem; 
+    justify-content: center;
+    margin-top: 3rem;
 
     // The "View All" link styled as a button
     .viewAll {
