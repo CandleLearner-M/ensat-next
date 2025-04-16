@@ -1,0 +1,88 @@
+.card {
+  background-color: #e3e5e5;
+  height: 660px;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    .title {
+      color: var(--primary-color, #0070f3);
+    }
+  }
+
+  .imageContainer {
+    height: 400px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: #fff;
+
+    .imageWrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .image {
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+  }
+
+  .content {
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 400px);
+    background-color: #e3e5e5;
+
+    .title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 0 0 12px;
+      color: #222;
+      transition: color 0.3s ease;
+    }
+
+    .description {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #555;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+
+    .buttonWrapper {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        &:after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+
+    .imageContainer {
+      height: 300px;
+    }
+
+    .content {
+      height: auto;
+      padding: 24px 20px;
+    }
+  }
+}

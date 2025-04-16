@@ -31,7 +31,6 @@
     position: relative;
     flex: 0 0 45%;
     height: clamp(300px, 50vh, 500px);
-    border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
       0 0 0 1px rgba(255, 255, 255, 0.05) inset;
@@ -40,7 +39,6 @@
     @media (min-width: 1600px) {
       height: clamp(400px, 55vh, 650px);
       flex: 0 0 42%;
-      border-radius: 16px;
     }
 
     &:hover {
@@ -231,7 +229,6 @@
       background: linear-gradient(90deg, #007eff, #00a3ff);
       color: white;
       padding: clamp(0.6rem, 2vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
-      border-radius: 10px;
       border: none;
       cursor: pointer;
       font-size: clamp(0.9rem, 1.2vw, 1rem);

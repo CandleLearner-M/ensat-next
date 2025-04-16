@@ -1,0 +1,429 @@
+.announcementsCarousel {
+  width: 100%;
+  padding: 5rem 0;
+  // background-color: #fafafa;
+  overflow-x: hidden;
+  position: relative;
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column; // Stack title and filters on mobile
+    margin-bottom: 3rem;
+
+    @media (min-width: 768px) {
+      // Side-by-side on medium screens and up
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #0e0e0e;
+    margin: 0 0 1.5rem 0; // Space below title on mobile
+    position: relative;
+    display: inline-block; // Fit content width for the underline
+
+    // Underline effect
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -0.5rem;
+      left: 0;
+      width: 3.5rem;
+      height: 0.25rem;
+      background-color: #3b82f6; // Blue accent color
+      border-radius: 0.125rem;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 0; // Remove bottom margin when side-by-side
+    }
+  }
+
+  .filters {
+    display: flex;
+    flex-wrap: wrap; // Allow filters to wrap
+    gap: 0.75rem;
+    margin-top: 1rem; // Space above filters on mobile
+
+    @media (min-width: 768px) {
+      margin-top: 0; // Remove top margin when side-by-side
+    }
+
+    .filterBtn {
+      padding: 0.5rem 1.25rem;
+      border-radius: 2rem; // Pill shape
+      background-color: transparent;
+      color: #4b5563; // Gray text
+      font-size: 0.875rem;
+      font-weight: 500;
+      border: 1px solid #e5e7eb; // Light gray border
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgba(59, 130, 246, 0.05); // Light blue tint on hover
+        border-color: rgba(59, 130, 246, 0.2); // Slightly darker blue border
+      }
+
+      &.active {
+        background-color: #3b82f6; // Blue background when active
+        color: white;
+        border-color: #3b82f6; // Blue border when active
+      }
+    }
+  }
+
+  .carouselContainer {
+    position: relative;
+    padding: 2rem 1rem; // Padding around the track area
+    margin: 0 -1rem; // Negative margin to allow buttons to sit slightly outside
+    min-height: 450px; /* Ensure consistent height during transitions/loading */
+
+    // Show nav buttons on hover (desktop)
+    &:hover {
+      .navButton {
+        opacity: 1;
+        transform: translateY(-50%) translateX(0); // Slide in from sides
+      }
+    }
+  }
+
+  .navButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); // Vertically center
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background-color: white;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow
+    cursor: pointer;
+    z-index: 10; // Above cards
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; // Hidden by default on desktop
+    transition: all 0.3s ease; // Smooth transition for opacity and transform
+
+    svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      color: #1f2937; // Dark gray icon
+    }
+
+    &.prevButton {
+      left: 1rem;
+      transform: translateY(-50%) translateX(-1rem); // Start off-screen left
+
+      @media (min-width: 768px) {
+        left: 2rem; // More space on larger screens
+      }
+    }
+
+    &.nextButton {
+      right: 1rem;
+      transform: translateY(-50%) translateX(1rem); // Start off-screen right
+
+      @media (min-width: 768px) {
+        right: 2rem; // More space on larger screens
+      }
+    }
+
+    &:hover {
+      background-color: #3b82f6; // Blue background on hover
+
+      svg {
+        color: white; // White icon on hover
+      }
+    }
+
+    // Always show buttons on smaller screens (touch devices)
+    @media (max-width: 640px) {
+      opacity: 1;
+      transform: translateY(-50%) translateX(0); // Position normally
+      width: 2.5rem; // Slightly smaller buttons on mobile
+      height: 2.5rem;
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
+      &.prevButton {
+        left: 0.5rem;
+      }
+      &.nextButton {
+        right: 0.5rem;
+      }
+    }
+  }
+
+  // This is the direct parent for the animated .carouselInner
+  .carouselTrackWrapper {
+    overflow: hidden; // Clip the non-visible parts of the track
+    width: 100%;
+    position: relative; // Needed for perspective maybe?
+    perspective: 1000px; // For potential 3D effects if added later
+  }
+
+  .carouselTrack {
+    // This holds the .carouselInner and is measured for width calculations
+    position: relative;
+    width: 100%;
+    min-height: 450px; // Match container height
+  }
+
+  .carouselInner {
+    // This element moves via transform: translateX
+    display: flex;
+    position: relative; // Context for absolutely positioned items if using stacking
+    align-items: center; // Align items vertically if needed
+    min-height: 450px; // Match container height
+    // 'gap' is set via inline style in the component if needed
+    // or rely on margin for spacing
+  }
+
+  .carouselItem {
+    // Styling for individual cards within the track
+    flex: 0 0 auto; // Prevent shrinking/growing, use specified width
+    position: relative; // Needed for z-index and potential transforms
+    transform-origin: center center; // Scale/rotate from the middle
+    // 'width' is set via inline style in the component
+    // Transitions for scale/opacity are handled by framer-motion in the component
+
+    // Example of stacking effect (if NOT using track animation)
+    // This part seems less relevant with the track animation approach
+    /*
+    &:not(:first-child) {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      transform: translateX(-45%) scale(0.9);
+      z-index: -1;
+
+      &:nth-child(2) {
+        transform: translateX(-40%) scale(0.85);
+        z-index: -2;
+      }
+
+      &:nth-child(3) {
+        transform: translateX(-35%) scale(0.8);
+        z-index: -3;
+      }
+    }
+    */
+  }
+
+  .indicators {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 2.5rem; // Space above indicators
+
+    .indicator {
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background-color: #d1d5db; // Light gray inactive indicator
+      border: none;
+      padding: 0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+
+      &.active {
+        background-color: #3b82f6; // Blue active indicator
+        transform: scale(1.2); // Slightly larger when active
+      }
+
+      &:hover {
+        background-color: #9ca3af; // Darker gray on hover
+      }
+    }
+  }
+
+  // --- Skeleton Loader Styles ---
+  .skeletonCarousel {
+    display: flex;
+    justify-content: center; // Center the primary skeleton card
+    gap: 2rem; // Use gap if showing multiple side-by-side (adjust as needed)
+    min-height: 450px; // Match carousel height
+    position: relative; // For absolute positioning of stacked skeletons
+    padding: 2rem 0; // Match carousel padding
+    overflow: hidden; // Prevent shimmer overflow
+    width: 100%; // Take full width
+
+    .skeleton {
+      border-radius: 0.75rem;
+      overflow: hidden; // Keep shimmer contained
+      background-color: white; // Base background for skeleton card
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); // Match card shadow
+      flex: 0 0 auto; // Don't shrink/grow
+      width: 100%; // Take available width up to max-width
+      max-width: 350px; // Max width for the main skeleton card
+      opacity: 1; // Main card is fully visible
+
+      // Stacking effect for skeleton (optional, hide on smaller screens)
+      &:not(:first-child) {
+        position: absolute; // Position relative to .skeletonCarousel
+        left: 50%; // Center horizontally
+        top: 2rem; // Align with parent padding
+        height: calc(100% - 4rem); // Match parent padding
+        transform: translateX(-40%) scale(0.9); // Offset and scale down
+        opacity: 0.6; // Fade out background cards
+        z-index: -1; // Behind the main card
+
+        @media (max-width: 768px) {
+          display: none; // Hide stacked skeletons on smaller tablets/mobile
+        }
+      }
+
+      &:nth-child(3) {
+        // Third skeleton card
+        transform: translateX(-30%) scale(0.8); // Further offset and scale
+        opacity: 0.3;
+        z-index: -2;
+
+        @media (max-width: 1024px) {
+          display: none; // Hide third card on tablets
+        }
+      }
+
+      .skeletonImage {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e0e0e0 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%; // For shimmer effect
+        animation: shimmer 1.5s infinite;
+      }
+
+      .skeletonContent {
+        padding: 1.5rem;
+
+        .skeletonTitle {
+          height: 1.5rem;
+          width: 70%;
+          margin-bottom: 1rem;
+          background: linear-gradient(
+            90deg,
+            #f0f0f0 25%,
+            #e0e0e0 50%,
+            #f0f0f0 75%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.5s infinite;
+          border-radius: 0.25rem;
+        }
+
+        .skeletonText {
+          height: 0.875rem;
+          margin-bottom: 0.5rem;
+          background: linear-gradient(
+            90deg,
+            #f0f0f0 25%,
+            #e0e0e0 50%,
+            #f0f0f0 75%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.5s infinite;
+          border-radius: 0.25rem;
+
+          &:last-of-type {
+            // Style last text line differently
+            width: 80%;
+            margin-bottom: 1.5rem; // More space before button
+          }
+        }
+
+        .skeletonBtn {
+          height: 2.25rem;
+          width: 40%;
+          background: linear-gradient(
+            90deg,
+            #f0f0f0 25%,
+            #e0e0e0 50%,
+            #f0f0f0 75%
+          );
+          background-size: 200% 100%;
+          animation: shimmer 1.5s infinite;
+          border-radius: 0.375rem;
+        }
+      }
+    }
+  }
+
+  // Shimmer animation for skeleton
+  @keyframes shimmer {
+    0% {
+      background-position: 200% 0;
+    }
+    100% {
+      background-position: -200% 0;
+    }
+  }
+
+  .empty {
+    text-align: center;
+    padding: 4rem 2rem; // Generous padding
+    background-color: white; // White background
+    border-radius: 0.75rem; // Rounded corners
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -1px rgba(0, 0, 0, 0.06); // Match card shadow
+    min-height: 300px; // Ensure decent height
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: 1rem;
+      color: #6b7280; // Medium gray text
+    }
+  }
+
+  .viewAllWrapper {
+    display: flex;
+    justify-content: center; // Center the button
+    margin-top: 3rem; // Space above the button
+
+    .viewAll {
+      display: inline-flex; // Use inline-flex for alignment with icon
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem; // Button padding
+      border: 1px solid #3b82f6; // Blue border
+      background-color: transparent; // Transparent background
+      color: #3b82f6; // Blue text
+      font-weight: 600;
+      border-radius: 0.375rem; // Slightly rounded corners
+      text-decoration: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #3b82f6; // Blue background on hover
+        color: white; // White text on hover
+      }
+
+      svg {
+        transition: transform 0.2s ease; // Animate arrow icon
+      }
+
+      &:hover svg {
+        transform: translateX(4px); // Move arrow slightly right on hover
+      }
+    }
+  }
+}

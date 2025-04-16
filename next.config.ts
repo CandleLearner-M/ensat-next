@@ -17,6 +17,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  experimental: {
+    scrollRestoration: true,
+  },
 };
 
 const withNextIntl = createNextIntlPlugin();

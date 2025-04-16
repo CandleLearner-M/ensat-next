@@ -7,11 +7,13 @@ function AnimatedLink({
   href,
   className = "",
   underlineColor,
+  headline = false,
 }: {
   children: React.ReactNode;
   href: string;
   className?: string;
   underlineColor?: string;
+  headline?: boolean;
 }) {
   const linkStyle = underlineColor
     ? ({ "--underline-color": underlineColor } as React.CSSProperties)
@@ -23,7 +25,7 @@ function AnimatedLink({
       className={`${className} ${styles.link}`}
       style={linkStyle}
     >
-      {children}
+      {headline ? <h2 className={styles.headline}>{children}</h2> : children}
     </Link>
   );
 }

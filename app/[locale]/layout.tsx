@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import NextTopLoader from "nextjs-toploader";
 import Footer from "@/components/layout/Footer/Footer";
+import ScrollToTop from "@/utils/ScrollToTop";
 
 export async function generateMetadata({
   params,
@@ -61,6 +62,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#002efe" showSpinner={false} />
+          {/* <ScrollToTop /> */}
           <Navigation />
           <main>{children}</main>
           <Footer />
