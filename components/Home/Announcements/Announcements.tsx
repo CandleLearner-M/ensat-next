@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
 import Card from "./Card/Card";
-import fallbackImg from "@/assets/ensat.jpeg";
+import fallbackImg from "@/assets/fallback.png";
 import { sampleAnnouncements, type Announcement } from "./dummydata";
 import { useResponsiveCardWidth } from "./hooks/useResponsiveCardWidth";
 

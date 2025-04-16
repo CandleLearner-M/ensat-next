@@ -1,90 +1,132 @@
+.cardMotionWrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+}
+
 .card {
   background-color: #e3e5e5;
   height: 660px;
-  border-radius: 0.375rem;
-
-  width: 400px;
+  border-radius: 0.5rem;
+  width: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.imageContainer {
+  height: 400px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #f0f0f0;
+}
+
+.imageWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.content {
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: inherit;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 12px 0;
+  color: #222;
+  line-height: 1.4;
   position: relative;
 
-  &:hover {
-    .title {
-      color: var(--primary-color, #0070f3);
-    }
+  :global(.cardMotionWrapper:hover) & {
+    color: #0070f3;
+  }
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+  flex-grow: 1;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.buttonContainer {
+  margin-top: auto;
+}
+
+.buttonWrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #0070f3;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  width: fit-content;
+}
+
+.linkText {
+  position: relative;
+}
+
+.arrowIcon {
+  display: inline-flex;
+}
+
+.linkUnderline {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  width: 100%;
+  background-color: #0070f3;
+  transform-origin: left;
+  border-radius: 1px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    height: auto;
   }
 
   .imageContainer {
-    height: 400px;
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color: #fff;
-
-    .imageWrapper {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    .image {
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
+    height: 300px;
   }
 
   .content {
-    padding: 28px 24px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: calc(100% - 400px);
-    background-color: #e3e5e5;
-
-    .title {
-      font-size: 1.5rem;
-      font-weight: 600;
-      margin: 0 0 12px;
-      color: #222;
-      transition: color 0.3s ease;
-    }
-
-    .description {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #555;
-      margin-bottom: 20px;
-      flex-grow: 1;
-    }
-
-    .buttonWrapper {
-      margin-top: 10px;
-      display: flex;
-      align-items: center;
-
-      &:hover {
-        &:after {
-          width: 100%;
-        }
-      }
-    }
+    padding: 24px 20px;
   }
 
-  @media (max-width: 768px) {
-    width: 100%;
-    height: auto;
+  .title {
+    font-size: 1.3rem;
+  }
 
-    .imageContainer {
-      height: 300px;
-    }
-
-    .content {
-      height: auto;
-      padding: 24px 20px;
-    }
+  .description {
+    font-size: 0.95rem;
+    -webkit-line-clamp: 3;
   }
 }
+

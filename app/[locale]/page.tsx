@@ -6,7 +6,6 @@ import RelatedTopicsSection from "@/components/Home/relatedTopicsPage/RelatedTop
 import Hero from "@/components/layout/Hero/Hero";
 
 export default function Home() {
-
   return (
     <main className="">
       <Hero />
@@ -14,6 +13,7 @@ export default function Home() {
       <Announcements />
       <Communty />
       <DirectorsWord />
+
       <RelatedTopicsSection />
     </main>
   );
