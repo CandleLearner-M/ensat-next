@@ -99,6 +99,18 @@
     "batiments": "Bâtiments",
     "locaux": "M² De Locaux"
   },
+
+  "Announcements": {
+    "title": "Dernières Annonces",
+    "allLabel": "Tout",
+    "uncategorizedLabel": "Non catégorisé",
+    "prevButtonLabel": "Annonce précédente",
+    "nextButtonLabel": "Annonce suivante",
+    "indicatorLabel": "Aller à l'annonce {number}",
+    "emptyMessage": "Aucune annonce trouvée dans cette catégorie.",
+    "readMore": "Lire la suite",
+    "viewAll": "Voir toutes les annonces"
+  },
   "relatedTopics": {
     "imageAlt": "Sujets connexes",
     "heading": "Vous pourriez aussi aimer",

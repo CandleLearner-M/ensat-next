@@ -2,12 +2,10 @@
 
 import Image from "next/image";
 import styles from "./Card.module.scss";
-import LearnMoreBtn from "@/components/common/LearnMoreBtn";
 
 import img from "@/assets/ensat.jpeg";
 import { Link } from "@/i18n/navigation";
-import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
-
+  
 function Card({
   imageSrc,
   imageAlt = "Card image",
@@ -15,7 +13,7 @@ function Card({
   description,
   link = "#",
   linkText = "Learn More",
-  style
+  style,
 }: {
   imageSrc: string;
   imageAlt?: string;
@@ -38,9 +36,7 @@ function Card({
       </div>
 
       <div className={styles.content}>
-        <AnimatedLink className={styles.title} href={link} headline={true}>
-          {title}{" "}
-        </AnimatedLink>
+        <h2 className={styles.title}>{title}</h2>
 
         <p className={styles.description}>
           {description ||
@@ -48,9 +44,7 @@ function Card({
         </p>
 
         <div className={styles.buttonWrapper}>
-          <LearnMoreBtn href={link}>
-            <span>{linkText}</span>
-          </LearnMoreBtn>
+          <span>{linkText}</span>
         </div>
       </div>
     </Link>

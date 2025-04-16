@@ -19,7 +19,7 @@ function LearnMoreBtn({
     >
       <button
         className={`flex items-center justify-center bg-[#656f77] ${
-          isMobile ? "w-7 h-7" : "w-8    h-8"
+          isMobile ? "w-7 h-7" : "w-8 h-8"
         } rounded-full group-hover:bg-[#007EFF] transition duration-300 ease-in-out cursor-pointer relative overflow-hidden`}
       >
         <FaLongArrowAltRight

@@ -97,6 +97,17 @@
     "batiments": "Buildings",
     "locaux": "Square Meters of Facilities"
   },
+  "Announcements": {
+    "title": "Latest Announcements",
+    "allLabel": "All",
+    "uncategorizedLabel": "Uncategorized",
+    "prevButtonLabel": "Previous announcement",
+    "nextButtonLabel": "Next announcement",
+    "indicatorLabel": "Go to announcement {number}",
+    "emptyMessage": "No announcements found in this category.",
+    "readMore": "Read More",
+    "viewAll": "View All Announcements"
+  },
   "relatedTopics": {
     "imageAlt": "Related Topics",
     "heading": "You May Also Like",
@@ -115,7 +126,6 @@
     "fullMessageLink": "ensat/mot-directeur",
     "readMoreButton": "Read More"
   },
-
   "Footer": {
     "sections": {
       "about": {
