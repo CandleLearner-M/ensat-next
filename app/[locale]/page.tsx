@@ -1,4 +1,5 @@
 import Announcements from "@/components/Home/Announcements/Announcements";
+import Carousel from "@/components/Home/Announcements/Carousel";
 import Communty from "@/components/Home/Community/Communty";
 import DirectorsWord from "@/components/Home/Director'sWord/DirectorsWord";
 import OverView from "@/components/Home/overView/overView";
@@ -11,6 +12,7 @@ export default function Home() {
       <Hero />
       <OverView />
       <Announcements />
+      <Carousel />
       <Communty />
       <DirectorsWord />
 
