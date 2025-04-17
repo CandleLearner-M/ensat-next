@@ -14,7 +14,7 @@ $text-offset: 170px;
 
 /* Large screen mixins */
 @mixin large-desktop {
-  @media (min-width: 1440px) {
+  @media (min-width: 1600px) {
     @content;
   }
 }

@@ -1,6 +1,6 @@
 .announcementsCarousel {
   width: 100%;
-  padding: 5rem 0;
+  padding: 0 0 5rem 0;
   overflow-x: hidden;
   position: relative;
 
@@ -16,7 +16,7 @@
   .header {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 
     @media (min-width: 768px) {
       margin-bottom: 3rem;
@@ -87,9 +87,13 @@
 
   .carouselContainer {
     position: relative;
-    padding: 2rem 1rem;
+    padding: 2em 1rem;
     margin: 0 -1rem;
-    min-height: 700px;
+    min-height: 550px;
+
+    @media (min-width: 768px) {
+      min-height: 700px;
+    }
 
     @media (min-width: 641px) {
       &:hover {
@@ -173,7 +177,11 @@
   .carouselTrack {
     position: relative;
     width: 100%;
-    min-height: 700px;
+    min-height: 550px;
+
+    @media (min-width: 768px) {
+      min-height: 700px;
+    }
 
     @media (min-width: 768px) {
       width: 100%;
@@ -184,7 +192,11 @@
     display: flex;
     position: relative;
     align-items: center;
-    min-height: 700px;
+    min-height: 550px;
+
+    @media (min-width: 768px) {
+      min-height: 700px;
+    }
   }
 
   .carouselItem {
@@ -233,7 +245,11 @@
     border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
       0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    min-height: 700px;
+    min-height: 550px;
+
+    @media (min-width: 768px) {
+      min-height: 700px;
+    }
     display: flex;
     align-items: center;
     justify-content: center;
