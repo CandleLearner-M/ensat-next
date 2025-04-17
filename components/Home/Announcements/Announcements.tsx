@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, useAnimation } from "framer-motion";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
@@ -9,6 +9,59 @@ import Card from "./Card/Card";
 import fallbackImg from "@/assets/fallback.png";
 import { sampleAnnouncements, type Announcement } from "./dummydata";
 import { useResponsiveCardWidth } from "./hooks/useResponsiveCardWidth";
+
+// Animation variants
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      duration: 0.6,
+      when: "beforeChildren",
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: { y: -30, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 12,
+    },
+  },
+};
+
+const carouselVariants = {
+  hidden: { scale: 0.95, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 80,
+      damping: 15,
+    },
+  },
+};
+
+const viewAllVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: "spring",
+      stiffness: 100,
+      damping: 12,
+      delay: 0.4,
+    },
+  },
+};
 
 type AnnouncementsProps = {
   title?: string;
@@ -164,59 +217,6 @@ function Announcements({
   useEffect(() => {
     setActiveFilter(t("allLabel"));
   }, [t]);
-
-  // Animation variants
-  const sectionVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const headerVariants = {
-    hidden: { y: -30, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-      },
-    },
-  };
-
-  const carouselVariants = {
-    hidden: { scale: 0.95, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 80,
-        damping: 15,
-      },
-    },
-  };
-
-  const viewAllVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12,
-        delay: 0.4,
-      },
-    },
-  };
 
   return (
     <motion.section
