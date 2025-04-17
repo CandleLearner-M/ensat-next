@@ -412,6 +412,7 @@ function Announcements({
                 <motion.div
                   className={styles.indicators}
                   initial="hidden"
+                  key={activeFilter}
                   whileInView="visible"
                   viewport={{ once: true, amount: 0.5 }}
                   variants={indicatorsVariants}
