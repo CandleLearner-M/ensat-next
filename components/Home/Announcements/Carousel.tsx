@@ -26,14 +26,16 @@ function Carousel() {
       effect="coverflow"
       centeredSlides={true}
       initialSlide={2}
+      speed={600}
+      preventClicks={true}
+      slidesPerView={3}
       coverflowEffect={{
-        rotate: 50,
-        stretch: 0,
-        depth: 100,
+        rotate: 0,
+        stretch: 80,
+        depth: 350,
         modifier: 1,
         slideShadows: true,
       }}
-      slidesPerView="auto"
       navigation={{ prevEl: prevRef.current, nextEl: nextRef.current }}
       onInit={(swiper) => {
         // @ts-expect-error "already done"

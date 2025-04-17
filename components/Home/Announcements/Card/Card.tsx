@@ -5,7 +5,7 @@ import { motion, Variants } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import styles from "./Card.module.scss";
 import { Link } from "@/i18n/navigation";
-import fallbackImg from "@/assets/ensat.jpeg";
+import fallbackImg from "@/assets/fallback.png";
 
 type CardProps = {
   imageSrc?: string | StaticImageData;
