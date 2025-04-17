@@ -1,7 +1,14 @@
 "use client";
 
-import { motion, useInView, useAnimation } from "framer-motion";
-import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { useTranslations } from "next-intl";
 import { FiChevronLeft, FiChevronRight, FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
@@ -17,8 +24,6 @@ const sectionVariants = {
     opacity: 1,
     transition: {
       duration: 0.6,
-      when: "beforeChildren",
-      staggerChildren: 0.2,
     },
   },
 };
@@ -36,6 +41,23 @@ const headerVariants = {
   },
 };
 
+const filterContainerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
+};
+
+const filterButtonVariants = {
+  hidden: { y: 10, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 150 },
+  },
+};
+
 const carouselVariants = {
   hidden: { scale: 0.95, opacity: 0 },
   visible: {
@@ -49,6 +71,46 @@ const carouselVariants = {
   },
 };
 
+const navButtonVariants = {
+  hidden: (direction) => ({ x: direction === "prev" ? -20 : 20, opacity: 0 }),
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 200, damping: 20 },
+  },
+};
+
+const cardVariants = {
+  hidden: { y: 50, opacity: 0 },
+  visible: (i) => ({
+    y: 0,
+    opacity: 1,
+    transition: {
+      delay: 0.05 * i,
+      type: "spring",
+      stiffness: 100,
+      damping: 15,
+    },
+  }),
+};
+
+const indicatorsVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
+const indicatorVariants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { type: "spring", stiffness: 300 },
+  },
+};
+
 const viewAllVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -58,7 +120,6 @@ const viewAllVariants = {
       type: "spring",
       stiffness: 100,
       damping: 12,
-      delay: 0.4,
     },
   },
 };
@@ -89,11 +150,6 @@ function Announcements({
   const [isPaused, setIsPaused] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
-  // Animation controls
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-  const controls = useAnimation();
-
   const carouselTrackRef = useRef<HTMLDivElement>(null);
   const autoplayTimerRef = useRef<NodeJS.Timeout | null>(null);
   const cardGap = 32;
@@ -103,13 +159,6 @@ function Announcements({
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  // Trigger animations when component is in view
-  useEffect(() => {
-    if (isInView) {
-      controls.start("visible");
-    }
-  }, [isInView, controls]);
 
   const categories = useMemo(() => {
     const uniqueCategories = [
@@ -220,30 +269,33 @@ function Announcements({
 
   return (
     <motion.section
-      ref={sectionRef}
       className={styles.announcementsCarousel}
       aria-labelledby="announcements-title"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
       initial="hidden"
-      animate={controls}
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
       variants={sectionVariants}
     >
       <div className={styles.container}>
-        <motion.header className={styles.header} variants={headerVariants}>
+        <motion.header
+          className={styles.header}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.6 }}
+          variants={headerVariants}
+        >
           <h2 id="announcements-title" className={styles.title}>
             {displayTitle}
           </h2>
           {showFilters && categories.length > 1 && (
             <motion.div
               className={styles.filters}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: 1,
-                  transition: { staggerChildren: 0.1, delayChildren: 0.2 },
-                },
-              }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.6 }}
+              variants={filterContainerVariants}
             >
               {categories.map((displayedCategory) => (
                 <motion.button
@@ -253,14 +305,7 @@ function Announcements({
                     activeFilter === displayedCategory ? styles.active : ""
                   } `}
                   aria-pressed={activeFilter === displayedCategory}
-                  variants={{
-                    hidden: { y: 10, opacity: 0 },
-                    visible: {
-                      y: 0,
-                      opacity: 1,
-                      transition: { type: "spring", stiffness: 150 },
-                    },
-                  }}
+                  variants={filterButtonVariants}
                 >
                   {displayedCategory}
                 </motion.button>
@@ -273,6 +318,9 @@ function Announcements({
           {filteredAnnouncements.length > 0 ? (
             <motion.div
               className={styles.carouselContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
               variants={carouselVariants}
             >
               {filteredAnnouncements.length > 1 && (
@@ -282,14 +330,11 @@ function Announcements({
                     onClick={handlePrevious}
                     aria-label={t("prevButtonLabel")}
                     disabled={!isClient}
-                    variants={{
-                      hidden: { x: -20, opacity: 0 },
-                      visible: {
-                        x: 0,
-                        opacity: 1,
-                        transition: { delay: 0.3, type: "spring" },
-                      },
-                    }}
+                    custom="prev"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={navButtonVariants}
                   >
                     <FiChevronLeft />
                   </motion.button>
@@ -298,14 +343,11 @@ function Announcements({
                     onClick={handleNext}
                     aria-label={t("nextButtonLabel")}
                     disabled={!isClient}
-                    variants={{
-                      hidden: { x: 20, opacity: 0 },
-                      visible: {
-                        x: 0,
-                        opacity: 1,
-                        transition: { delay: 0.3, type: "spring" },
-                      },
-                    }}
+                    custom="next"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.5 }}
+                    variants={navButtonVariants}
                   >
                     <FiChevronRight />
                   </motion.button>
@@ -342,19 +384,11 @@ function Announcements({
                           width: cardWidth,
                           flexShrink: 0,
                         }}
-                        variants={{
-                          hidden: { y: 50, opacity: 0 },
-                          visible: {
-                            y: 0,
-                            opacity: 1,
-                            transition: {
-                              delay: 0.1 * idx,
-                              type: "spring",
-                              stiffness: 100,
-                              damping: 15,
-                            },
-                          },
-                        }}
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.3 }}
+                        variants={cardVariants}
+                        custom={idx}
                       >
                         <Card
                           imageSrc={announcement?.imageSrc || fallbackImg}
@@ -377,13 +411,10 @@ function Announcements({
               {filteredAnnouncements.length > 1 && (
                 <motion.div
                   className={styles.indicators}
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: {
-                      opacity: 1,
-                      transition: { delay: 0.5, staggerChildren: 0.05 },
-                    },
-                  }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true, amount: 0.5 }}
+                  variants={indicatorsVariants}
                 >
                   {filteredAnnouncements.map((_, idx) => (
                     <motion.button
@@ -394,14 +425,7 @@ function Announcements({
                       onClick={() => handleDotClick(idx)}
                       aria-label={t("indicatorLabel", { number: idx + 1 })}
                       aria-current={idx === currentIndex ? "true" : "false"}
-                      variants={{
-                        hidden: { scale: 0, opacity: 0 },
-                        visible: {
-                          scale: 1,
-                          opacity: 1,
-                          transition: { type: "spring", stiffness: 300 },
-                        },
-                      }}
+                      variants={indicatorVariants}
                     />
                   ))}
                 </motion.div>
@@ -411,6 +435,9 @@ function Announcements({
             <motion.div
               className={styles.empty}
               ref={carouselTrackRef}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
               variants={carouselVariants}
             >
               <p>{t("emptyMessage")}</p>
@@ -420,6 +447,9 @@ function Announcements({
 
         <motion.div
           className={styles.viewAllWrapper}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.8 }}
           variants={viewAllVariants}
         >
           <a href={viewAllLink} className={styles.viewAll}>
