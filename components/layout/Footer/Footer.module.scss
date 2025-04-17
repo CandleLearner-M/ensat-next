@@ -2,7 +2,9 @@
 
 .footer {
   min-height: 60vh;
-  max-height: 450px;
+  @media (min-width: 1024px) {
+    max-height: 450px;
+  }
   display: flex;
   flex-direction: column;
   background-color: #0e0e0e;
@@ -10,12 +12,12 @@
   padding: 4rem 2rem;
 
   @media (min-width: 1600px) {
-    max-height: 550px;
+    max-height: 470px;
     padding: 5rem 3rem;
   }
 
   @media (min-width: 2000px) {
-    max-height: 650px;
+    max-height: 500px;
     padding: 6rem 4rem;
   }
 
@@ -254,7 +256,7 @@
 
   img {
     height: clamp(35px, 6vw, 45px);
-    
+
     @media (min-width: 1600px) {
       height: clamp(45px, 5vw, 60px);
     }
