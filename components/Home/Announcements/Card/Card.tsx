@@ -153,7 +153,7 @@ function Card({
               <span className={styles.linkText}>{linkText}</span>
             </AnimatedLink>
             <motion.span className={styles.arrowIcon} variants={arrowVariants}>
-              <FiArrowRight style={{position: "relative", top: "0px"}} size={13} />
+              <FiArrowRight style={{position: "relative", top: "1px"}} size={13} />
             </motion.span>
           </motion.div>
         </div>
