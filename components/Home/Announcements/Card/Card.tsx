@@ -1,11 +1,12 @@
 "use client";
 
-import Image, { StaticImageData } from "next/image";
+import fallbackImg from "@/assets/fallback.png";
+import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
 import { motion, Variants } from "framer-motion";
+import Image, { StaticImageData } from "next/image";
+import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import styles from "./Card.module.scss";
-import { Link } from "@/i18n/navigation";
-import fallbackImg from "@/assets/fallback.png";
 
 type CardProps = {
   imageSrc?: string | StaticImageData;
@@ -15,6 +16,7 @@ type CardProps = {
   link?: string;
   linkText?: string;
   style?: React.CSSProperties;
+  isActive: boolean;
 };
 
 const cardWrapperVariants: Variants = {
@@ -115,7 +117,7 @@ function Card({
       whileHover="hover"
       viewport={{ once: true, amount: 0.3 }}
     >
-      <Link href={link} className={styles.card}>
+      <div className={styles.card}>
         <div className={styles.imageContainer}>
           <motion.div className={styles.imageWrapper} variants={imageVariants}>
             <Image
@@ -143,23 +145,21 @@ function Card({
             className={styles.buttonContainer}
             variants={buttonAreaVariants}
           >
-            <div className={styles.buttonWrapper}>
-              <div className={styles.linkTextWrapper}>
-                <span className={styles.linkText}>{linkText}</span>
-                {/* Underline motion.span removed */}
-              </div>
-              <motion.span
-                className={styles.arrowIcon}
-                variants={arrowVariants}
-              >
-                <FiArrowRight />
-              </motion.span>
-            </div>
+            <AnimatedLink
+              href={link}
+              className={styles.buttonWrapper}
+              underlineColor="#0070f3"
+            >
+              <span className={styles.linkText}>{linkText}</span>
+            </AnimatedLink>
+            <motion.span className={styles.arrowIcon} variants={arrowVariants}>
+              <FiArrowRight style={{position: "relative", top: "0px"}} size={13} />
+            </motion.span>
           </motion.div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   );
 }
 
-export default Card;
+export default React.memo(Card);

@@ -17,9 +17,11 @@ import styles from "./Carousel.module.scss";
 import { sampleAnnouncements } from "./dummydata";
 import Card from "./Card/Card";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function Carousel() {
+  const [activeIdx, setActiveIdx] = useState(0);
+
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
@@ -32,6 +34,7 @@ function Carousel() {
         disableOnInteraction: false,
         pauseOnMouseEnter: true,
       }}
+      onSlideChange={(swiper) => setActiveIdx(swiper.realIndex)}
       keyboard={{ enabled: true, onlyInViewport: true }}
       loop={true}
       spaceBetween={30}
@@ -39,7 +42,7 @@ function Carousel() {
       effect="coverflow"
       centeredSlides={true}
       initialSlide={2}
-      speed={600}
+      speed={500}
       preventClicks={true}
       slidesPerView={3}
       coverflowEffect={{
@@ -82,20 +85,18 @@ function Carousel() {
       <button
         ref={prevRef}
         className={`${styles.navButton} ${styles.prevButton}`}
-        // aria-label={t("prevButtonLabel")}
       >
         <FiChevronLeft />
       </button>
       <button
         ref={nextRef}
         className={`${styles.navButton} ${styles.nextButton}`}
-        // aria-label={t("nextButtonLabel")}
       >
         <FiChevronRight />
       </button>
-      {sampleAnnouncements.map((announcement) => (
+      {sampleAnnouncements.map((announcement, idx) => (
         <SwiperSlide key={announcement.id} className={styles.slide}>
-          <Card />
+          <Card isActive={activeIdx === idx} {...announcement} />
         </SwiperSlide>
       ))}
     </Swiper>
