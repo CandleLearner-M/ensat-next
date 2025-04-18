@@ -4,7 +4,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-coverflow";
-import { EffectCoverflow, Navigation, Pagination } from "swiper/modules";
+import {
+  EffectCoverflow,
+  Navigation,
+  Pagination,
+  Autoplay,
+  Keyboard,
+} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import styles from "./Carousel.module.scss";
@@ -20,7 +26,14 @@ function Carousel() {
   return (
     <Swiper
       className={styles.carousel}
-      modules={[Navigation, Pagination, EffectCoverflow]}
+      modules={[Navigation, Pagination, EffectCoverflow, Autoplay, Keyboard]}
+      autoplay={{
+        delay: 3500,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
+      keyboard={{ enabled: true, onlyInViewport: true }}
+      loop={true}
       spaceBetween={30}
       grabCursor={true}
       effect="coverflow"
@@ -32,7 +45,7 @@ function Carousel() {
       coverflowEffect={{
         rotate: 0,
         stretch: 80,
-        depth: 350,
+        depth: 220,
         modifier: 1,
         slideShadows: true,
       }}
@@ -48,6 +61,23 @@ function Carousel() {
         swiper.navigation.update();
       }}
       pagination={{ clickable: true }}
+      breakpoints={{
+        0: {
+          slidesPerView: 1.2,
+          coverflowEffect: { stretch: 0, depth: 120, rotate: 0 },
+          spaceBetween: 10,
+        },
+        640: {
+          slidesPerView: 2.3,
+          coverflowEffect: { stretch: 40, depth: 180, rotate: 0 },
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 3,
+          coverflowEffect: { stretch: 80, depth: 220, rotate: 0 },
+          spaceBetween: 30,
+        },
+      }}
     >
       <button
         ref={prevRef}
