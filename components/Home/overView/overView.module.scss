@@ -25,14 +25,14 @@
   }
 
   @media (min-width: 1920px) {
-    padding-left: 7rem; /* Adjusted to match new proportions */
-    padding-right: 7rem; /* Adjusted to match new proportions */
-    gap: 1.6rem; /* Adjusted to match new proportions */
+    padding-left: 7rem;
+    padding-right: 7rem;
+    gap: 1.6rem;
   }
 
   @media (min-width: 2560px) {
-    padding-left: 9rem; /* Adjusted to match new proportions */
-    padding-right: 9rem; /* Adjusted to match new proportions */
+    padding-left: 9rem;
+    padding-right: 9rem;
     max-width: 2400px;
   }
 
@@ -51,7 +51,7 @@
     }
 
     @media (min-width: 1024px) {
-      padding: 0 0 4.5rem 0; /* Adjusted to match new proportions */
+      padding: 0 0 4.5rem 0;
     }
 
     @media (min-width: 1440px) {
@@ -60,14 +60,14 @@
     }
 
     @media (min-width: 1920px) {
-      padding: 0 0 5.5rem 0; /* Adjusted to match new proportions */
-      gap: 3.2rem; /* Adjusted to match new proportions */
+      padding: 0 0 5.5rem 0;
+      gap: 3.2rem;
       border-bottom: 6px solid #0e0e0e;
     }
 
     @media (min-width: 2560px) {
-      padding: 0 0 5.8rem 0; /* Adjusted to match new proportions */
-      gap: 3.8rem; /* Adjusted to match new proportions */
+      padding: 0 0 5.8rem 0;
+      gap: 3.8rem;
     }
 
     h2 {
@@ -80,7 +80,7 @@
       }
 
       @media (min-width: 1024px) {
-        font-size: 2.8rem; /* Adjusted to match new proportions */
+        font-size: 2.8rem;
       }
 
       @media (min-width: 1440px) {
@@ -89,12 +89,12 @@
       }
 
       @media (min-width: 1920px) {
-        font-size: 3.6rem; /* Adjusted to match new proportions */
+        font-size: 3.6rem;
         max-width: 40%;
       }
 
       @media (min-width: 2560px) {
-        font-size: 4rem; /* Adjusted to match new proportions */
+        font-size: 4rem;
         line-height: 1.1;
       }
     }
@@ -117,12 +117,12 @@
 
       @media (min-width: 1920px) {
         max-width: 45%;
-        gap: 2.1rem; /* Adjusted to match new proportions */
+        gap: 2.1rem;
       }
 
       @media (min-width: 2560px) {
         max-width: 42%;
-        gap: 2.3rem; /* Adjusted to match new proportions */
+        gap: 2.3rem;
       }
 
       p {
@@ -138,13 +138,13 @@
         }
 
         @media (min-width: 1920px) {
-          font-size: 1.15rem; /* Adjusted to match new proportions */
-          line-height: 1.55; /* Adjusted to match new proportions */
+          font-size: 1.15rem;
+          line-height: 1.55;
         }
 
         @media (min-width: 2560px) {
-          font-size: 1.25rem; /* Adjusted to match new proportions */
-          line-height: 1.55; /* Adjusted to match new proportions */
+          font-size: 1.25rem;
+          line-height: 1.55;
         }
       }
     }
@@ -167,11 +167,11 @@
     }
 
     @media (min-width: 1920px) {
-      padding-top: 4.5rem; /* Adjusted to match new proportions */
+      padding-top: 4.5rem;
     }
 
     @media (min-width: 2560px) {
-      padding-top: 5rem; /* Adjusted to match new proportions */
+      padding-top: 5rem;
     }
   }
 }
