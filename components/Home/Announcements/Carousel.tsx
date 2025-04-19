@@ -150,7 +150,7 @@ function Carousel({
         <SwiperSlide key={announcement.id} className={styles.slide}>
           <div
             onClick={() => handleSlideClick(idx)}
-            style={{ width: "100%", height: "100%" }}
+            style={{ width: "100%", height: "100%", cursor: idx === activeIdx ? "grab" : "pointer" }}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {

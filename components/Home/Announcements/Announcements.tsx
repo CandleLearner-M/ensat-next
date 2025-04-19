@@ -1,33 +1,34 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useTranslations } from "next-intl";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
 import Carousel from "./Carousel";
 import { sampleAnnouncements, type Announcement } from "./dummydata";
 
-// Animation variants
 const sectionVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.6,
+      duration: 0.5,
+      staggerChildren: 0.2,
     },
   },
 };
 
 const headerVariants = {
-  hidden: { y: -30, opacity: 0 },
+  hidden: { y: -20, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
     transition: {
+      delay: 0.1,
       type: "spring",
-      stiffness: 100,
-      damping: 12,
+      stiffness: 120,
+      damping: 15,
     },
   },
 };
@@ -36,12 +37,15 @@ const filterContainerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 },
+    transition: {
+      delay: 0.2,
+      staggerChildren: 0.13,
+    },
   },
 };
 
 const filterButtonVariants = {
-  hidden: { y: 10, opacity: 0 },
+  hidden: { y: 15, opacity: 0 },
   visible: {
     y: 0,
     opacity: 1,
@@ -50,15 +54,21 @@ const filterButtonVariants = {
 };
 
 const carouselVariants = {
-  hidden: { scale: 0.95, opacity: 0 },
+  hidden: { scale: 0.98, opacity: 0 },
   visible: {
     scale: 1,
     opacity: 1,
     transition: {
+      delay: 0.3,
       type: "spring",
-      stiffness: 80,
-      damping: 15,
+      stiffness: 100,
+      damping: 18,
     },
+  },
+  exit: {
+    opacity: 0,
+    scale: 0.98,
+    transition: { duration: 0.2 },
   },
 };
 
@@ -69,8 +79,8 @@ const viewAllVariants = {
     opacity: 1,
     transition: {
       type: "spring",
-      stiffness: 100,
-      damping: 12,
+      stiffness: 110,
+      damping: 14,
     },
   },
 };
@@ -81,12 +91,13 @@ type AnnouncementsProps = {
   autoplay?: boolean;
   autoplaySpeed?: number;
   showFilters?: boolean;
-  maxVisibleCards?: number;
   viewAllLink?: string;
 };
 
 function Announcements({
   data = sampleAnnouncements,
+  autoplay = true,
+  autoplaySpeed = 3500,
   showFilters = true,
   viewAllLink = "/announcements",
   title: titleProp,
@@ -94,8 +105,6 @@ function Announcements({
   const t = useTranslations("Announcements");
 
   const [activeFilter, setActiveFilter] = useState("All");
-
-  const carouselTrackRef = useRef<HTMLDivElement>(null);
 
   const displayTitle = titleProp || t("title");
 
@@ -140,26 +149,17 @@ function Announcements({
       aria-labelledby="announcements-title"
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
+      viewport={{ once: true, amount: 0.2 }}
       variants={sectionVariants}
     >
       <div className={styles.container}>
-        <motion.header
-          className={styles.header}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={headerVariants}
-        >
+        <motion.header className={styles.header} variants={headerVariants}>
           <h2 id="announcements-title" className={styles.title}>
             {displayTitle}
           </h2>
           {showFilters && categories.length > 1 && (
             <motion.div
               className={styles.filters}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.6 }}
               variants={filterContainerVariants}
             >
               {categories.map((displayedCategory) => (
@@ -179,7 +179,7 @@ function Announcements({
           )}
         </motion.header>
 
-        <>
+        <AnimatePresence mode="wait">
           {filteredAnnouncements.length > 0 ? (
             <motion.div
               className={styles.carouselContainer}
@@ -187,28 +187,30 @@ function Announcements({
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={carouselVariants}
+              key="carousel-content"
             >
-              <Carousel data={filteredAnnouncements} />
+              <Carousel
+                data={filteredAnnouncements}
+                autoplayEnabled={autoplay}
+                autoplaySpeed={autoplaySpeed}
+              />
             </motion.div>
           ) : (
             <motion.div
               className={styles.empty}
-              ref={carouselTrackRef}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.5 }}
               variants={carouselVariants}
+              key="empty-content"
             >
               <p>{t("emptyMessage")}</p>
             </motion.div>
           )}
-        </>
+        </AnimatePresence>
 
         <motion.div
           className={styles.viewAllWrapper}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.8 }}
+          viewport={{ once: true, amount: 0.2 }}
           variants={viewAllVariants}
         >
           <a href={viewAllLink} className={styles.viewAll}>

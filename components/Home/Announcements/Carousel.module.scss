@@ -1,6 +1,7 @@
 .carousel {
-  margin: 4rem auto;
+  margin: 0 auto;
   height: auto;
+  max-width: 1480px;
   width: 80%;
 
   @media (max-width: 640px) {
@@ -29,11 +30,11 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 2rem !important;
+  height: 2rem !important;
   @media (min-width: 768px) {
-    width: 3rem;
-    height: 3rem;
+    width: 3rem !important;
+    height: 3rem !important;
   }
   border-radius: 50%;
   background-color: white;
