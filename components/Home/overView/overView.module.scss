@@ -1,73 +1,71 @@
 .overview {
-  min-height: 100vh;
-  max-height: 950px;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  padding: 2rem;
-  @media (max-width: 768px) {
-    padding-bottom: 0;
-  }
+  padding-left: 2rem;
+  padding-right: 2rem;
+  width: 100%;
+  margin: 0 auto;
 
   @media (min-width: 768px) {
-    padding: 2rem 3rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 
   @media (min-width: 1024px) {
-    padding: 2rem 5rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 
   @media (min-width: 1440px) {
-    padding: 3rem 8rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
     gap: 1.5rem;
     max-width: 2000px;
-    margin: 0 auto;
-    max-height: 1000px;
   }
 
   @media (min-width: 1920px) {
-    padding: 4rem 10rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
     gap: 2rem;
-    max-height: 1050px;
   }
 
   @media (min-width: 2560px) {
-    padding: 5rem 12rem;
+    padding-left: 12rem;
+    padding-right: 12rem;
     max-width: 2400px;
-    margin: 0 auto;
-    max-height: 1100px;
   }
 
   &__sec1 {
     display: flex;
     flex-direction: column;
-    padding: 3rem 0;
+    padding: 0 0 3rem 0;
     border-bottom: 5px solid #0e0e0e;
     gap: 2rem;
 
     @media (min-width: 768px) {
-      padding: 4rem 0;
+      padding: 0 0 4rem 0;
       flex-direction: row;
       justify-content: space-between;
     }
 
     @media (min-width: 1024px) {
-      padding: 6rem 0;
+      padding: 0 0 6rem 0;
     }
 
     @media (min-width: 1440px) {
-      padding: 6rem 0;
+      padding: 0 0 6rem 0;
       gap: 3rem;
     }
 
     @media (min-width: 1920px) {
-      padding: 6.5rem 0;
+      padding: 0 0 6.5rem 0;
       gap: 4rem;
       border-bottom: 6px solid #0e0e0e;
     }
 
     @media (min-width: 2560px) {
-      padding: 7rem 0;
+      padding: 0 0 7rem 0;
       gap: 5rem;
     }
 
@@ -152,7 +150,8 @@
   }
 
   &__sec2 {
-    padding-top: 3rem;
+    padding-top: 3rem;  
+    padding-bottom: 0;
 
     @media (min-width: 768px) {
       padding-top: 4rem;

@@ -5,10 +5,10 @@ import HeroBG from "./HeroBG";
 
 function Hero() {
   return (
-    <main className={styles.hero}>
+    <section className={styles.hero}>
       <HeroBG />
       <HeroAnimation />
-    </main>
+    </section>
   );
 }
 export default React.memo(Hero);

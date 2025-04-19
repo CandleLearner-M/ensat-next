@@ -4,7 +4,6 @@
   themes: all;
 }
 
-
 @import "../../styles/variables.scss";
 
 * {
@@ -51,4 +50,23 @@ h5 {
 
 body.slider-open {
   overflow: hidden !important;
+}
+
+section {
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  margin-bottom: 4rem !important;
+
+  @media (min-width: 768px) {
+    margin-bottom: 6rem !important;
+  }
+
+  @media (min-width: 1024px) {
+    margin-bottom: 8rem !important;
+  }
+
+  &:last-child {
+    margin-bottom: 0 !important;
+  }
 }
