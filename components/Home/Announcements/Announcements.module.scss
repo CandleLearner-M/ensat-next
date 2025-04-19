@@ -11,16 +11,17 @@
   height: auto;
 
   .container {
-    max-width: 1280px;
+    width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0;
     position: relative;
   }
 
   .header {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin: 1rem auto;
+    padding: 0 4rem;
 
     @media (min-width: 768px) {
       margin-bottom: 3rem;
@@ -91,155 +92,7 @@
 
   .carouselContainer {
     position: relative;
-    padding: 2em 1rem;
-    margin: 0 -1rem;
-    min-height: 550px;
-
-    @media (min-width: 768px) {
-      min-height: 700px;
-    }
-
-    @media (min-width: 641px) {
-      &:hover {
-        .navButton {
-          opacity: 1;
-          transform: translateY(-50%) translateX(0);
-        }
-      }
-    }
-  }
-
-  .navButton {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: white;
-    border: none;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer;
-    z-index: 20;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.3s ease;
-
-    svg {
-      width: 1.25rem;
-      height: 1.25rem;
-      color: #1f2937;
-    }
-
-    &.prevButton {
-      left: 1rem;
-      @media (min-width: 641px) {
-        transform: translateY(-50%) translateX(-1rem);
-      }
-    }
-
-    &.nextButton {
-      right: 1rem;
-      @media (min-width: 641px) {
-        transform: translateY(-50%) translateX(1rem);
-      }
-    }
-
-    &:hover {
-      background-color: #0070f3;
-      svg {
-        color: white;
-      }
-    }
-
-    @media (max-width: 640px) {
-      opacity: 1;
-      transform: translateY(-50%) translateX(0);
-      width: 2.5rem;
-      height: 2.5rem;
-      svg {
-        width: 1rem;
-        height: 1rem;
-      }
-      &.prevButton {
-        left: 0.5rem;
-      }
-      &.nextButton {
-        right: 0.5rem;
-      }
-    }
-  }
-
-  .carouselTrackWrapper {
-    overflow: hidden;
     width: 100%;
-    position: relative;
-  }
-
-  .carouselTrack {
-    position: relative;
-    width: 100%;
-    min-height: 550px;
-
-    @media (min-width: 768px) {
-      min-height: 700px;
-    }
-
-    @media (min-width: 768px) {
-      width: 100%;
-    }
-  }
-
-  .carouselInner {
-    display: flex;
-    position: relative;
-    align-items: center;
-    min-height: 550px;
-
-    @media (min-width: 768px) {
-      min-height: 700px;
-    }
-  }
-
-  .carouselItem {
-    flex: 0 0 auto;
-    position: relative;
-    transform-origin: center center;
-  }
-
-  .indicators {
-    display: flex;
-    justify-content: center;
-    gap: 0.4rem;
-    margin-top: 2.5rem;
-    .indicator {
-      width: 0.4rem;
-      height: 0.4rem;
-      border-radius: 50%;
-      background-color: #d1d5db;
-      border: none;
-      padding: 0;
-      transition: all 0.3s ease;
-      cursor: pointer;
-
-      @media (min-width: 600px) {
-        width: 0.5rem;
-        gap: 0.5rem;
-
-        height: 0.5rem;
-      }
-
-      &.active {
-        background-color: #0070f3;
-        transform: scale(1.2);
-      }
-
-      &:hover {
-        background-color: #9ca3af;
-      }
-    }
   }
 
   .empty {
@@ -289,14 +142,12 @@
       }
 
       svg {
-        transition: transform 0.2s ease; // Animate arrow icon on hover
+        transition: transform 0.2s ease;
       }
 
       &:hover svg {
-        transform: translateX(4px); // Move arrow slightly right on hover
+        transform: translateX(4px);
       }
     }
   }
 }
-
-

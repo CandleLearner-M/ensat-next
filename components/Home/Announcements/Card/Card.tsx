@@ -16,7 +16,7 @@ type CardProps = {
   link?: string;
   linkText?: string;
   style?: React.CSSProperties;
-  isActive: boolean;
+  onClick?: () => void;
 };
 
 const cardWrapperVariants: Variants = {
@@ -104,11 +104,13 @@ function Card({
   link = "#",
   linkText = "Learn More",
   style,
+  onClick
 }: CardProps) {
   const finalImageSrc = imageSrc || fallbackImg;
 
   return (
     <motion.div
+      onClick={onClick}
       className={styles.cardMotionWrapper}
       style={style}
       variants={cardWrapperVariants}

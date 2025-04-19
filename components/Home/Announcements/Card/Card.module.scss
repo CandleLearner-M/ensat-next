@@ -76,7 +76,8 @@
   -webkit-line-clamp: 4;
   overflow: hidden;
   text-overflow: ellipsis;
-  transition: font-size 0.3s ease, min-height 0.3s ease, -webkit-line-clamp 0.3s step-end; // Add transitions
+  transition: font-size 0.3s ease, min-height 0.3s ease,
+    -webkit-line-clamp 0.3s step-end; // Add transitions
 }
 
 .buttonContainer {
@@ -131,4 +132,7 @@
     min-height: 4.56rem; // Approx 3 lines (3 * (0.95rem * 1.6 line-height))
     -webkit-line-clamp: 3; // Show fewer lines on smaller screens
   }
+}
+.cardMotionWrapper:hover .buttonWrapper::after {
+  width: 100%;
 }
