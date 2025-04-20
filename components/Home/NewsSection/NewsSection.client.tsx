@@ -172,6 +172,7 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
                     alt={article.title}
                     width={400}
                     height={400}
+                    quality={80}
                     className={styles.image}
                   />
                 )}
