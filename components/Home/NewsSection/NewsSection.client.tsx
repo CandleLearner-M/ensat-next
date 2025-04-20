@@ -170,8 +170,8 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
                   <Image
                     src={article.image.formats?.small?.url || article.image.url}
                     alt={article.title}
-                    width={120}
-                    height={120}
+                    width={400}
+                    height={400}
                     className={styles.image}
                   />
                 )}
