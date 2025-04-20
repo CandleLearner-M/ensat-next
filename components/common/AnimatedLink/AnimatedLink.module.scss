@@ -1,27 +1,26 @@
 .link {
   position: relative;
-  display: inline-block;
+  display: inline;
   text-decoration: none;
   color: inherit;
   cursor: pointer;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  
+  background: linear-gradient(var(--underline-color), var(--underline-color)) no-repeat;
+  background-size: 0% 1px;
+  background-position: 0 calc(100% - 1px);
+  transition: background-size 0.3s;
   padding-bottom: 1px;
 
   --underline-color: black;
+  
+  &:hover {
+    background-size: 100% 1px;
+  }
 }
 
-.link::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 1px;
-  bottom: 2px;
-  left: 0;
-  background-color: var(--underline-color);
-
-  transition: 0.3s ease;
-}
-
-
-.link:hover::after {
-  width: 100%;
+.headline {
+  display: inline;
+  margin: 0;
 }

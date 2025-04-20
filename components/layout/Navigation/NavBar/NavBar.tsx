@@ -54,7 +54,7 @@ function NavBar() {
 
       debouncedScrollEnd();
     }, 100),
-    []
+    [checkIfAtTop, debouncedScrollEnd]
   );
 
   const handleScroll = useCallback(() => {
@@ -62,12 +62,14 @@ function NavBar() {
   }, [prevScrollPos, throttledScrolledHandler]);
 
   useEffect(() => {
+    checkIfAtTop();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       throttledScrolledHandler.cancel();
+      debouncedScrollEnd.cancel();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll, throttledScrolledHandler]);
+  }, [handleScroll, throttledScrolledHandler, debouncedScrollEnd, checkIfAtTop]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
