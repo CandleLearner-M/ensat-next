@@ -1,3 +1,5 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import React, { useCallback, useEffect, useState } from "react";
@@ -7,7 +9,9 @@ import LocaleSwitcher from "./LocaleSwitcher";
 import MenuBtn from "./MenuBtn";
 import styles from "./NavBar.module.scss";
 
+import { AnimatePresence } from "framer-motion";
 import throttle from "lodash-es/throttle";
+import Search from "../../Search/Search";
 
 function NavBar() {
   const t = useTranslations("Navigation.NavBar");
@@ -15,6 +19,12 @@ function NavBar() {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [visible, setVisible] = useState(true);
   const [isTransparent, setIsTransparent] = useState(true);
+
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+
+  const handleCloseSearch = useCallback(() => {
+    setIsSearchOpen(false);
+  }, []);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledScrolledHandler = useCallback(
@@ -43,6 +53,22 @@ function NavBar() {
     };
   }, [handleScroll, throttledScrolledHandler]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        handleCloseSearch();
+      }
+    };
+
+    if (isSearchOpen) {
+      window.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isSearchOpen, handleCloseSearch]);
+
   return (
     <nav
       className={`${styles.navbar} ${
@@ -59,11 +85,15 @@ function NavBar() {
         <div className={styles.navbar__actions}>
           <LocaleSwitcher txtColor={isTransparent ? "white" : "black"} />
 
-          <button className={styles.navbar__action} aria-label={t("search")}>
+          <button
+            className={`${styles.navbar__action} ${styles.searchBtn}`}
+            aria-label={t("search")}
+            onClick={() => setIsSearchOpen(true)}
+          >
             <div
               className={`flex justify-space-between gap-6 transition-all duration-300 ease-in-out ${
                 !isTransparent ? "text-black" : "text-white"
-              } ${styles.action}`}
+              } ${styles.action} `}
             >
               <FiSearch size={30} className={styles.navbar__icon} />
               <span className={`${styles.navbar__actionText}  `}>
@@ -75,6 +105,19 @@ function NavBar() {
           <MenuBtn color={!isTransparent ? "black" : "white"} />
         </div>
       </div>
+
+      <AnimatePresence>
+        {isSearchOpen && (
+          <Search
+            onClose={handleCloseSearch}
+            initial={{ y: "-100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "-100%" }}
+            transition={{ type: "spring", stiffness: 100, damping: 20 }}
+            key={"search"}
+          />
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

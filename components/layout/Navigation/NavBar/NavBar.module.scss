@@ -73,15 +73,19 @@ $text-size: 1.3rem;
     border: none;
     background: none;
 
-    // Search
+    // Menu
     &:last-child {
       background-color: #0e0e0e;
       transition: all 0.3s ease;
       padding: 0 1.7rem;
 
-        &:hover {
-          background-color: rgba(14, 14, 14, 0.93);
-        }
+      &:hover {
+        background-color: rgba(14, 14, 14, 0.93);
+      }
+    }
+
+    .searchBtn {
+      background-color: green !important;
     }
   }
 
@@ -105,8 +109,6 @@ $text-size: 1.3rem;
       padding: 0 1.2rem;
       gap: 1rem;
 
-
-
       &:first-child {
         padding: 0 1.4rem;
         background-color: transparent;
@@ -116,7 +118,7 @@ $text-size: 1.3rem;
       &:last-child {
         padding: 0 1.4rem;
         background-color: transparent;
-        
+
         &:hover {
           background-color: transparent;
         }
@@ -188,3 +190,4 @@ $text-size: 1.3rem;
     align-items: center;
   }
 }
+

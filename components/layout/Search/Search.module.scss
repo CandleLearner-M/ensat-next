@@ -1,0 +1,116 @@
+.search {
+  position: fixed;
+  top: 0;
+  // left: 0;
+  width: 100%;
+  height: 200px;
+
+  background-color: #292c2f;
+  z-index: 2000;
+}
+
+.search {
+  position: fixed;
+  top: calc(100% + 10px);
+  top: 0;
+  right: 0;
+  width: clamp(300px, 40vw, 500px);
+
+  @media (max-width: 1024px) {
+    width: 100vw;
+    right: 0;
+  }
+  background-color: #2d3033;
+  color: #fff;
+  border-radius: 0 0 8px 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.search__bar {
+  display: flex;
+  align-items: center;
+  background-color: #0e0e0e;
+  border: 1px solid #4a4d50;
+  border-radius: 4px;
+  padding: 0.25rem 0.5rem;
+}
+
+/* Search input field */
+.search__input {
+  flex-grow: 1; // Take available space
+  background: none;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem;
+
+  &::placeholder {
+    color: #a0a0a0;
+  }
+}
+
+/* Style for icon buttons (Search & Close) */
+.search__iconButton {
+  background: none;
+  border: none;
+  color: #c0c0c0; // Light gray icons
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1); // Subtle hover effect
+    color: #fff;
+  }
+
+  &:focus {
+    outline: 2px solid skyblue; // Accessibility focus indicator
+    outline-offset: 1px;
+  }
+}
+
+/* Quick Links Section */
+.quickLinks {
+  padding-top: 0.5rem; // Add some space above
+  border-top: 1px solid #4a4d50; // Separator line
+}
+
+.quickLinks__title {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #a0a0a0; // Lighter color for the title
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.quickLinks__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin-bottom: 0.4rem;
+  }
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+
+    &:hover {
+      color: #e0e0e0; // Slightly lighter on hover
+      text-decoration: underline;
+    }
+  }
+}
