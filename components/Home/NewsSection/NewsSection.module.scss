@@ -19,6 +19,9 @@
 // Featured Article
 .featured {
   display: grid;
+  @media (min-width: 1024px) {
+    padding: 1rem 2rem;
+  }
   grid-template-columns: 1fr;
   gap: 2.5rem;
   margin-bottom: 3.5rem;
@@ -39,10 +42,11 @@
 
 .featuredImage {
   position: relative;
-  height: 100%;
+  height: 90%;
+  align-self: center;
   width: auto;
   overflow: hidden;
-  
+
   @media (max-width: 1024px) {
     height: 350px;
   }

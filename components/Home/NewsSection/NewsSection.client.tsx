@@ -1,11 +1,10 @@
 "use client";
 
+import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
 import { motion } from "framer-motion";
-import styles from "./NewsSection.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
-import { useRef } from "react";
+import styles from "./NewsSection.module.scss";
 
 // Enhanced animation variants
 const featuredVariants = {
@@ -15,7 +14,7 @@ const featuredVariants = {
     y: 0,
     transition: {
       duration: 0.8,
-      ease: [0.215, 0.61, 0.355, 1], // Cubic bezier for smoother motion
+      ease: [0.215, 0.61, 0.355, 1],
     },
   },
 };
@@ -117,15 +116,12 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
               {featuredArticle.description}
             </motion.p>
 
-            <motion.div
-              whileHover={{ x: 10 }}
-              transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
+            <motion.div>
               <Link
                 href={`/news/${featuredArticle.id}`}
                 className={styles.readMore}
               >
-                {locale === "fr" ? "Lire la suite" : "Read more"} →
+                {locale === "fr" ? "Lire la suite" : "Read more"} &nbsp;&nbsp;→
               </Link>
             </motion.div>
           </motion.div>
@@ -139,7 +135,7 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
               className={styles.newsItem}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, amount: 0.2 }}
               transition={{
                 duration: 0.5,
                 delay: i * 0.1,
@@ -188,17 +184,13 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
           className={styles.viewAll}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <motion.div
-            variants={buttonVariants}
-            initial="rest"
-            whileHover="hover"
-            whileTap="tap"
-          >
+          <motion.div variants={buttonVariants} initial="rest" whileTap="tap">
             <Link href="/news" className={styles.viewAllLink}>
-              {locale === "fr" ? "Voir toutes les actualités" : "View all news"}
+              {locale === "fr" ? "Voir toutes les actualités" : "View all news"}{" "}
+              &nbsp;&nbsp;→
             </Link>
           </motion.div>
         </motion.div>
