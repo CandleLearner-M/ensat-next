@@ -12,6 +12,7 @@ import styles from "./NavBar.module.scss";
 import { AnimatePresence } from "framer-motion";
 import throttle from "lodash-es/throttle";
 import Search from "../../Search/Search";
+import { debounce } from "lodash-es";
 
 function NavBar() {
   const t = useTranslations("Navigation.NavBar");
@@ -26,17 +27,32 @@ function NavBar() {
     setIsSearchOpen(false);
   }, []);
 
+  const checkIfAtTop = useCallback(() => {
+    setIsTransparent(window.scrollY < 10);
+  }, []);
+
+  // This will run after scrolling stops
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const debouncedScrollEnd = useCallback(
+    debounce(() => {
+      checkIfAtTop();
+    }, 150),
+    [checkIfAtTop]
+  );
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledScrolledHandler = useCallback(
     throttle((currentPrevScrollPos) => {
-      setIsTransparent(window.scrollY < 10);
+      checkIfAtTop();
+
       const currentScrollPos = window.scrollY;
 
       const isScrollingUp = currentPrevScrollPos > currentScrollPos;
 
       setVisible(isScrollingUp);
-
       setPrevScrollPos(currentScrollPos);
+
+      debouncedScrollEnd();
     }, 100),
     []
   );

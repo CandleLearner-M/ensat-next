@@ -2,58 +2,57 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./Search.module.scss";
-// Import motion components and types
-import { motion, MotionProps, Variants } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { FiSearch, FiX } from "react-icons/fi";
+import { useTranslations } from "next-intl";
+
+const searchBarVariants = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.4,
+      type: "spring",
+      stiffness: 300,
+      damping: 20,
+    },
+  },
+};
+
+const quickLinksVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.2,
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
+const listItemVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    x: 0,
+    transition: {
+      delay: 0.3 + custom * 0.1,
+      duration: 0.2,
+      ease: "easeOut",
+    },
+  }),
+};
 
 type SearchProps = {
   onClose: () => void;
 } & MotionProps;
 
-// --- Animation Variants ---
-
-// Variants for the container that holds the search bar and quick links
-const contentContainerVariants: Variants = {
-  hidden: {
-    opacity: 0,
-    transition: {
-      when: "afterChildren", // Ensure children exit first
-      staggerChildren: 0.05, // Stagger children exit slightly
-      staggerDirection: -1, // Reverse stagger on exit
-    },
-  },
-  visible: {
-    opacity: 1,
-    transition: {
-      when: "beforeChildren", // Ensure container is ready before children animate in
-      delayChildren: 0.1, // Small delay after main component animates before children start
-      staggerChildren: 0.1, // Delay between each child animating in
-    },
-  },
-};
-
-// Variants for individual items (search bar, title, list items)
-const itemVariants: Variants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring", // Or "tween" with ease
-      stiffness: 120,
-      damping: 15,
-      // ease: "easeOut", // Use if type is "tween"
-      // duration: 0.3,  // Use if type is "tween"
-    },
-  },
-  // Optional: define exit animation for items if needed, otherwise they'll just disappear
-  // exit: { y: -10, opacity: 0 }
-};
-
-// --- Component ---
-
 function Search({ onClose, ...motionProps }: SearchProps) {
+  const t = useTranslations("Search");
   const searchRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -65,74 +64,88 @@ function Search({ onClose, ...motionProps }: SearchProps) {
         onClose();
       }
     };
+
     document.addEventListener("mousedown", handleClickOutside);
+
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
 
   return (
-    // Main search container animation (e.g., scaleX, opacity defined in NavBar)
     <motion.div
       className={styles.search}
       ref={searchRef}
-      {...motionProps} // Pass initial, animate, exit, transition from NavBar
+      {...motionProps}
       layout
     >
-      {/* Inner container to manage staggered animations for content */}
       <motion.div
-        className={styles.search__contentWrapper} // Optional: Add class if needed for styling
-        variants={contentContainerVariants}
-        initial="hidden" // Start children hidden
-        animate="visible" // Animate children to visible
-        exit="hidden" // Animate children out (if exit defined in itemVariants)
+        className={styles.search__bar}
+        variants={searchBarVariants}
+        initial="hidden"
+        animate="visible"
       >
-        {/* Search Bar - Animated Item */}
-        <motion.div className={styles.search__bar} variants={itemVariants}>
-          <input
-            type="text"
-            className={styles.search__input}
-            placeholder="Search ENSA Tanger..."
-            autoFocus
-          />
-          <button className={styles.search__iconButton} aria-label="Search">
-            <FiSearch size={20} />
-          </button>
-          <button
-            className={styles.search__iconButton}
-            onClick={onClose}
-            aria-label="Close search"
-          >
-            <FiX size={24} />
-          </button>
-        </motion.div>
+        <input
+          type="text"
+          className={styles.search__input}
+          placeholder={t("placeholder")}
+          autoFocus
+        />
+        <motion.button
+          className={styles.search__iconButton}
+          aria-label={t("search")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FiSearch size={20} />
+        </motion.button>
+        <motion.button
+          className={styles.search__iconButton}
+          onClick={onClose}
+          aria-label={t("close")}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+        >
+          <FiX size={24} />
+        </motion.button>
+      </motion.div>
 
-        {/* Quick Links Section - Animated Item */}
-        <motion.div className={styles.quickLinks} variants={itemVariants}>
-          {/* Title - Also animated (optional, could be part of quickLinks animation) */}
-          <motion.h4
-            className={styles.quickLinks__title}
-            // variants={itemVariants} // Inherits from parent, or define specific variant if needed
+      <motion.div
+        className={styles.quickLinks}
+        variants={quickLinksVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <h4 className={styles.quickLinks__title}>{t("quickLinks.title")}</h4>
+        <ul className={styles.quickLinks__list}>
+          <motion.li
+            custom={0}
+            variants={listItemVariants}
+            initial="hidden"
+            animate="visible"
           >
-            QUICK LINKS
-          </motion.h4>
-          <ul className={styles.quickLinks__list}>
-            {/* List Item - Animated Item */}
-            {/* Wrap Link in motion.li */}
-            <motion.li variants={itemVariants}>
-              <Link href="/a-to-z">A to Z index</Link>
-            </motion.li>
-            {/* Add more motion.li items here if you have more links */}
-            <motion.li variants={itemVariants}>
-              <Link href="/another-link">Another Link</Link>
-            </motion.li>
-            <motion.li variants={itemVariants}>
-              <Link href="/contact">Contact Us</Link>
-            </motion.li>
-          </ul>
-        </motion.div>
+            <Link href="/a-to-z">{t("quickLinks.aToZ")}</Link>
+          </motion.li>
+          <motion.li
+            custom={1}
+            variants={listItemVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <Link href="/courses">{t("quickLinks.courses")}</Link>
+          </motion.li>
+          <motion.li
+            custom={2}
+            variants={listItemVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <Link href="/programs">{t("quickLinks.programs")}</Link>
+          </motion.li>
+        </ul>
       </motion.div>
     </motion.div>
   );
 }
+
 export default Search;

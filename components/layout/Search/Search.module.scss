@@ -6,7 +6,7 @@
   width: clamp(300px, 40vw, 500px);
 
   @media (max-width: 1024px) {
-    width: 100vw;
+    width: 100%;
     right: 0;
   }
   background-color: #2d3033;

@@ -86,6 +86,18 @@
     }
   },
 
+  "Search": {
+    "placeholder": "Rechercher ENSA Tanger...",
+    "search": "Rechercher",
+    "close": "Fermer la recherche",
+    "quickLinks": {
+      "title": "LIENS RAPIDES",
+      "aToZ": "Index de A à Z",
+      "courses": "Cours",
+      "programs": "Programmes"
+    }
+  },
+
   "Overview": {
     "title": "ENSAT en un coup d'œil",
     "description": "Depuis 1998, l'ENSAT s'engage à former des ingénieurs innovants, en intégrant l'excellence académique à la collaboration avec l'industrie, et en façonnant l'avenir du paysage technologique marocain.",

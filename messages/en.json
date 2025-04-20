@@ -84,6 +84,18 @@
     }
   },
 
+  "Search": {
+    "placeholder": "Search ENSA Tanger...",
+    "search": "Search",
+    "close": "Close search",
+    "quickLinks": {
+      "title": "QUICK LINKS",
+      "aToZ": "A to Z index",
+      "courses": "Courses",
+      "programs": "Programs"
+    }
+  },
+
   "Overview": {
     "title": "ENSAT at a glance",
     "description": "Since 1998, ENSAT has been committed to training innovative engineers, integrating academic excellence with industry collaboration, and shaping the future of Morocco's technological landscape.",
