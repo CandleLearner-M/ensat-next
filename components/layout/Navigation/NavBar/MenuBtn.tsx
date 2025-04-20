@@ -1,11 +1,10 @@
 "use client";
 
+import { useScreenSize } from "@/utils/useScreenSize";
+import { useTranslations } from "next-intl";
 import { TbMenu3 } from "react-icons/tb";
 import { useNavigation } from "../state/context";
 import styles from "./NavBar.module.scss";
-import { useTranslations } from "next-intl";
-import SwapUp from "@/components/common/SwapUp";
-import { useScreenSize } from "@/utils/useScreenSize";
 
 function MenuBtn({ color = "white" }: { color: "black" | "white" }) {
   const { dispatch } = useNavigation();
@@ -22,14 +21,12 @@ function MenuBtn({ color = "white" }: { color: "black" | "white" }) {
       onClick={() => dispatch({ type: "OPEN_MENU" })}
       aria-label={t("menu")}
     >
-      <SwapUp custom={true}>
-        <div
-          className={`flex justify-space-between gap-6 ${colors} transition-all duration-300 ease-in-out`}
-        >
-          <TbMenu3 size={33} className={styles.navbar__icon} />
-          <span className={styles.navbar__actionText}>{t("menu")}</span>
-        </div>
-      </SwapUp>
+      <div
+        className={`flex justify-space-between gap-6 ${colors} transition-all duration-300 ease-in-out ${styles.action}`}
+      >
+        <TbMenu3 size={33} className={styles.navbar__icon} />
+        <span className={styles.navbar__actionText}>{t("menu")}</span>
+      </div>
     </button>
   );
 }

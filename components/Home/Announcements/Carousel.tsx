@@ -117,8 +117,13 @@ function Carousel({
           spaceBetween: 10,
         },
         640: {
-          slidesPerView: 2.3,
-          coverflowEffect: { stretch: 40, depth: 180, rotate: 0 },
+          slidesPerView: 1.9,
+          coverflowEffect: { stretch: 40, depth: 150, rotate: 0 },
+          spaceBetween: 20,
+        },
+        800: {
+          slidesPerView: 2.,
+          coverflowEffect: { stretch: 40, depth: 158, rotate: 0 },
           spaceBetween: 20,
         },
         1024: {
@@ -150,7 +155,11 @@ function Carousel({
         <SwiperSlide key={announcement.id} className={styles.slide}>
           <div
             onClick={() => handleSlideClick(idx)}
-            style={{ width: "100%", height: "100%", cursor: idx === activeIdx ? "grab" : "pointer" }}
+            style={{
+              width: "100%",
+              height: "100%",
+              cursor: idx === activeIdx ? "grab" : "pointer",
+            }}
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {

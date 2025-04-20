@@ -1,12 +1,11 @@
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
+import React, { useCallback, useEffect, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import Logo from "../../Logo/Logo";
+import LocaleSwitcher from "./LocaleSwitcher";
 import MenuBtn from "./MenuBtn";
 import styles from "./NavBar.module.scss";
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/navigation";
-import LocaleSwitcher from "./LocaleSwitcher";
-import SwapUp from "@/components/common/SwapUp";
-import React, { useCallback, useEffect, useState } from "react";
 
 import throttle from "lodash-es/throttle";
 
@@ -61,18 +60,16 @@ function NavBar() {
           <LocaleSwitcher txtColor={isTransparent ? "white" : "black"} />
 
           <button className={styles.navbar__action} aria-label={t("search")}>
-            <SwapUp custom={true}>
-              <div
-                className={`flex justify-space-between gap-6 transition-all duration-300 ease-in-out ${
-                  !isTransparent ? "text-black" : "text-white"
-                }`}
-              >
-                <FiSearch size={30} className={styles.navbar__icon} />
-                <span className={`${styles.navbar__actionText}  `}>
-                  {t("search")}
-                </span>
-              </div>
-            </SwapUp>
+            <div
+              className={`flex justify-space-between gap-6 transition-all duration-300 ease-in-out ${
+                !isTransparent ? "text-black" : "text-white"
+              } ${styles.action}`}
+            >
+              <FiSearch size={30} className={styles.navbar__icon} />
+              <span className={`${styles.navbar__actionText}  `}>
+                {t("search")}
+              </span>
+            </div>
           </button>
 
           <MenuBtn color={!isTransparent ? "black" : "white"} />
