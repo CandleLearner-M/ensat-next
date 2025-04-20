@@ -2,26 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./Search.module.scss";
-import { motion } from "framer-motion";
+import { motion, MotionProps } from "framer-motion";
 import { Link } from "@/i18n/navigation";
 import { FiSearch, FiX } from "react-icons/fi";
 
 type SearchProps = {
-  initial: { y?: string | number; opacity?: number; scale?: number };
-  animate: { y?: number; opacity?: number; scale?: number };
-  exit: { y?: string | number; opacity?: number; scale?: number };
-  transition: {
-    type?: string;
-    stiffness?: number;
-    damping?: number;
-    opacity?: number;
-    duration?: number;
-    ease?: string;
-  };
-  key: string;
-
   onClose: () => void;
-};
+} & MotionProps;
 
 function Search({ onClose, ...motionProps }: SearchProps) {
   const searchRef = useRef<HTMLDivElement>(null);
@@ -42,6 +29,7 @@ function Search({ onClose, ...motionProps }: SearchProps) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
+
   return (
     <motion.div
       className={styles.search}
@@ -53,7 +41,7 @@ function Search({ onClose, ...motionProps }: SearchProps) {
         <input
           type="text"
           className={styles.search__input}
-          placeholder="Search ENSA Tanger..." 
+          placeholder="Search ENSA Tanger..."
           autoFocus
         />
         <button className={styles.search__iconButton} aria-label="Search">
@@ -68,14 +56,12 @@ function Search({ onClose, ...motionProps }: SearchProps) {
         </button>
       </div>
 
-      {/* Quick Links Section */}
       <div className={styles.quickLinks}>
         <h4 className={styles.quickLinks__title}>QUICK LINKS</h4>
         <ul className={styles.quickLinks__list}>
           <li>
             <Link href="/a-to-z">A to Z index</Link> {/* Example Link */}
           </li>
-          {/* Add more links as needed */}
         </ul>
       </div>
     </motion.div>

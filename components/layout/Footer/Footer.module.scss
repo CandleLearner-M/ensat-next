@@ -256,10 +256,6 @@
   }
 
   img {
-    height: clamp(35px, 6vw, 45px);
-
-    @media (min-width: 1600px) {
-      height: clamp(45px, 5vw, 60px);
-    }
+    width: clamp(50px, 6vw, 80px);
   }
 }
