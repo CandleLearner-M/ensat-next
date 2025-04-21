@@ -13,6 +13,7 @@ import { AnimatePresence } from "framer-motion";
 import throttle from "lodash-es/throttle";
 import Search from "../../Search/Search";
 import { debounce } from "lodash-es";
+import { usePathname } from "next/navigation";
 
 function NavBar() {
   const t = useTranslations("Navigation.NavBar");
@@ -23,13 +24,17 @@ function NavBar() {
 
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const pathName = usePathname();
+
+  const transparentable = !(pathName.includes('news'));
+
   const handleCloseSearch = useCallback(() => {
     setIsSearchOpen(false);
   }, []);
 
   const checkIfAtTop = useCallback(() => {
-    setIsTransparent(window.scrollY < 10);
-  }, []);
+    setIsTransparent(window.scrollY < 10 && transparentable);
+  }, [transparentable]);
 
   // This will run after scrolling stops
   // eslint-disable-next-line react-hooks/exhaustive-deps
