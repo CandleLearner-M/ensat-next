@@ -23,6 +23,7 @@ interface Article {
   content: string;
   publishedAt: string;
   image: ArticleImage | null;
+  slug: string;
 }
 
 interface NewsMotionProps {
@@ -130,7 +131,7 @@ export default function NewsMotion({
               whileHover={{ x: 5 }}
               transition={{ duration: 0.2 }}
             >
-              <Link href={`/news/${featuredArticle.id}`}>
+              <Link href={`/news/${featuredArticle.slug}`}>
                 {featuredArticle.title}
               </Link>
             </motion.h2>
@@ -146,7 +147,7 @@ export default function NewsMotion({
             </motion.p>
 
             <Link
-              href={`/news/${featuredArticle.id}`}
+              href={`/news/${featuredArticle.slug}`}
               className={styles.readMore}
             >
               <span> {locale === "fr" ? "Lire la suite" : "Read more"}</span>
@@ -176,7 +177,7 @@ export default function NewsMotion({
                 <div className={styles.newsMeta}>{article.publishedAt}</div>
 
                 <h3 className={styles.newsTitle}>
-                  <AnimatedLink href={`/news/${article.id}`}>
+                  <AnimatedLink href={`/news/${article.slug}`}>
                     {article.title}
                   </AnimatedLink>
                 </h3>

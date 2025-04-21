@@ -1,15 +1,15 @@
+import { routing } from "@/i18n/routing";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
 
 import Navigation from "@/components/layout/Navigation/Navigation";
 import { canelaDeck, outfit } from "@/lib/fonts";
 
-import type { Metadata } from "next";
-import "./globals.scss";
-import NextTopLoader from "nextjs-toploader";
 import Footer from "@/components/layout/Footer/Footer";
-import ScrollToTop from "@/utils/ScrollToTop";
+import type { Metadata } from "next";
+import NextTopLoader from "nextjs-toploader";
+import "./globals.scss";
+import ScrollToTop from "@/components/common/ScrollToTop";
 
 export async function generateMetadata({
   params,
@@ -62,7 +62,7 @@ export default async function LocaleLayout({
       <body>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <NextTopLoader color="#002efe" showSpinner={false} />
-          {/* <ScrollToTop /> */}
+          <ScrollToTop />
           <Navigation />
           <main>{children}</main>
           <Footer />

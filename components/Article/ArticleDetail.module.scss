@@ -1,82 +1,184 @@
 .articleDetail {
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   max-width: 1000px;
-  margin: 0 auto;
+  margin: 5rem auto;
+  overflow: hidden;
+  position: relative;
 }
 
-.backButton {
-  display: inline-block;
-  margin-bottom: 2rem;
-  color: #666;
+.articleHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(to right, #f8f8f8, #ffffff);
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.backButton, .shareButton {
+  display: flex;
+  align-items: center;
+  color: #505050;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s;
-
+  transition: all 0.2s ease;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  
   &:hover {
-    color: #333;
+    color: #0070f3;
+    background-color: rgba(0, 112, 243, 0.05);
+  }
+  
+  .icon {
+    font-size: 1rem;
   }
 }
 
-.title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  font-weight: 700;
-  color: #333;
-  line-height: 1.2;
-}
-
-.meta {
-  color: #666;
-  font-size: 0.95rem;
-  margin-bottom: 2rem;
+.shareButton {
+  color: #555;
+  
+  &:hover {
+    color: #0070f3;
+  }
 }
 
 .imageContainer {
   width: 100%;
+  height: 100%;
   position: relative;
-  margin-bottom: 2rem;
   overflow: hidden;
-  border-radius: 8px;
+}
+
+.imageWrapper {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
 }
 
 .image {
   width: 100%;
   height: auto;
   object-fit: cover;
+  object-position: bottom !important;
+  display: block;
+  transition: transform 0.8s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.imageOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100px;
+  background: linear-gradient(to top, rgba(255,255,255,1), rgba(255,255,255,0));
+  pointer-events: none;
+}
+
+.contentWrapper {
+  padding: 2.5rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  color: #222;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+  gap: 8px;
+  
+  .calendarIcon {
+    color: #0070f3;
+    margin-right: 4px;
+  }
 }
 
 .content {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #444;
-
+  
   p {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.01rem;
   }
-
+  
   a {
     color: #0070f3;
     text-decoration: underline;
+    font-weight: 500;
+    
+    &:hover {
+      text-decoration: none;
+    }
   }
 }
 
 .viewAllNews {
   margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #eaeaea;
+  padding-top: 2rem;
+  border-top: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+}
 
-  a {
-    display: inline-block;
-    font-weight: 600;
-    color: #0070f3;
-    text-decoration: none;
-    transition: all 0.2s;
-
-    &:hover {
-      color: darken(#0070f3, 10%);
+.viewAllLink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #0070f3;
+  background-color: rgba(0, 112, 243, 0.08);
+  padding: 12px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  .newsIcon {
+    font-size: 1rem;
+  }
+  
+  span {
+    position: relative;
+    
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: #0070f3;
+      transition: width 0.3s ease;
+    }
+  }
+  
+  &:hover {
+    background-color: rgba(0, 112, 243, 0.12);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 112, 243, 0.15);
+    
+    span:after {
+      width: 100%;
     }
   }
 }
@@ -86,18 +188,39 @@
   padding: 5rem 1rem;
   font-size: 1.2rem;
   color: #666;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  
+  &:before {
+    content: '😕';
+    font-size: 3rem;
+  }
 }
 
 @media (max-width: 768px) {
-  .articleDetail {
+  .articleHeader {
+    padding: 1rem 1.5rem;
+  }
+  
+  .contentWrapper {
     padding: 1.5rem;
   }
-
+  
   .title {
     font-size: 1.8rem;
   }
-
+  
   .content {
     font-size: 1rem;
+  }
+  
+  .imageContainer {
+    max-height: 300px;
+  }
+  
+  .viewAllLink {
+    padding: 10px 20px;
   }
 }

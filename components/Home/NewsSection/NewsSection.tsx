@@ -73,6 +73,7 @@ interface StrapiArticle {
   publishedAt: string;
   locale: string;
   isFeatured: boolean;
+  slug: string; // Added slug field
   image: ArticleImage;
   localizations: Localization[];
 }
@@ -97,6 +98,7 @@ interface ProcessedArticle {
   description: string;
   publishedAt: string;
   image: ArticleImage | null;
+  slug: string; // Added slug field
 }
 
 export default async function NewsSection({
@@ -143,6 +145,7 @@ export default async function NewsSection({
         description: getShortDescription(article.content, 120),
         publishedAt: formatDate(article.publishedAt, locale),
         image: article.image || null,
+        slug: article.slug || `article-${article.id}`,
       };
     };
 

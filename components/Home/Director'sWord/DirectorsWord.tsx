@@ -1,7 +1,7 @@
 "use client";
 
 import director from "@/assets/director.jpg";
-import { Link } from "@/i18n/navigation";
+import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
