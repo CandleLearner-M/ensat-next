@@ -7,6 +7,7 @@ import { FiArrowRight } from "react-icons/fi";
 import styles from "./Announcements.module.scss";
 import Carousel from "./Carousel";
 import { sampleAnnouncements, type Announcement } from "./dummydata";
+import { Link } from "@/i18n/navigation";
 
 const sectionVariants = {
   hidden: { opacity: 0 },
@@ -213,10 +214,10 @@ function Announcements({
           viewport={{ once: true, amount: 0.2 }}
           variants={viewAllVariants}
         >
-          <a href={viewAllLink} className={styles.viewAll}>
+          <Link href={viewAllLink} className={styles.viewAll}>
             {t("viewAll")}
             <FiArrowRight />
-          </a>
+          </Link>
         </motion.div>
       </div>
     </motion.section>

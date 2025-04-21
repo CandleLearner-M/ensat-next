@@ -1,4 +1,4 @@
-export function formatDate(dateString: string, locale = "fr") {
+export function formatDate(dateString: string, locale: string = "fr"): string {
   const date = new Date(dateString);
 
   const options: Intl.DateTimeFormatOptions = {

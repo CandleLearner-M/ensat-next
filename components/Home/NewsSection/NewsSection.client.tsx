@@ -4,7 +4,32 @@ import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowRightLong } from "react-icons/fa6";
 import styles from "./NewsSection.module.scss";
+
+interface ArticleImage {
+  url: string;
+  formats?: {
+    small?: {
+      url: string;
+    };
+  };
+}
+
+interface Article {
+  id: string | number;
+  title: string;
+  description: string;
+  content: string;
+  publishedAt: string;
+  image: ArticleImage | null;
+}
+
+interface NewsMotionProps {
+  articles: Article[];
+  featuredArticle: Article;
+  locale: string;
+}
 
 // Enhanced animation variants
 const featuredVariants = {
@@ -37,7 +62,11 @@ const buttonVariants = {
   tap: { scale: 0.98 },
 };
 
-export default function NewsMotion({ articles, featuredArticle, locale }) {
+export default function NewsMotion({
+  articles,
+  featuredArticle,
+  locale,
+}: NewsMotionProps) {
   if (!articles || articles.length === 0) {
     return <div className={styles.empty}>No news articles available</div>;
   }
@@ -45,7 +74,7 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
   return (
     <section className={styles.newsSection}>
       <div className={styles.container}>
-        {/* Featured Article - Removed parallax effect */}
+        {/* Featured Article */}
         <motion.div
           className={styles.featured}
           initial="hidden"
@@ -121,13 +150,16 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
                 href={`/news/${featuredArticle.id}`}
                 className={styles.readMore}
               >
-                {locale === "fr" ? "Lire la suite" : "Read more"} &nbsp;&nbsp;→
+                <span> {locale === "fr" ? "Lire la suite" : "Read more"}</span>
+                <span>
+                  <FaArrowRightLong />
+                </span>
               </Link>
             </motion.div>
           </motion.div>
         </motion.div>
 
-        {/* News List - Simplified animations, keeping individual triggers */}
+        {/* News List */}
         <div className={styles.newsList}>
           {articles.map((article, i) => (
             <motion.div
@@ -190,8 +222,14 @@ export default function NewsMotion({ articles, featuredArticle, locale }) {
         >
           <motion.div variants={buttonVariants} initial="rest" whileTap="tap">
             <Link href="/news" className={styles.viewAllLink}>
-              {locale === "fr" ? "Voir toutes les actualités" : "View all news"}{" "}
-              &nbsp;&nbsp;→
+              <span>
+                {locale === "fr"
+                  ? "Voir toutes les actualités"
+                  : "View all news"}
+              </span>
+              <span>
+                <FaArrowRightLong />
+              </span>
             </Link>
           </motion.div>
         </motion.div>
