@@ -145,17 +145,15 @@ export default function NewsMotion({
               {featuredArticle.description}
             </motion.p>
 
-            <motion.div>
-              <Link
-                href={`/news/${featuredArticle.id}`}
-                className={styles.readMore}
-              >
-                <span> {locale === "fr" ? "Lire la suite" : "Read more"}</span>
-                <span>
-                  <FaArrowRightLong />
-                </span>
-              </Link>
-            </motion.div>
+            <Link
+              href={`/news/${featuredArticle.id}`}
+              className={styles.readMore}
+            >
+              <span> {locale === "fr" ? "Lire la suite" : "Read more"}</span>
+              <span>
+                <FaArrowRightLong />
+              </span>
+            </Link>
           </motion.div>
         </motion.div>
 

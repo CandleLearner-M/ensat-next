@@ -125,7 +125,6 @@ export default async function NewsSection({
       return <div className={styles.empty}>No news articles available</div>;
     }
 
-    // Helper function to extract a short description
     const getShortDescription = (
       content: string = "",
       maxLength: number = 120
@@ -136,7 +135,6 @@ export default async function NewsSection({
       return firstParagraph.substring(0, maxLength).trim() + "...";
     };
 
-    // Process Strapi articles into our simplified format with robust error handling
     const processArticle = (article: StrapiArticle): ProcessedArticle => {
       return {
         id: article.id,
@@ -148,7 +146,6 @@ export default async function NewsSection({
       };
     };
 
-    // Filter out any invalid articles before processing
     const validArticles = articles.filter(
       (article: StrapiArticle) => article && article.title && article.content
     );
@@ -159,25 +156,20 @@ export default async function NewsSection({
       );
     }
 
-    // Sort articles by publishedAt date (newest first)
     const sortedArticles = [...validArticles].sort(
       (a: StrapiArticle, b: StrapiArticle) =>
         new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime()
     );
 
-    // First, try to find any article explicitly marked as featured
     const featuredArticleData = sortedArticles[0];
 
     const featuredArticle = processArticle(featuredArticleData);
 
-    // For the featured article, use a longer description
     featuredArticle.description = getShortDescription(
       featuredArticle.content,
       250
     );
 
-    // Rest of the articles (up to 5) for the list
-    // Skip the featured article if it's in the list
     const listArticles = sortedArticles
       .filter(
         (article: StrapiArticle): boolean =>
