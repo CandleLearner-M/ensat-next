@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import styles from "./page.module.scss";
 import ArticleDetail from "@/components/Article/ArticleDetail";
+import { fetchArticleBySlug, fetchRelatedArticles } from "./utils";
 
 interface PageProps {
   params: {
@@ -9,69 +10,11 @@ interface PageProps {
   };
 }
 
-interface ArticleContent {
-  id: number;
-  title: string;
-  content: string;
-  publishedAt: string;
-  slug: string;
-  image: string | null;
-  imageFormats: any | null;
-}
-
-interface FormattedArticleData {
-  [locale: string]: ArticleContent;
-}
-
-function formatArticleData(articleData: any): FormattedArticleData | null {
-  if (!articleData?.data?.[0]) return null;
-
-  const mainArticle = articleData.data[0];
-  const result: FormattedArticleData = {};
-
-  result[mainArticle.locale] = {
-    id: mainArticle.id,
-    title: mainArticle.title || "Untitled",
-    content: mainArticle.content || "",
-    publishedAt: mainArticle.publishedAt,
-    slug: mainArticle.slug,
-    image: mainArticle.image?.url || null,
-    imageFormats: mainArticle.image?.formats || null,
-  };
-
-  // Process localizations (other language versions)
-  if (mainArticle.localizations?.length > 0) {
-    mainArticle.localizations.forEach((localization: any) => {
-      result[localization.locale] = {
-        id: localization.id,
-        title: localization.title || "Untitled",
-        content: localization.content || "",
-        publishedAt: localization.publishedAt,
-        slug: localization.slug || mainArticle.slug,
-        image: mainArticle.image?.url || null,
-        imageFormats: mainArticle.image?.formats || null,
-      };
-    });
-  }
-
-  return result;
-}
-
 export async function generateMetadata({ params }: PageProps) {
-  const { slug, locale } = params;
+  const { slug, locale } = await params;
 
   try {
-    const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_STRAPI_API_URL
-      }/api/articles?filters[slug]=${encodeURIComponent(slug)}&populate=*`,
-      { next: { revalidate: 600 } }
-    );
-
-    if (!response.ok) return { title: "Article Not Found" };
-
-    const articlesData = await response.json();
-    const formattedData = formatArticleData(articlesData);
+    const formattedData = await fetchArticleBySlug(slug);
 
     if (!formattedData) return { title: "Article Not Found" };
 
@@ -93,29 +36,23 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 export default async function ArticlePage({ params }: PageProps) {
-  const { slug, locale } = params;
+  const { slug, locale } = await params;
 
   try {
-    const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_STRAPI_API_URL
-      }/api/articles?filters[slug]=${encodeURIComponent(slug)}&populate=*`,
-      { next: { revalidate: 600 } }
-    );
-
-    if (!response.ok) return notFound();
-
-    const articlesData = await response.json();
-
-    if (!articlesData?.data?.length) return notFound();
-
-    const formattedData = formatArticleData(articlesData);
-
+    // Fetch main article
+    const formattedData = await fetchArticleBySlug(slug);
     if (!formattedData) return notFound();
+
+    // Fetch related articles
+    const relatedArticles = await fetchRelatedArticles(slug);
 
     return (
       <div className={styles.container}>
-        <ArticleDetail article={formattedData} locale={locale} />
+        <ArticleDetail
+          article={formattedData}
+          relatedArticles={relatedArticles}
+          locale={locale}
+        />
       </div>
     );
   } catch (error) {

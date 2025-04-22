@@ -2,7 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
 import Logo from "../../Logo/Logo";
 import LocaleSwitcher from "./LocaleSwitcher";
@@ -15,29 +15,31 @@ import Search from "../../Search/Search";
 import { debounce } from "lodash-es";
 import { usePathname } from "next/navigation";
 
-function NavBar() {
+function NavBar(): React.ReactElement {
   const t = useTranslations("Navigation.NavBar");
 
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [isTransparent, setIsTransparent] = useState(true);
-
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
+  const [visible, setVisible] = useState<boolean>(true);
+  const [isTransparent, setIsTransparent] = useState<boolean>(true);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
 
   const pathName = usePathname();
+  const transparentable = !pathName.includes("news");
 
-  const transparentable = !(pathName.includes('news'));
+  const isTransparentRef = useRef<boolean>(isTransparent);
+  isTransparentRef.current = isTransparent;
 
   const handleCloseSearch = useCallback(() => {
     setIsSearchOpen(false);
   }, []);
 
   const checkIfAtTop = useCallback(() => {
-    setIsTransparent(window.scrollY < 10 && transparentable);
+    const shouldBeTransparent = window.scrollY < 10 && transparentable;
+    if (isTransparentRef.current !== shouldBeTransparent) {
+      setIsTransparent(shouldBeTransparent);
+    }
   }, [transparentable]);
 
-  // This will run after scrolling stops
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedScrollEnd = useCallback(
     debounce(() => {
       checkIfAtTop();
@@ -45,18 +47,14 @@ function NavBar() {
     [checkIfAtTop]
   );
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   const throttledScrolledHandler = useCallback(
-    throttle((currentPrevScrollPos) => {
+    throttle((currentScrollPos: number) => {
+      const newScrollPos = window.scrollY;
+      const isScrollingUp = currentScrollPos > newScrollPos;
+
       checkIfAtTop();
-
-      const currentScrollPos = window.scrollY;
-
-      const isScrollingUp = currentPrevScrollPos > currentScrollPos;
-
       setVisible(isScrollingUp);
-      setPrevScrollPos(currentScrollPos);
-
+      setPrevScrollPos(newScrollPos);
       debouncedScrollEnd();
     }, 100),
     [checkIfAtTop, debouncedScrollEnd]
@@ -67,14 +65,27 @@ function NavBar() {
   }, [prevScrollPos, throttledScrolledHandler]);
 
   useEffect(() => {
-    checkIfAtTop();
+    const shouldBeTransparent = window.scrollY < 10 && transparentable;
+    setIsTransparent(shouldBeTransparent);
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
       throttledScrolledHandler.cancel();
       debouncedScrollEnd.cancel();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll, throttledScrolledHandler, debouncedScrollEnd, checkIfAtTop]);
+  }, [
+    handleScroll,
+    throttledScrolledHandler,
+    debouncedScrollEnd,
+    transparentable, // Correct to include this dependency
+  ]);
+
+  // Separate effect for path changes
+  useEffect(() => {
+    checkIfAtTop();
+  }, [pathName, checkIfAtTop]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {

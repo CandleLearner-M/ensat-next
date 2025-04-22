@@ -4,44 +4,60 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import {
   FaArrowLeft,
   FaCalendarAlt,
+  FaClock,
   FaNewspaper,
   FaShareAlt,
+  FaAngleRight,
 } from "react-icons/fa";
 import styles from "./ArticleDetail.module.scss";
 import { useLocale } from "next-intl";
-
-// Define interface for our localized article data
-interface LocalizedArticleData {
-  [locale: string]: {
-    id: number;
-    title: string;
-    content: string;
-    publishedAt: string;
-    slug: string;
-    image: string | null;
-    imageFormats: any | null;
-  };
-}
+import {
+  FormattedArticleData,
+  LocalizedArticle,
+} from "@/app/[locale]/news/[slug]/utils";
 
 interface ArticleDetailProps {
-  article: LocalizedArticleData;
+  article: FormattedArticleData;
+  relatedArticles?: LocalizedArticle[];
   locale: string; // Initial locale from server component
 }
 
 export default function ArticleDetail({
   article,
   locale: initialLocale,
+  relatedArticles = [],
 }: ArticleDetailProps) {
   const router = useRouter();
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [relatedImagesLoaded, setRelatedImagesLoaded] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   const currentLocale = useLocale();
-
   const currentContent = article[currentLocale] || article[initialLocale];
+
+  // Calculate reading time
+  const readingTime = useMemo(() => {
+    if (!currentContent.content) return 1;
+
+    // Count words by splitting on whitespace
+    const wordCount = currentContent.content.split(/\s+/).length;
+
+    // Average reading speed (words per minute)
+    const wordsPerMinute = 125;
+
+    // Calculate reading time in minutes
+    const readingTimeMinutes = Math.max(
+      1,
+      Math.ceil(wordCount / wordsPerMinute)
+    );
+
+    return readingTimeMinutes;
+  }, [currentContent.content]);
 
   if (!currentContent) {
     return <div className={styles.error}>Article not found</div>;
@@ -59,6 +75,14 @@ export default function ArticleDetail({
       currentLocale === "fr" ? "fr-FR" : "en-US",
       options
     ).format(date);
+  };
+
+  // Format reading time with proper localization
+  const formatReadingTime = (minutes: number) => {
+    if (currentLocale === "fr") {
+      return `${minutes} min${minutes > 1 ? "s" : ""} de lecture`;
+    }
+    return `${minutes} min${minutes > 1 ? "s" : ""} read`;
   };
 
   // Format content (handle paragraphs)
@@ -91,6 +115,11 @@ export default function ArticleDetail({
       navigator.clipboard.writeText(window.location.href);
       alert(currentLocale === "fr" ? "Lien copié!" : "Link copied!");
     }
+  };
+
+  // Handle image load for related articles
+  const handleRelatedImageLoad = (index: number) => {
+    setRelatedImagesLoaded((prev) => ({ ...prev, [index]: true }));
   };
 
   return (
@@ -163,8 +192,14 @@ export default function ArticleDetail({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <FaCalendarAlt className={styles.calendarIcon} />
-          {formatDate(currentContent.publishedAt)}
+          <div className={styles.metaItem}>
+            <FaCalendarAlt className={styles.metaIcon} />
+            {formatDate(currentContent.publishedAt)}
+          </div>
+          <div className={styles.metaItem}>
+            <FaClock className={styles.metaIcon} />
+            {formatReadingTime(readingTime)}
+          </div>
         </motion.div>
 
         <motion.div
@@ -176,11 +211,89 @@ export default function ArticleDetail({
           {formatContent(currentContent.content)}
         </motion.div>
 
+        {/* Related Articles Section */}
+        {relatedArticles.length > 0 && (
+          <motion.section
+            className={styles.relatedArticlesSection}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.5 }}
+          >
+            <h2 className={styles.relatedHeading}>
+              {currentLocale === "fr"
+                ? "Articles connexes"
+                : "Related articles"}
+            </h2>
+
+            <div className={styles.relatedGrid}>
+              {relatedArticles.map((articleItem, index) => {
+                // Get content for current locale or fallback
+                const content =
+                  articleItem[currentLocale] ||
+                  articleItem[initialLocale] ||
+                  articleItem[Object.keys(articleItem)[0]];
+
+                if (!content) return null;
+
+                return (
+                  <motion.div
+                    className={styles.relatedCard}
+                    key={content.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.15 * (index + 1), duration: 0.5 }}
+                    whileHover={{
+                      y: -5,
+                      boxShadow: "0 8px 30px rgba(0, 112, 243, 0.15)",
+                    }}
+                  >
+                    <Link
+                      href={`/news/${content.slug}`}
+                      className={styles.relatedLink}
+                    >
+                      <div className={styles.relatedImageWrapper}>
+                        {content.image && (
+                          <>
+                            <Image
+                              src={content.image}
+                              alt={content.title}
+                              width={400}
+                              height={225}
+                              className={`${styles.relatedImage} ${
+                                relatedImagesLoaded[index] ? styles.loaded : ""
+                              }`}
+                              onLoad={() => handleRelatedImageLoad(index)}
+                            />
+                            <div className={styles.relatedImageOverlay}></div>
+                          </>
+                        )}
+                      </div>
+                      <div className={styles.relatedContent}>
+                        <h3 className={styles.relatedTitle}>{content.title}</h3>
+                        <div className={styles.relatedMeta}>
+                          <FaCalendarAlt className={styles.relatedMetaIcon} />
+                          <span>{formatDate(content.publishedAt)}</span>
+                        </div>
+                        <span className={styles.readMore}>
+                          {currentLocale === "fr"
+                            ? "Lire l'article"
+                            : "Read article"}
+                          <FaAngleRight className={styles.arrowIcon} />
+                        </span>
+                      </div>
+                    </Link>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.section>
+        )}
+
         <motion.div
           className={styles.viewAllNews}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
           whileHover={{ scale: 1.03 }}
         >
           <Link href="/news" className={styles.viewAllLink}>
