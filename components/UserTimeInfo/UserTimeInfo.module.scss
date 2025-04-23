@@ -1,0 +1,41 @@
+.userTimeContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: #f9f9f9;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  margin: 0 1.5rem 2rem;
+  font-size: 0.9rem;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.infoItem {
+  display: flex;
+  flex-direction: column;
+  
+  @media (min-width: 768px) {
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+  }
+}
+
+.label {
+  color: #666;
+}
+
+.value {
+  font-weight: 600;
+  color: #0070f3;
+  
+  @media (max-width: 767px) {
+    margin-top: 0.2rem;
+  }
+}

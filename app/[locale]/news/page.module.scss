@@ -1,0 +1,47 @@
+.pageContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.error {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 2rem 1.5rem;
+  
+  h2 {
+    color: #e53e3e;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #666;
+    font-size: 1rem;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  margin: 2rem 1.5rem;
+  
+  h2 {
+    color: #333;
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #666;
+    font-size: 1rem;
+  }
+}
