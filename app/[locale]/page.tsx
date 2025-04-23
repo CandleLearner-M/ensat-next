@@ -16,14 +16,13 @@ export default function Home({ params }: { params: { locale: string } }) {
       <OverView />
       <Announcements />
       <Communty />
-      <DirectorsWord />
 
+      <DirectorsWord />
       <Suspense
         fallback={<div className={styles.loading}>Loading news...</div>}
       >
         <NewsSection locale={params.locale} />
       </Suspense>
-
       <RelatedTopicsSection />
     </main>
   );

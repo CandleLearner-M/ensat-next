@@ -4,7 +4,7 @@ import AnimatedLink from "@/components/common/AnimatedLink/AnimatedLink";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { FaArrowRightLong, FaNewspaper } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import styles from "./NewsSection.module.scss";
 
 interface ArticleImage {
@@ -74,19 +74,20 @@ export default function NewsMotion({
 
   return (
     <section className={styles.newsSection}>
-      <motion.h2
-        className={styles.Heading}
-        initial={{ opacity: 0, y: 10 }}
+      <motion.div
+        className={styles.sectionTitleContainer}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5, delay: 0.1 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        <span>
-          <FaNewspaper />
-        </span>
-
-        <span>{locale === "fr" ? "Actualités de l'ENSAT" : "ENSAT News"}</span>
-      </motion.h2>
+        <h2 className={styles.sectionTitle}>
+          {locale === "fr"
+            ? "Les actualités de l'ENSAT"
+            : "The news from ENSAT"}
+        </h2>
+        <div className={styles.titleUnderline}></div>
+      </motion.div>
       <div className={styles.container}>
         {/* Featured Article */}
         <motion.div
